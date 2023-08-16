@@ -39,15 +39,22 @@ export default defineNuxtPrepareHandler(async () => {
   // Do some async magic here, e.g. fetch data from an API
 
   return {
+    // Default is `true` if not set
+    ok: true,
+
     // Overwrite the runtime config variable `foo`
     runtimeConfig: {
       public: {
-        foo: 'overwritten by prepare script'
+        foo: 'overwritten by server init'
       }
     }
   }
 })
 ```
+
+::: tip
+Return `ok: false` to let the Nuxt Prepare module know that the script failed. It will then log an error and exit the process.
+:::
 
 ## Step 4: Add More Prepare Scripts
 

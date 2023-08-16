@@ -12,7 +12,8 @@
 ## Features
 
 - 🦦 Zero-Config
-- 🦎 Run synchronous or asynchronous code before Nuxt starts
+- 🦎 Run scripts before Nuxt starts and pass state
+- ✂️ Conditionally overwrite runtime config or app config variables
 - 🦾 Better DX with [`defineNuxtPrepareHandler`](https://nuxt-prepare.byjohann.dev/api/define-nuxt-prepare-handler)
 
 ## Setup
@@ -72,7 +73,8 @@ export default defineNuxtPrepareHandler(async () => {
 
 ## Credits
 
-- [@McPizza0](https://github.com/McPizza0) for his inspirational [`nuxt-server-init`](https://github.com/McPizza0/nuxt-server-init) module.
+- [Maronbeere](https://twitter.com/Maronbeere) for his Chameleon pixel art.
+- [McPizza0](https://github.com/McPizza0) for his inspirational [`nuxt-server-init`](https://github.com/McPizza0/nuxt-server-init) module.
 - [SVGBackgrounds.com](https://www.svgbackgrounds.com) for the OpenGraph image background pattern.
 
 ## License

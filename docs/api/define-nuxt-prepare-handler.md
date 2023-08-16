@@ -42,7 +42,7 @@ export default defineNuxtPrepareHandler(async () => {
   // Do some async magic here, e.g. fetch data from an API
 
   return {
-    // Default is `true`
+    // Default is `true` if not set
     ok: true,
 
     // Overwrite the runtime config variable `foo`

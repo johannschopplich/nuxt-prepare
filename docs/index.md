@@ -28,10 +28,15 @@ features:
     icon: 🦦
     details: Uses `server.prepare.ts` by default.
     link: /guide/getting-started
-    linkText: Getting Started
-  - title: Define Custom Handlers
+    linkText: Get Started
+  - title: Pass Prepare Script State
+    icon: 🫴
+    details: Handle errors gracefully if a sync or async operation fails.
+    link: /guide/getting-started
+    linkText: Get Started
+  - title: Define Multiple Prepare Scripts
     icon: 🦾
-    details: Type-Safe with `defineNuxtPrepareHandler`.
+    details: Conditionally overwrite runtime config or app config variables.
     link: /api/define-nuxt-prepare-handler
     linkText: Methods
   - title: Validate Your `.env`
