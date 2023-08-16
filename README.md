@@ -73,7 +73,7 @@ export default defineNuxtPrepareHandler(async () => {
 
 ## Credits
 
-- [Maronbeere](https://twitter.com/Maronbeere) for his Chameleon pixel art.
+- [Maronbeere](https://maronbeere.carrd.co) for his Chameleon pixel art.
 - [McPizza0](https://github.com/McPizza0) for his inspirational [`nuxt-server-init`](https://github.com/McPizza0/nuxt-server-init) module.
 - [SVGBackgrounds.com](https://www.svgbackgrounds.com) for the OpenGraph image background pattern.
 
