@@ -8,7 +8,10 @@ export default defineNuxtConfig({
   },
 
   prepareKit: {
-    scripts: ['server.prepare', 'process.prepare'],
+    scripts: [
+      'server.prepare',
+      // 'process.prepare',
+    ],
   },
 
   typescript: {
