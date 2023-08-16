@@ -85,9 +85,7 @@ export default defineNuxtModule<ModuleOptions>({
 
       if (!path) {
         logger.error(
-          `Server prepare script \`${name}{${extensions.join(
-            ',',
-          )}}\` not found. Please create the file or remove it from the \`prepareKit.scripts\` module option.`,
+          `Server prepare script \`${name}{${extensions.join(',')}}\` not found. Please create the file or remove it from the \`prepareKit.scripts\` module option.`,
         )
         throw new Error('Server prepare script not found')
       }
