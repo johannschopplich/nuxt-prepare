@@ -47,7 +47,7 @@ export default defineNuxtModule<ModuleOptions>({
   async setup(options, nuxt) {
     const logger = useLogger('nuxt-prepare')
     const extensions = ['.js', '.mjs', '.ts']
-    const _require = createJITI(nuxt.options.rootDir, {
+    const _import = createJITI(nuxt.options.rootDir, {
       interopDefault: true,
       esmResolve: true,
     })
@@ -99,7 +99,7 @@ export default defineNuxtModule<ModuleOptions>({
     for (const { name, path } of resolvedScripts) {
       logger.info(`Running prepare script \`${name}\``)
 
-      const result: NuxtPrepareResult = await _require(path)
+      const result: NuxtPrepareResult = await _import(path)
 
       if (!(result.ok ?? true)) {
         logger.error(`Server prepare script \`${name}\` returned an error`)
