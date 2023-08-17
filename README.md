@@ -12,7 +12,7 @@
 ## Features
 
 - 🦦 Zero-Config
-- 🦎 Run scripts before Nuxt starts and pass state
+- 🦎 Run sync or async operations at build-time and pass state to Nuxt
 - ✂️ Conditionally overwrite runtime config or app config variables
 - 🦾 Better DX with [`defineNuxtPrepareHandler`](https://nuxt-prepare.byjohann.dev/api/define-nuxt-prepare-handler)
 
