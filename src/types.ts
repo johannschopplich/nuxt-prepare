@@ -1,4 +1,5 @@
 import type { AppConfig, RuntimeConfig } from '@nuxt/schema'
+import type { PartialDeep } from 'type-fest'
 
 export interface NuxtPrepareResult {
   /**
@@ -12,9 +13,9 @@ export interface NuxtPrepareResult {
   /**
    * Runtime config to merge with `nuxt.options.runtimeConfig`
    */
-  runtimeConfig?: Partial<RuntimeConfig>
+  runtimeConfig?: PartialDeep<RuntimeConfig>
   /**
    * App config to merge with `nuxt.options.appConfig`
    */
-  appConfig?: AppConfig
+  appConfig?: PartialDeep<AppConfig>
 }

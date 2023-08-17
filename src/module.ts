@@ -98,8 +98,9 @@ export default defineNuxtModule<ModuleOptions>({
       logger.info(`Running prepare script \`${name}\``)
 
       const result: NuxtPrepareResult = await _import(path)
+      const isOk = result.ok ?? true
 
-      if (!(result.ok ?? true)) {
+      if (!isOk) {
         logger.error(`Server prepare script \`${name}\` returned an error`)
         errorCount++
 
