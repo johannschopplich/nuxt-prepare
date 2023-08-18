@@ -8,7 +8,7 @@ const url = new URL(ogUrl)
 export default defineConfig({
   lang: 'en-US',
   title: name,
-  description: 'Run initialization steps before Nuxt starts',
+  description: 'Run initialization steps at build time',
   head: [
     ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
     ['meta', { name: 'author', content: 'Johann Schopplich' }],

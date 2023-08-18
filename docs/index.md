@@ -3,11 +3,11 @@ layout: home
 sidebar: false
 
 title: nuxt-prepare
-titleTemplate: Run initialization steps before Nuxt starts
+titleTemplate: Run initialization steps at build time
 
 hero:
   name: nuxt-prepare
-  text: Run initialization steps before Nuxt starts
+  text: Run initialization steps at build time
   tagline: Like server init in Nuxt 2, but better
   image:
     src: /logo-shadow.svg
@@ -41,7 +41,7 @@ features:
     linkText: Methods
   - title: Validate Your `.env`
     icon: 🦜
-    details: Ensure your `.env` is valid before Nuxt starts.
+    details: Ensure your `.env` is valid before Nuxt builds your app.
     link: /guide/example-env-validation
     linkText: Examples
 ---

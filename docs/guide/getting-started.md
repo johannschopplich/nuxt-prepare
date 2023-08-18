@@ -29,7 +29,7 @@ export default defineNuxtConfig({
 
 ## Step 3: Set Up Prepare Scripts
 
-By default, `nuxt-prepare` will look for a `server.prepare.ts` file in your project root. To run synchronous or asynchronous code before Nuxt starts, create a file handler and export a default function:
+By default, `nuxt-prepare` will look for a `server.prepare.ts` file in your project root. To run synchronous or asynchronous code when Nuxt builds your app, create a file handler and export a default function:
 
 ```ts
 // `server.prepare.ts`
@@ -71,4 +71,4 @@ export default defineNuxtConfig({
 })
 ```
 
-Now, both `server.prepare.ts` and `process.prepare.ts` will be executed before Nuxt starts.
+Now, both `server.prepare.ts` and `process.prepare.ts` will be executed at build time.
