@@ -32,6 +32,15 @@
   },
   "main": "./dist/module.cjs",
   "types": "./dist/types.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "*",
+        "dist/*",
+        "dist/*.d.ts"
+      ]
+    }
+  },
   "files": [
     "dist"
   ],
