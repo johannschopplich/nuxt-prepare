@@ -11,7 +11,7 @@ import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
 
 export default defineNuxtPrepareHandler(() => {
   const schema = z.object({
-    NUXT_PUBLIC_FOOS: z.string(),
+    NUXT_PUBLIC_FOO: z.string()
   })
 
   const result = schema.safeParse(process.env)
@@ -23,7 +23,7 @@ export default defineNuxtPrepareHandler(() => {
   }
 
   return {
-    ok: result.success,
+    ok: result.success
   }
 })
 ```

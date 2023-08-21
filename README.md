@@ -37,7 +37,7 @@ Add the `nuxt-prepare` module to your `nuxt.config.ts`:
 ```ts
 // `nuxt.config.ts`
 export default defineNuxtConfig({
-  modules: ['nuxt-prepare'],
+  modules: ['nuxt-prepare']
 })
 ```
 
@@ -54,9 +54,9 @@ export default defineNuxtPrepareHandler(async () => {
     // Overwrite the runtime config variable `foo`
     runtimeConfig: {
       public: {
-        foo: 'overwritten by prepare script',
-      },
-    },
+        foo: 'overwritten by prepare script'
+      }
+    }
   }
 })
 ```
@@ -75,7 +75,6 @@ export default defineNuxtPrepareHandler(async () => {
 
 - [Maronbeere](https://maronbeere.carrd.co) for his Chameleon pixel art.
 - [McPizza0](https://github.com/McPizza0) for his inspirational [`nuxt-server-init`](https://github.com/McPizza0/nuxt-server-init) module.
-- [SVGBackgrounds.com](https://www.svgbackgrounds.com) for the OpenGraph image background pattern.
 
 ## License
 
