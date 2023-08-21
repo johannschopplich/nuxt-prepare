@@ -36,7 +36,7 @@ function defineNuxtPrepareHandler<T extends ServerInitResult>(
 ## Example
 
 ```ts
-import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
+import { defineNuxtPrepareHandler } from 'nuxt-prepare'
 
 export default defineNuxtPrepareHandler(async () => {
   // Do some async magic here, e.g. fetch data from an API

@@ -7,7 +7,7 @@ Since Nuxt reads the environment variables at build time from the local `.env` f
 ```ts
 // `server.prepare.ts`
 import { z } from 'zod'
-import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
+import { defineNuxtPrepareHandler } from 'nuxt-prepare'
 
 export default defineNuxtPrepareHandler(() => {
   const schema = z.object({

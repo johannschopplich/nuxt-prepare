@@ -33,7 +33,7 @@ By default, `nuxt-prepare` will look for a `server.prepare.ts` file in your proj
 
 ```ts
 // `server.prepare.ts`
-import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
+import { defineNuxtPrepareHandler } from 'nuxt-prepare'
 
 export default defineNuxtPrepareHandler(async () => {
   // Do some async magic here, e.g. fetch data from an API
