@@ -2,7 +2,7 @@
   "name": "nuxt-prepare",
   "type": "module",
   "version": "0.1.2",
-  "packageManager": "pnpm@8.6.12",
+  "packageManager": "pnpm@8.7.0",
   "description": "Run initialization steps at build time",
   "author": "Johann Schopplich <pkg@johannschopplich.com>",
   "license": "MIT",
@@ -62,14 +62,14 @@
     "@nuxt/kit": "^3.6.5",
     "defu": "^6.1.2",
     "jiti": "^1.19.1",
-    "type-fest": "^4.2.0"
+    "type-fest": "^4.3.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.40.2",
     "@nuxt/module-builder": "^0.4.0",
     "@nuxt/schema": "^3.6.5",
-    "@types/node": "^20.5.0",
-    "bumpp": "^9.1.1",
+    "@types/node": "^20.5.7",
+    "bumpp": "^9.2.0",
     "eslint": "^8.47.0",
     "nuxt": "^3.6.5",
     "nuxt-prepare": "workspace:*",
