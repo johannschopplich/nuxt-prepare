@@ -14,13 +14,12 @@ export default defineNuxtConfig({
     ],
   },
 
+  experimental: {
+    typescriptBundlerResolution: true,
+  },
+
   typescript: {
     typeCheck: 'build',
     shim: false,
-    tsConfig: {
-      compilerOptions: {
-        moduleResolution: 'bundler',
-      },
-    },
   },
 })
