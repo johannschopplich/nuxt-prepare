@@ -62,6 +62,8 @@
     "@nuxt/kit": "^3.7.0",
     "defu": "^6.1.2",
     "jiti": "^1.19.3",
+    "pathe": "^1.1.1",
+    "scule": "^1.0.0",
     "type-fest": "^4.3.1"
   },
   "devDependencies": {
