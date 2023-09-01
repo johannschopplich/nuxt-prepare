@@ -10,6 +10,7 @@ export default defineNuxtConfig({
   prepareKit: {
     scripts: [
       'server.prepare',
+      'store.prepare',
       // 'process.prepare',
     ],
   },

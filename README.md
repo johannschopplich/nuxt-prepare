@@ -56,7 +56,13 @@ export default defineNuxtPrepareHandler(async () => {
       public: {
         foo: 'overwritten by prepare script'
       }
-    }
+    },
+
+    // Pass custom state to Nuxt and import it
+    // anywhere from `#nuxt-prepare`
+    state: {
+      foo: 'bar',
+    },
   }
 })
 ```

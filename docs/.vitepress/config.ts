@@ -75,6 +75,7 @@ function nav(): DefaultTheme.NavItem[] {
           text: 'Examples',
           items: [
             { text: 'Dotenv Validation', link: '/guide/example-env-validation' },
+            { text: 'Populate Pinia Store', link: '/guide/example-pass-state-to-nuxt' },
           ],
         },
       ],
@@ -129,6 +130,7 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
       text: 'Examples',
       items: [
         { text: 'Dotenv Validation', link: '/guide/example-env-validation' },
+        { text: 'Populate Pinia Store', link: '/guide/example-pass-state-to-nuxt' },
       ],
     },
     { text: 'API', link: '/api/' },

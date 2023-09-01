@@ -47,7 +47,13 @@ export default defineNuxtPrepareHandler(async () => {
       public: {
         foo: 'overwritten by server init'
       }
-    }
+    },
+
+    // Pass custom state to Nuxt and import it
+    // anywhere from `#nuxt-prepare`
+    state: {
+      foo: 'bar',
+    },
   }
 })
 ```

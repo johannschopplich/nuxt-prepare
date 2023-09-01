@@ -21,11 +21,30 @@ interface NuxtPrepareResult {
   /**
    * Runtime config to merge with `nuxt.options.runtimeConfig`
    */
-  runtimeConfig?: Partial<RuntimeConfig>
+  runtimeConfig?: PartialDeep<RuntimeConfig>
   /**
    * App config to merge with `nuxt.options.appConfig`
    */
-  appConfig?: AppConfig
+  appConfig?: PartialDeep<AppConfig>
+  /**
+   * Pass custom state to Nuxt and import it anywhere from `#nuxt-prepare`
+   *
+   * @remarks
+   * Use this to prefetch data, i.e. populate the Pinia store with data from
+   * your API.
+   *
+   * @example
+   * // `stores/todo.ts`
+   * import { defineStore } from 'pinia'
+   * import { todos } from '#nuxt-prepare'
+   *
+   * export const useTodos = defineStore('todos', {
+   *   state: () => ({
+   *     todos: todos || [],
+   *   })
+   * })
+   */
+  state?: Record<string, unknown>
 }
 
 function defineNuxtPrepareHandler<T extends ServerInitResult>(
@@ -50,7 +69,13 @@ export default defineNuxtPrepareHandler(async () => {
       public: {
         foo: 'overwritten by server init'
       }
-    }
+    },
+
+    // Pass custom state to Nuxt and import it
+    // anywhere from `#nuxt-prepare`
+    state: {
+      foo: 'bar',
+    },
   }
 })
 ```
