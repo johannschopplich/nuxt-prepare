@@ -4,7 +4,7 @@
 
 [![npm version](https://img.shields.io/npm/v/nuxt-prepare?color=a1b858&label=)](https://www.npmjs.com/package/nuxt-prepare)
 
-> [Nuxt 3](https://nuxt.com) module to run initialization steps at build time.
+> [Nuxt](https://nuxt.com) module to run initialization steps at build time.
 
 - [✨ &nbsp;Release Notes](https://github.com/johannschopplich/nuxt-prepare/releases)
 - [📖 &nbsp;Read the documentation](https://nuxt-prepare.byjohann.dev)
