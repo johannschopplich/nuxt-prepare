@@ -122,9 +122,9 @@ export default defineNuxtModule<ModuleOptions>({
         nuxt.options.runtimeConfig = defu(
           result.runtimeConfig,
           nuxt.options.runtimeConfig,
-          )
-        }
-        if (result.appConfig)
+        )
+      }
+      if (result.appConfig)
         // @ts-expect-error: type mismatch
         nuxt.options.appConfig = defu(result.appConfig, nuxt.options.appConfig)
       if (result.state) {
