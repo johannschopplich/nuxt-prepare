@@ -1,5 +1,5 @@
 name: 🐞 Bug report
-description: Create a report to help me improve Nuxt Server Kit
+description: Create a report to help me improve Nuxt Prepare
 labels: [pending triage]
 body:
   - type: markdown

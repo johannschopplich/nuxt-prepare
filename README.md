@@ -26,6 +26,9 @@ pnpm add -D nuxt-prepare
 
 # npm
 npm i -D nuxt-prepare
+
+# yarn
+yarn add -D nuxt-prepare
 ```
 
 ## Basic Usage
@@ -67,7 +70,8 @@ export default defineNuxtPrepareHandler(async () => {
 })
 ```
 
-> ℹ️ You can run as many prepare scripts as you want – add them to the `prepareKit.scripts` module configuration.
+> [!NOTE]
+> You can run as many prepare scripts as you want – add them to the `prepareKit.scripts` module configuration.
 
 ## 💻 Development
 
