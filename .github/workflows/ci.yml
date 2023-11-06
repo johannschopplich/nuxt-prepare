@@ -14,12 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
+      - run: corepack enable
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-
-      - run: corepack enable
+          cache: pnpm
 
       - name: Install
         run: pnpm i
@@ -31,12 +30,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
+      - run: corepack enable
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-
-      - run: corepack enable
+          cache: pnpm
 
       - name: Install
         run: pnpm i
