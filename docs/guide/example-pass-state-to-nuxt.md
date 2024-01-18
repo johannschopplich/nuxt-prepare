@@ -14,7 +14,7 @@ Think of the `state` as an alternative to the `nuxtServerInit` action in Nuxt 2 
 // `store.prepare.ts`
 import { $fetch } from 'ofetch'
 import type { FetchError } from 'ofetch'
-import { defineNuxtPrepareHandler } from '../src/config'
+import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
 
 export default defineNuxtPrepareHandler(async () => {
   let todos: Record<string, unknown> | undefined
