@@ -40,5 +40,11 @@ interface ModuleOptions {
    * @default false
    */
   continueOnError?: boolean
+  /**
+   * Whether the scripts should be run on `nuxi prepare`.
+   *
+   * @default true
+   */
+  runOnPrepare?: boolean
 }
 ```

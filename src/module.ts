@@ -31,6 +31,12 @@ export interface ModuleOptions {
    * @default false
    */
   continueOnError?: boolean
+  /**
+   * Whether the scripts should be run on `nuxi prepare`.
+   *
+   * @default true
+   */
+  runOnPrepare?: boolean
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -45,6 +51,7 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     scripts: ['server.prepare'],
     continueOnError: false,
+    runOnPrepare: true,
   },
   async setup(options, nuxt) {
     const moduleName = 'nuxt-prepare'
@@ -100,6 +107,11 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Run scripts
     for (const { name, path } of resolvedScripts) {
+      if (nuxt.options._prepare && !options.runOnPrepare) {
+        logger.info('Skipping prepare scripts')
+        break
+      }
+
       logger.info(`Running prepare script \`${name}\``)
 
       const result: NuxtPrepareResult = await _import(path)
@@ -161,7 +173,6 @@ export type ${pascalCase(key)} = typeof ${key}
       },
     })
 
-    // Finally, add `#nuxt-prepare` global state
     if (errorCount > 0)
       logger.warn(`Server prepare scripts completed with ${errorCount} error${errorCount > 1 ? 's' : ''}`)
     else if (successCount > 0)
