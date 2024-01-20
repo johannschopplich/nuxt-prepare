@@ -5,7 +5,7 @@ export default defineNuxtPrepareHandler(async () => {
     // Overwrite the runtime config variable `foo`
     runtimeConfig: {
       public: {
-        foo: 'overwritten by server init',
+        foo: 'Overwritten by "server.prepare" script',
       },
     },
   }
