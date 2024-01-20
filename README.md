@@ -59,7 +59,7 @@ export default defineNuxtPrepareHandler(async () => {
     // Overwrite the runtime config variable `foo`
     runtimeConfig: {
       public: {
-        foo: 'overwritten by prepare script'
+        foo: 'Overwritten by "server.prepare" script'
       }
     },
 
@@ -72,8 +72,8 @@ export default defineNuxtPrepareHandler(async () => {
 })
 ```
 
-> [!NOTE]
-> You can run as many prepare scripts as you want – add them to the `prepareKit.scripts` module configuration.
+> [!TIP]
+> You can run as many prepare scripts as you want – add them to the `prepare.scripts` module configuration.
 
 ## 💻 Development
 

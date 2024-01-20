@@ -9,6 +9,11 @@ import type { NuxtPrepareResult } from './types'
 
 export { defineNuxtPrepareHandler } from './config'
 
+export interface PrepareScript {
+  file: string
+  runOnPrepare?: boolean
+}
+
 export interface ModuleOptions {
   /**
    * Accepts a list of prepare scripts to run. The scripts are executed in the
@@ -19,7 +24,7 @@ export interface ModuleOptions {
    *
    * @default ['server.prepare']
    */
-  scripts: string | string[]
+  scripts: string | string[] | PrepareScript | PrepareScript[]
   /**
    * If `true`, the module will not throw an error if a script fails.
    *
@@ -34,6 +39,11 @@ export interface ModuleOptions {
   /**
    * Whether the scripts should be run on `nuxi prepare`.
    *
+   * @remarks
+   * If set to `false`, all scripts will be ignored when running `nuxi prepare`. If you want to
+   * exclude specific scripts, use the object syntax for the `scripts` option and set the
+   * `runOnPrepare` property individually for each script.
+   *
    * @default true
    */
   runOnPrepare?: boolean
@@ -43,7 +53,7 @@ export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
     version,
-    configKey: 'prepareKit',
+    configKey: 'prepare',
     compatibility: {
       nuxt: '^3.0.0',
     },
@@ -64,30 +74,26 @@ export default defineNuxtModule<ModuleOptions>({
     let successCount = 0
     let errorCount = 0
 
-    // Normalize options and dedupe items
-    options.scripts = Array.from(
-      new Set(toArray(options.scripts).map((script) => {
-        // Remove extension if present
-        for (const ext of extensions) {
-          if (script.endsWith(ext)) {
-            script = script.slice(0, -ext.length)
-            break
-          }
-        }
-
-        return script.trim()
-      })),
-    )
-
     const resolvedScripts: {
       name: string
       path: string
+      runOnPrepare: boolean
     }[] = []
 
     const state: Record<string, unknown> = {}
 
-    // Prepare scripts
-    for (const name of options.scripts) {
+    // Normalize script entries
+    for (const script of toArray(options.scripts)) {
+      let name = typeof script === 'string' ? script : script.file
+
+      // Remove extension if present
+      for (const ext of extensions) {
+        if (name.endsWith(ext)) {
+          name = name.slice(0, -ext.length)
+          break
+        }
+      }
+
       const path = await findPath(name, { extensions }, 'file')
 
       if (name === 'server.prepare' && !path) {
@@ -97,19 +103,28 @@ export default defineNuxtModule<ModuleOptions>({
 
       if (!path) {
         logger.error(
-          `Server prepare script \`${name}{${extensions.join(',')}}\` not found. Please create the file or remove it from the \`prepareKit.scripts\` module option.`,
+          `Server prepare script \`${name}{${extensions.join(',')}}\` not found. Please create the file or remove it from the \`prepare.scripts\` module option.`,
         )
         throw new Error('Server prepare script not found')
       }
 
-      resolvedScripts.push({ name, path })
+      resolvedScripts.push({
+        name,
+        path,
+        runOnPrepare: typeof script === 'string' ? true : script.runOnPrepare ?? true,
+      })
     }
 
     // Run scripts
-    for (const { name, path } of resolvedScripts) {
+    for (const { name, path, runOnPrepare } of resolvedScripts) {
       if (nuxt.options._prepare && !options.runOnPrepare) {
         logger.info('Skipping prepare scripts')
         break
+      }
+
+      if (nuxt.options._prepare && !runOnPrepare) {
+        logger.info(`Skipping prepare script \`${name}\``)
+        continue
       }
 
       logger.info(`Running prepare script \`${name}\``)

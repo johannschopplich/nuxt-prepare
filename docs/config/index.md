@@ -7,7 +7,7 @@ Adapt `nuxt-prepare` to your needs with the following options in your `nuxt.conf
 export default defineNuxtConfig({
   modules: ['nuxt-prepare'],
 
-  prepareKit: {
+  prepare: {
     scripts: [
       // Add the prepare scripts you want to run
     ]
@@ -18,6 +18,11 @@ export default defineNuxtConfig({
 ## Type Declarations
 
 ```ts
+interface PrepareScript {
+  file: string
+  runOnPrepare?: boolean
+}
+
 interface ModuleOptions {
   /**
    * Accepts a list of prepare scripts to run. The scripts are executed in the
@@ -28,7 +33,7 @@ interface ModuleOptions {
    *
    * @default ['server.prepare']
    */
-  scripts: string | string[]
+  scripts: string | string[] | PrepareScript | PrepareScript[]
   /**
    * If `true`, the module will not throw an error if a script fails.
    *
@@ -42,6 +47,11 @@ interface ModuleOptions {
   continueOnError?: boolean
   /**
    * Whether the scripts should be run on `nuxi prepare`.
+   *
+   * @remarks
+   * If set to `false`, all scripts will be ignored when running `nuxi prepare`. If you want to
+   * exclude specific scripts, use the object syntax for the `scripts` option and set the
+   * `runOnPrepare` property individually for each script.
    *
    * @default true
    */

@@ -45,7 +45,7 @@ export default defineNuxtPrepareHandler(async () => {
     // Overwrite the runtime config variable `foo`
     runtimeConfig: {
       public: {
-        foo: 'overwritten by server init'
+        foo: 'Overwritten by "server.prepare" script'
       }
     },
 
@@ -64,14 +64,14 @@ Return `ok: false` to let the Nuxt Prepare module know that the script failed. I
 
 ## Step 4: Add More Prepare Scripts
 
-To run more prepare scripts, add them to the `prepareKit.scripts` module configuration:
+To run more prepare scripts, add them to the `prepare.scripts` module configuration:
 
 ```ts
 // `nuxt.config.ts`
 export default defineNuxtConfig({
   modules: ['nuxt-prepare'],
 
-  prepareKit: {
+  prepare: {
     scripts: ['server.prepare', 'process.prepare']
   }
 })

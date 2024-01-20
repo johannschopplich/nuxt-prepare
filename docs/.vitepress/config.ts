@@ -41,6 +41,7 @@ export default defineConfig({
     sidebar: {
       '/guide/': sidebarGuide(),
       '/config/': sidebarGuide(),
+      '/migration/': sidebarGuide(),
       '/api/': sidebarApi(),
     },
 
@@ -133,6 +134,7 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
         { text: 'Populate Pinia Store', link: '/guide/example-pass-state-to-nuxt' },
       ],
     },
+    { text: 'Migration', link: '/migration/' },
     { text: 'API', link: '/api/' },
     { text: 'Playground', link: 'https://github.com/johannschopplich/nuxt-prepare/tree/main/playground' },
   ]
