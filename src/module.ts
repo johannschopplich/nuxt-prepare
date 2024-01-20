@@ -74,7 +74,7 @@ export default defineNuxtModule<ModuleOptions>({
     let successCount = 0
     let errorCount = 0
 
-    const resolvedScripts: {
+    let resolvedScripts: {
       name: string
       path: string
       runOnPrepare: boolean
@@ -114,6 +114,15 @@ export default defineNuxtModule<ModuleOptions>({
         runOnPrepare: typeof script === 'string' ? true : script.runOnPrepare ?? true,
       })
     }
+
+    // Dedupe script entries
+    const scriptNames = new Set<string>()
+    resolvedScripts = resolvedScripts.filter(({ name }) => {
+      if (scriptNames.has(name))
+        return false
+      scriptNames.add(name)
+      return true
+    })
 
     // Run scripts
     for (const { name, path, runOnPrepare } of resolvedScripts) {
