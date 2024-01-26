@@ -20,7 +20,9 @@ export default defineNuxtConfig({
 ```ts
 interface PrepareScript {
   file: string
+  /** @deprecated Use `runOnNuxtPrepare` instead */
   runOnPrepare?: boolean
+  runOnNuxtPrepare?: boolean
 }
 
 interface ModuleOptions {
@@ -51,10 +53,10 @@ interface ModuleOptions {
    * @remarks
    * If set to `false`, all scripts will be ignored when running `nuxi prepare`. If you want to
    * exclude specific scripts, use the object syntax for the `scripts` option and set the
-   * `runOnPrepare` property individually for each script.
+   * `runOnNuxtPrepare` property individually for each script.
    *
    * @default true
    */
-  runOnPrepare?: boolean
+  runOnNuxtPrepare?: boolean
 }
 ```

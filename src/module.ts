@@ -11,7 +11,9 @@ export { defineNuxtPrepareHandler } from './config'
 
 export interface PrepareScript {
   file: string
+  /** @deprecated Use `runOnNuxtPrepare` instead */
   runOnPrepare?: boolean
+  runOnNuxtPrepare?: boolean
 }
 
 export interface ModuleOptions {
@@ -36,6 +38,8 @@ export interface ModuleOptions {
    * @default false
    */
   continueOnError?: boolean
+  /** @deprecated Use `runOnNuxtPrepare` instead */
+  runOnPrepare?: boolean
   /**
    * Whether the scripts should be run on `nuxi prepare`.
    *
@@ -46,7 +50,7 @@ export interface ModuleOptions {
    *
    * @default true
    */
-  runOnPrepare?: boolean
+  runOnNuxtPrepare?: boolean
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -61,7 +65,8 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     scripts: ['server.prepare'],
     continueOnError: false,
-    runOnPrepare: true,
+    runOnPrepare: undefined,
+    runOnNuxtPrepare: true,
   },
   async setup(options, nuxt) {
     const moduleName = 'nuxt-prepare'
@@ -74,10 +79,14 @@ export default defineNuxtModule<ModuleOptions>({
     let successCount = 0
     let errorCount = 0
 
+    // Normalize options
+    if (options.runOnPrepare !== undefined)
+      options.runOnNuxtPrepare = options.runOnPrepare
+
     let resolvedScripts: {
       name: string
       path: string
-      runOnPrepare: boolean
+      runOnNuxtPrepare: boolean
     }[] = []
 
     const state: Record<string, unknown> = {}
@@ -111,7 +120,7 @@ export default defineNuxtModule<ModuleOptions>({
       resolvedScripts.push({
         name,
         path,
-        runOnPrepare: typeof script === 'string' ? true : script.runOnPrepare ?? true,
+        runOnNuxtPrepare: typeof script === 'string' ? true : script.runOnNuxtPrepare ?? script.runOnPrepare ?? true,
       })
     }
 
@@ -125,13 +134,13 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     // Run scripts
-    for (const { name, path, runOnPrepare } of resolvedScripts) {
-      if (nuxt.options._prepare && !options.runOnPrepare) {
+    for (const { name, path, runOnNuxtPrepare } of resolvedScripts) {
+      if (nuxt.options._prepare && !options.runOnNuxtPrepare) {
         logger.info('Skipping prepare scripts')
         break
       }
 
-      if (nuxt.options._prepare && !runOnPrepare) {
+      if (nuxt.options._prepare && !runOnNuxtPrepare) {
         logger.info(`Skipping prepare script \`${name}\``)
         continue
       }
