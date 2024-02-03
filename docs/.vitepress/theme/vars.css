@@ -3,17 +3,15 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-c-accent: #FFE100;
   --vp-c-brand-1: #86CA39;
   --vp-c-brand-2: #76B430;
   --vp-c-brand-3: #669C2A;
-  --vp-c-brand-soft: #86CA3914;
 }
 
 /**
  * Component: Home
  * -------------------------------------------------------------------------- */
- :root {
+:root {
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(
     120deg,
