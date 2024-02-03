@@ -20,8 +20,6 @@ export default defineNuxtConfig({
 ```ts
 interface PrepareScript {
   file: string
-  /** @deprecated Use `runOnNuxtPrepare` instead */
-  runOnPrepare?: boolean
   runOnNuxtPrepare?: boolean
 }
 
