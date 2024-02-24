@@ -1,10 +1,6 @@
 ---
 layout: home
-sidebar: false
-
-title: nuxt-prepare
 titleTemplate: Run initialization steps at build time
-
 hero:
   name: nuxt-prepare
   text: Run initialization steps at build time
