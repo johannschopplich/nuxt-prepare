@@ -14,8 +14,4 @@ export default defineNuxtConfig({
       // 'process.prepare',
     ],
   },
-
-  typescript: {
-    shim: false,
-  },
 })
