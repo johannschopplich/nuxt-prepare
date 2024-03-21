@@ -1,4 +1,4 @@
-import { $fetch } from 'ofetch'
+import { ofetch } from 'ofetch'
 import type { FetchError } from 'ofetch'
 import { defineNuxtPrepareHandler } from '../src/config'
 
@@ -7,7 +7,7 @@ export default defineNuxtPrepareHandler(async () => {
   let error: FetchError | undefined
 
   try {
-    todos = await $fetch('todos/1', {
+    todos = await ofetch('todos/1', {
       baseURL: 'https://jsonplaceholder.typicode.com',
     })
   }

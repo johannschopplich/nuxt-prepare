@@ -74,8 +74,8 @@ export default defineNuxtPrepareHandler(async () => {
     // Pass custom state to Nuxt and import it
     // anywhere from `#nuxt-prepare`
     state: {
-      foo: 'bar',
-    },
+      foo: 'bar'
+    }
   }
 })
 ```

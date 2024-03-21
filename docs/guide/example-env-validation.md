@@ -2,7 +2,7 @@
 
 Using a schema validation library like [zod](https://github.com/colinhacks/zod) lets us validate if all environment variables are set correctly.
 
-Since Nuxt reads the environment variables at build time from the local `.env` file, we can validate them in our prepare script:
+Since Nuxt reads the environment variables at build time from the local `.env` file, you can validate them in a prepare script:
 
 ```ts
 // `server.prepare.ts`

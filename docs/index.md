@@ -4,7 +4,7 @@ titleTemplate: Run initialization steps at build time
 hero:
   name: nuxt-prepare
   text: Run initialization steps at build time
-  tagline: Like server init in Nuxt 2, but better
+  tagline: Async operations like setting up a global payload state before Nuxt is built
   image:
     src: /logo-shadow.svg
     alt: nuxt-prepare
@@ -25,7 +25,7 @@ features:
     details: Uses `server.prepare.ts` by default.
     link: /guide/getting-started
     linkText: Get Started
-  - title: Define Multiple Prepare Scripts
+  - title: Unlimited Prepare Scripts
     icon: 🦾
     details: Conditionally overwrite runtime config or app config variables.
     link: /api/define-nuxt-prepare-handler
@@ -35,7 +35,7 @@ features:
     details: Prefetch data to populate your Pinia (or any other) store.
     link: /guide/example-pass-state-to-nuxt
     linkText: Examples
-  - title: Validate Your `.env`
+  - title: Validate Your Environment
     icon: 🦜
     details: Ensure your `.env` is valid before Nuxt builds your app.
     link: /guide/example-env-validation

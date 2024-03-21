@@ -70,6 +70,7 @@ function nav(): DefaultTheme.NavItem[] {
           text: 'Guide',
           items: [
             { text: 'Getting Started', link: '/guide/getting-started' },
+            { text: 'Prepare State', link: '/guide/prepare-state' },
           ],
         },
         {
@@ -119,6 +120,7 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
       text: 'Guides',
       items: [
         { text: 'Getting Started', link: '/guide/getting-started' },
+        { text: 'Prepare State', link: '/guide/prepare-state' },
       ],
     },
     {

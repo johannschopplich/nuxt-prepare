@@ -1,5 +1,13 @@
 # Getting Started
 
+## Why `nuxt-prepare`?
+
+**Wait!** Why do I need `nuxt-prepare`, you may ask? Well, you can't run asynchronous code in your Nuxt configuration file. This is where `nuxt-prepare` comes into play. It allows you to run synchronous or asynchronous code before building your Nuxt application. This can be useful for:
+
+- Fetching data from an API
+- Creating a global state that is available to all components, composables, etc.
+- Running scripts to validate your environment and e.g. fail early in CI/CD pipelines
+
 This guide will walk you through the steps to get started with `nuxt-prepare`.
 
 ## Step 1: Install `nuxt-prepare`
@@ -52,8 +60,8 @@ export default defineNuxtPrepareHandler(async () => {
     // Pass custom state to Nuxt and import it
     // anywhere from `#nuxt-prepare`
     state: {
-      foo: 'bar',
-    },
+      foo: 'bar'
+    }
   }
 })
 ```
@@ -62,7 +70,19 @@ export default defineNuxtPrepareHandler(async () => {
 Return `ok: false` to let the Nuxt Prepare module know that the script failed. It will then log an error and exit the process.
 :::
 
-## Step 4: Add More Prepare Scripts
+## Step 4: Import Your Prepare State
+
+The state you defined in your prepare script is now available globally in your Nuxt application. You can access it from any component, page, or layout by importing from `#nuxt-prepare`:
+
+```vue
+<script setup lang="ts">
+import { foo } from '#nuxt-prepare'
+
+console.log(foo) // 'bar'
+</script>
+```
+
+## Step 5: Add More Prepare Scripts
 
 To run more prepare scripts, add them to the `prepare.scripts` module configuration:
 

@@ -4,15 +4,11 @@ A common scenario is to fetch data from an API during the build process and pass
 
 With returning a `state` object in your [`defineNuxtPrepareHandler`](/api/define-nuxt-prepare-handler) handler, you can pass data to Nuxt and import it anywhere from `#nuxt-prepare`.
 
-One use case is to populate an app store like [Pinia](https://pinia.vuejs.org) with the data pre-fetched during the build process.
-
-::: tip
-Think of the `state` as an alternative to the `nuxtServerInit` action in Nuxt 2 to pass a context (although technically speaking it was a hook and ran on server init, not during the build process).
-:::
+One use case is to populate an app store like [Pinia](https://pinia.vuejs.org) with the data that is pre-fetched during the build process. To do this, first create a `store.prepare.ts` file and define a `defineNuxtPrepareHandler` handler. Inside the handler, fetch the data from an API and return it in the `state` object:
 
 ```ts
 // `store.prepare.ts`
-import { $fetch } from 'ofetch'
+import { ofetch } from 'ofetch'
 import type { FetchError } from 'ofetch'
 import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
 
@@ -21,7 +17,7 @@ export default defineNuxtPrepareHandler(async () => {
   let error: FetchError | undefined
 
   try {
-    todos = await $fetch('todos/1', {
+    todos = await ofetch('todos/1', {
       baseURL: 'https://jsonplaceholder.typicode.com',
     })
   }
@@ -37,13 +33,13 @@ export default defineNuxtPrepareHandler(async () => {
     // Pass your todos data to Nuxt and import it
     // anywhere from `#nuxt-prepare`
     state: {
-      todos,
-    },
+      todos
+    }
   }
 })
 ```
 
-Once the fetch request succeeds, the `todos` data will be available from the `#nuxt-prepare` context.
+Once the fetch request succeeds, the `todos` data is be available from the `#nuxt-prepare` context:
 
 ```ts
 // `stores/todo.ts`
@@ -52,7 +48,7 @@ import { todos } from '#nuxt-prepare'
 
 export const useTodos = defineStore('todos', {
   state: () => ({
-    todos: todos || [],
+    todos: todos || []
   })
 })
 ```
