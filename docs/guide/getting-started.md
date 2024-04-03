@@ -11,18 +11,9 @@
 This guide will walk you through the steps to get started with `nuxt-prepare`.
 
 ## Step 1: Install `nuxt-prepare`
-
-::: code-group
-  ```bash [pnpm]
-  pnpm add -D nuxt-prepare
-  ```
-  ```bash [yarn]
-  yarn add -D nuxt-prepare
-  ```
-  ```bash [npm]
-  npm install -D nuxt-prepare
-  ```
-:::
+```bash
+npx nuxi@latest module add prepare
+```
 
 ## Step 2: Use `nuxt-prepare`
 

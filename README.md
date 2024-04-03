@@ -22,14 +22,7 @@
 > [📖 Read the documentation](https://nuxt-prepare.byjohann.dev)
 
 ```bash
-# pnpm
-pnpm add -D nuxt-prepare
-
-# npm
-npm i -D nuxt-prepare
-
-# yarn
-yarn add -D nuxt-prepare
+npx nuxi@latest module add prepare
 ```
 
 ## Basic Usage
