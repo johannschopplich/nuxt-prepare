@@ -11,6 +11,7 @@
 This guide will walk you through the steps to get started with `nuxt-prepare`.
 
 ## Step 1: Install `nuxt-prepare`
+
 ```bash
 npx nuxi@latest module add prepare
 ```
