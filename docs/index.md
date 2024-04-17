@@ -2,12 +2,12 @@
 layout: home
 titleTemplate: Run initialization steps at build time
 hero:
-  name: nuxt-prepare
+  name: Nuxt Prepare
   text: Run initialization steps at build time
   tagline: Async operations like setting up a global payload state before Nuxt is built
   image:
     src: /logo-shadow.svg
-    alt: nuxt-prepare
+    alt: Nuxt Prepare Logo
   actions:
     - theme: brand
       text: Get Started

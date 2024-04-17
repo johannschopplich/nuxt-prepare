@@ -1,6 +1,6 @@
 # Module Configuration
 
-Adapt `nuxt-prepare` to your needs with the following options in your `nuxt.config.ts` file:
+Adapt Nuxt Prepare to your needs with the following options in your `nuxt.config.ts` file:
 
 ```ts
 // `nuxt.config.ts`

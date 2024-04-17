@@ -1,4 +1,5 @@
 /* VitePress head */
+export const name = 'Nuxt Prepare'
 export const ogUrl = 'https://nuxt-prepare.byjohann.dev/'
 export const ogImage = `${ogUrl}og.jpg`
 

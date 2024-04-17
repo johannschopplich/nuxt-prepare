@@ -7,7 +7,7 @@ const config = useRuntimeConfig().public
 
 <template>
   <Head>
-    <Title>nuxt-prepare</Title>
+    <Title>Nuxt Prepare</Title>
     <Link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
@@ -15,7 +15,7 @@ const config = useRuntimeConfig().public
   </Head>
 
   <header>
-    <h1>nuxt-prepare</h1>
+    <h1>Nuxt Prepare</h1>
   </header>
 
   <h3>Nuxt Config</h3>

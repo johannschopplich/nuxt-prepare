@@ -1,22 +1,22 @@
 # Getting Started
 
-## Why `nuxt-prepare`?
+## Why Nuxt Prepare?
 
-**Wait!** Why do I need `nuxt-prepare`, you may ask? Well, you can't run asynchronous code in your Nuxt configuration file. This is where `nuxt-prepare` comes into play. It allows you to run synchronous or asynchronous code before building your Nuxt application. This can be useful for:
+**Wait!** Why do I need Nuxt Prepare, you may ask? Well, you can't run asynchronous code in your Nuxt configuration file. This is where Nuxt Prepare comes into play. It allows you to run synchronous or asynchronous code before building your Nuxt application. This can be useful for:
 
 - Fetching data from an API
 - Creating a global state that is available to all components, composables, etc.
 - Running scripts to validate your environment and e.g. fail early in CI/CD pipelines
 
-This guide will walk you through the steps to get started with `nuxt-prepare`.
+This guide will walk you through the steps to get started with Nuxt Prepare.
 
-## Step 1: Install `nuxt-prepare`
+## Step 1: Install Nuxt Prepare
 
 ```bash
 npx nuxi@latest module add prepare
 ```
 
-## Step 2: Use `nuxt-prepare`
+## Step 2: Use the `nuxt-prepare` Module
 
 Add `nuxt-prepare` to your Nuxt configuration:
 
@@ -29,7 +29,7 @@ export default defineNuxtConfig({
 
 ## Step 3: Set Up Prepare Scripts
 
-By default, `nuxt-prepare` will look for a `server.prepare.ts` file in your project root. To run synchronous or asynchronous code when Nuxt builds your app, create a file handler and export a default function:
+By default, Nuxt Prepare will look for a `server.prepare.ts` file in your project root. To run synchronous or asynchronous code when Nuxt builds your app, create a file handler and export a default function:
 
 ```ts
 // `server.prepare.ts`

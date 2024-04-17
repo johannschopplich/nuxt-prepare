@@ -1,6 +1,6 @@
 [![nuxt-prepare](./docs/public/og.jpg)](https://nuxt-prepare.byjohann.dev)
 
-# nuxt-prepare
+# Nuxt Prepare
 
 [![npm version](https://img.shields.io/npm/v/nuxt-prepare?color=a1b858&label=)](https://www.npmjs.com/package/nuxt-prepare)
 
@@ -39,7 +39,7 @@ export default defineNuxtConfig({
 })
 ```
 
-By default, `nuxt-prepare` will look for a `server.prepare.ts` file in your project root. To run synchronous or asynchronous code when Nuxt builds your app, define a handler in your project root and export a default function:
+By default, Nuxt Prepare will look for a `server.prepare.ts` file in your project root. To run synchronous or asynchronous code when Nuxt builds your app, define a handler in your project root and export a default function:
 
 ```ts
 // `server.prepare.ts`
