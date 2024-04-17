@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRuntimeConfig } from '#imports'
 import { todos } from '#nuxt-prepare'
 
 const config = useRuntimeConfig().public
