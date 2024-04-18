@@ -6,7 +6,6 @@ export default defineNuxtPrepareHandler(() => {
     NUXT_PUBLIC_FOO: z.string(),
   })
 
-  // eslint-disable-next-line node/prefer-global/process
   const result = schema.safeParse(process.env)
 
   if (!result.success) {
