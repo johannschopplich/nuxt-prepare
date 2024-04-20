@@ -75,8 +75,5 @@
     "nuxt": "^3.11.2",
     "typescript": "^5.4.5",
     "zod": "^3.22.4"
-  },
-  "resolutions": {
-    "nuxt-prepare": "link:."
   }
 }
