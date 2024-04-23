@@ -47,7 +47,7 @@ interface NuxtPrepareResult {
   state?: Record<string, unknown>
 }
 
-function defineNuxtPrepareHandler<T extends ServerInitResult>(
+function defineNuxtPrepareHandler<T extends NuxtPrepareResult>(
   init: T | (() => T | Promise<T>)
 ): Promise<T>
 ```
