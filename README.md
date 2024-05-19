@@ -1,4 +1,4 @@
-[![nuxt-prepare](./docs/public/og.jpg)](https://nuxt-prepare.byjohann.dev)
+[![Nuxt Prepare](./docs/public/og.jpg)](https://nuxt-prepare.byjohann.dev)
 
 # Nuxt Prepare
 
