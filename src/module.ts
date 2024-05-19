@@ -1,7 +1,7 @@
 import { join } from 'pathe'
 import { defu } from 'defu'
 import { pascalCase } from 'scule'
-import createJITI from 'jiti'
+import { interopDefault } from 'mlly'
 import { addTemplate, defineNuxtModule, findPath, useLogger } from '@nuxt/kit'
 import { name, version } from '../package.json'
 import { toArray } from './utils'
@@ -72,10 +72,6 @@ export default defineNuxtModule<ModuleOptions>({
     const moduleName = 'nuxt-prepare'
     const logger = useLogger(moduleName)
     const extensions = ['.js', '.mjs', '.ts']
-    const _import = createJITI(nuxt.options.rootDir, {
-      interopDefault: true,
-      esmResolve: true,
-    })
     let successCount = 0
     let errorCount = 0
 
@@ -147,7 +143,14 @@ export default defineNuxtModule<ModuleOptions>({
 
       logger.info(`Running prepare script \`${name}\``)
 
-      const result: NuxtPrepareResult = await _import(path)
+      const result: NuxtPrepareResult = await import('importx')
+        .then(async (r) => {
+          const mod = await r.import(path, {
+            parentURL: nuxt.options.rootDir,
+            cache: false,
+          })
+          return interopDefault(mod)
+        })
       const isOk = result.ok ?? true
 
       if (!isOk) {
