@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.1.0",
   "packageManager": "pnpm@9.1.1",
-  "description": "Run initialization steps at build time",
+  "description": "Build actions for Nuxt",
   "author": "Johann Schopplich <hello@johannschopplich.com>",
   "license": "MIT",
   "homepage": "https://github.com/johannschopplich/nuxt-prepare#readme",
