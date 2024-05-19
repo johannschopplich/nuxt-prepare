@@ -7,8 +7,6 @@ import { name, version } from '../package.json'
 import { toArray } from './utils'
 import type { NuxtPrepareResult } from './types'
 
-export { defineNuxtPrepareHandler } from './config'
-
 export interface PrepareScript {
   file: string
   /** @deprecated Use `runOnNuxtPrepare` instead */
