@@ -9,8 +9,6 @@ import type { NuxtPrepareResult } from './types'
 
 export interface PrepareScript {
   file: string
-  /** @deprecated Use `runOnNuxtPrepare` instead */
-  runOnPrepare?: boolean
   runOnNuxtPrepare?: boolean
 }
 
@@ -36,15 +34,13 @@ export interface ModuleOptions {
    * @default false
    */
   continueOnError?: boolean
-  /** @deprecated Use `runOnNuxtPrepare` instead */
-  runOnPrepare?: boolean
   /**
    * Whether the scripts should be run on `nuxi prepare`.
    *
    * @remarks
    * If set to `false`, all scripts will be ignored when running `nuxi prepare`. If you want to
    * exclude specific scripts, use the object syntax for the `scripts` option and set the
-   * `runOnPrepare` property individually for each script.
+   * `runOnNuxtPrepare` property individually for each script.
    *
    * @default true
    */
@@ -63,7 +59,6 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     scripts: ['server.prepare'],
     continueOnError: false,
-    runOnPrepare: undefined,
     runOnNuxtPrepare: true,
   },
   async setup(options, nuxt) {
@@ -72,10 +67,6 @@ export default defineNuxtModule<ModuleOptions>({
     const extensions = ['.js', '.mjs', '.ts']
     let successCount = 0
     let errorCount = 0
-
-    // Normalize options
-    if (options.runOnPrepare !== undefined)
-      options.runOnNuxtPrepare = options.runOnPrepare
 
     let resolvedScripts: {
       name: string
@@ -114,7 +105,7 @@ export default defineNuxtModule<ModuleOptions>({
       resolvedScripts.push({
         name,
         path,
-        runOnNuxtPrepare: typeof script === 'string' ? true : script.runOnNuxtPrepare ?? script.runOnPrepare ?? true,
+        runOnNuxtPrepare: typeof script === 'string' ? true : script.runOnNuxtPrepare ?? true,
       })
     }
 
