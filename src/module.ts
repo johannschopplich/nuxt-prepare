@@ -137,6 +137,8 @@ export default defineNuxtModule<ModuleOptions>({
           const mod = await r.import(path, {
             parentURL: nuxt.options.rootDir,
             cache: false,
+            // tsx throws an error on Windows (#13)
+            loader: 'jiti',
           })
           return interopDefault(mod)
         })
