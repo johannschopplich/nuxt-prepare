@@ -137,8 +137,10 @@ export default defineNuxtModule<ModuleOptions>({
           const mod = await r.import(path, {
             parentURL: nuxt.options.rootDir,
             cache: false,
-            // tsx throws an error on Windows (#13)
-            loader: 'jiti',
+            loaderOptions: {
+              // Nuxt's TS config will only be generated along with prepare scripts
+              tsx: { tsconfig: false },
+            },
           })
           return interopDefault(mod)
         })
@@ -157,14 +159,14 @@ export default defineNuxtModule<ModuleOptions>({
       successCount++
 
       if (result.runtimeConfig) {
-        // @ts-expect-error: type mismatch
+        // @ts-expect-error: Type mismatch
         nuxt.options.runtimeConfig = defu(
           result.runtimeConfig,
           nuxt.options.runtimeConfig,
         )
       }
       if (result.appConfig)
-        // @ts-expect-error: type mismatch
+        // @ts-expect-error: Type mismatch
         nuxt.options.appConfig = defu(result.appConfig, nuxt.options.appConfig)
       if (result.state) {
         if (!isObject(result.state))
