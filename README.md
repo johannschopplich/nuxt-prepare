@@ -1,8 +1,6 @@
-[![Nuxt Prepare](./docs/public/og.jpg)](https://nuxt-prepare.byjohann.dev)
+[![Nuxt Prepare module](./docs/public/og.jpg)](https://nuxt-prepare.byjohann.dev)
 
 # Nuxt Prepare
-
-[![npm version](https://img.shields.io/npm/v/nuxt-prepare?color=a1b858&label=)](https://www.npmjs.com/package/nuxt-prepare)
 
 [Nuxt](https://nuxt.com) module to run async initialization steps at build-time.
 
