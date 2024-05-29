@@ -62,7 +62,7 @@ export default defineNuxtModule<ModuleOptions>({
     runOnNuxtPrepare: true,
   },
   async setup(options, nuxt) {
-    const moduleName = 'nuxt-prepare'
+    const moduleName = name
     const logger = useLogger(moduleName)
     const extensions = ['.js', '.mjs', '.ts']
     let successCount = 0
@@ -209,6 +209,6 @@ export type ${pascalCase(key)} = typeof ${key}
   },
 })
 
-function isObject(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null
+function isObject(value: unknown): value is object {
+  return Object.prototype.toString.call(value) === '[object Object]'
 }
