@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { useRuntimeConfig } from '#imports'
+import { useRuntimeConfig, useServerHead } from '#imports'
 import { todos } from '#nuxt-prepare'
+
+useServerHead({
+  title: 'Nuxt Prepare',
+  link: [
+    { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css' },
+  ],
+
+})
 
 const config = useRuntimeConfig().public
 </script>
 
 <template>
-  <Head>
-    <Title>Nuxt Prepare</Title>
-    <Link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-  </Head>
-
   <header>
     <h1>Nuxt Prepare</h1>
   </header>
