@@ -53,7 +53,7 @@ export default defineNuxtModule<ModuleOptions>({
     version,
     configKey: 'prepare',
     compatibility: {
-      nuxt: '^3.0.0',
+      nuxt: '>=3.0.0',
     },
   },
   defaults: {
