@@ -4,7 +4,7 @@ import { pascalCase } from 'scule'
 import { interopDefault } from 'mlly'
 import { addTemplate, defineNuxtModule, findPath, useLogger } from '@nuxt/kit'
 import { name, version } from '../package.json'
-import { toArray } from './utils'
+import { isObject, toArray } from './utils'
 import type { NuxtPrepareResult } from './types'
 
 export interface PrepareScript {
@@ -208,7 +208,3 @@ export type ${pascalCase(key)} = typeof ${key}
       logger.success('Server prepare scripts completed')
   },
 })
-
-function isObject(value: unknown): value is object {
-  return Object.prototype.toString.call(value) === '[object Object]'
-}
