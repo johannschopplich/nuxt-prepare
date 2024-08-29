@@ -1,6 +1,7 @@
 import { join } from 'pathe'
 import { defu } from 'defu'
 import { pascalCase } from 'scule'
+import * as importx from 'importx'
 import { interopDefault } from 'mlly'
 import { addTemplate, defineNuxtModule, findPath, useLogger } from '@nuxt/kit'
 import { name, version } from '../package.json'
@@ -141,18 +142,17 @@ export default defineNuxtModule<ModuleOptions>({
 
       logger.info(`Running prepare script \`${name}\``)
 
-      const result: NuxtPrepareResult = await import('importx')
-        .then(async (r) => {
-          const mod = await r.import(path, {
-            parentURL: nuxt.options.rootDir,
-            cache: false,
-            loaderOptions: {
-              // Nuxt's TS config will only be generated along with prepare scripts
-              tsx: { tsconfig: false },
-            },
-          })
-          return interopDefault(mod)
-        })
+      const result: NuxtPrepareResult = await interopDefault(
+        await importx.import(path, {
+          parentURL: nuxt.options.rootDir,
+          cache: false,
+          loaderOptions: {
+            // Nuxt's TypeScript config will only be generated along
+            // with prepare scripts, so we disable config resolution
+            tsx: { tsconfig: false },
+          },
+        }),
+      )
       const isOk = result.ok ?? true
 
       if (!isOk) {
