@@ -23,6 +23,17 @@ export interface ModuleOptions {
    * @default ['server.prepare']
    */
   scripts: string | string[] | PrepareScript | PrepareScript[]
+
+  /**
+   * If `true`, the prepare scripts will be run in parallel.
+   *
+   * @remarks
+   * This can be useful if you have multiple scripts that can be run independently.
+   *
+   * @default false
+   */
+  parallel?: boolean
+
   /**
    * If `true`, the module will not throw an error if a script fails.
    *
@@ -34,6 +45,7 @@ export interface ModuleOptions {
    * @default false
    */
   continueOnError?: boolean
+
   /**
    * Whether the scripts should be run on `nuxi prepare`.
    *
@@ -47,6 +59,12 @@ export interface ModuleOptions {
   runOnNuxtPrepare?: boolean
 }
 
+interface ResolvedScriptMeta {
+  name: string
+  path: string
+  runOnNuxtPrepare: boolean
+}
+
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
@@ -58,6 +76,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     scripts: ['server.prepare'],
+    parallel: false,
     continueOnError: false,
     runOnNuxtPrepare: true,
   },
@@ -68,11 +87,7 @@ export default defineNuxtModule<ModuleOptions>({
     let successCount = 0
     let errorCount = 0
 
-    let resolvedScripts: {
-      name: string
-      path: string
-      runOnNuxtPrepare: boolean
-    }[] = []
+    let resolvedScripts: ResolvedScriptMeta[] = []
 
     const state: Record<string, unknown> = {}
 
@@ -118,16 +133,10 @@ export default defineNuxtModule<ModuleOptions>({
       return true
     })
 
-    // Run scripts
-    for (const { name, path, runOnNuxtPrepare } of resolvedScripts) {
-      if (nuxt.options._prepare && !options.runOnNuxtPrepare) {
-        logger.info('Skipping prepare scripts')
-        break
-      }
-
+    const runScript = async ({ name, path, runOnNuxtPrepare }: ResolvedScriptMeta) => {
       if (nuxt.options._prepare && !runOnNuxtPrepare) {
         logger.info(`Skipping prepare script \`${name}\``)
-        continue
+        return
       }
 
       logger.info(`Running prepare script \`${name}\``)
@@ -153,7 +162,7 @@ export default defineNuxtModule<ModuleOptions>({
         if (!options.continueOnError)
           throw new TypeError('Server prepare script failed')
 
-        continue
+        return
       }
 
       successCount++
@@ -172,6 +181,21 @@ export default defineNuxtModule<ModuleOptions>({
         if (!isObject(result.state))
           throw new TypeError('Server prepare script returned invalid state')
         Object.assign(state, result.state)
+      }
+    }
+
+    // Run scripts
+    if (nuxt.options._prepare && !options.runOnNuxtPrepare) {
+      logger.info('Skipping prepare scripts')
+    }
+    else {
+      if (options.parallel) {
+        await Promise.all(resolvedScripts.map(runScript))
+      }
+      else {
+        for (const script of resolvedScripts) {
+          await runScript(script)
+        }
       }
     }
 

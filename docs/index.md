@@ -27,7 +27,7 @@ features:
     linkText: Get Started
   - title: Unlimited Prepare Scripts
     icon: 🦾
-    details: Conditionally overwrite runtime config or app config variables.
+    details: Conditionally overwrite runtime config or app config values.
     link: /api/define-nuxt-prepare-handler
     linkText: Methods
   - title: Pass State to Nuxt

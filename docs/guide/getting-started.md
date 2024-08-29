@@ -90,3 +90,7 @@ export default defineNuxtConfig({
 ```
 
 Now, both `server.prepare.ts` and `process.prepare.ts` will be executed at build time.
+
+::: tip
+By default, prepare scripts are run in series. If you want to run them in parallel, set `prepare.parallel` option to `true`.
+:::

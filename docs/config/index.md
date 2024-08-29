@@ -15,6 +15,21 @@ export default defineNuxtConfig({
 })
 ```
 
+## Parallel Script Execution
+
+By default, prepare scripts are run in series. If you want to run them in parallel, set the `parallel` option to `true`:
+
+```ts
+// `nuxt.config.ts`
+export default defineNuxtConfig({
+  modules: ['nuxt-prepare'],
+
+  prepare: {
+    parallel: true
+  }
+})
+```
+
 ## Type Declarations
 
 ```ts
@@ -34,6 +49,17 @@ interface ModuleOptions {
    * @default ['server.prepare']
    */
   scripts: string | string[] | PrepareScript | PrepareScript[]
+
+  /**
+   * If `true`, the prepare scripts will be run in parallel.
+   *
+   * @remarks
+   * This can be useful if you have multiple scripts that can be run independently.
+   *
+   * @default false
+   */
+  parallel?: boolean
+
   /**
    * If `true`, the module will not throw an error if a script fails.
    *
@@ -45,6 +71,7 @@ interface ModuleOptions {
    * @default false
    */
   continueOnError?: boolean
+
   /**
    * Whether the scripts should be run on `nuxi prepare`.
    *
