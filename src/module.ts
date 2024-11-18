@@ -1,12 +1,12 @@
-import { join } from 'pathe'
+import type { NuxtPrepareResult } from './types'
+import { addTemplate, defineNuxtModule, findPath, useLogger } from '@nuxt/kit'
 import { defu } from 'defu'
-import { pascalCase } from 'scule'
 import * as importx from 'importx'
 import { interopDefault } from 'mlly'
-import { addTemplate, defineNuxtModule, findPath, useLogger } from '@nuxt/kit'
+import { join } from 'pathe'
+import { pascalCase } from 'scule'
 import { name, version } from '../package.json'
 import { isObject, toArray } from './utils'
-import type { NuxtPrepareResult } from './types'
 
 export interface PrepareScript {
   file: string

@@ -1,5 +1,5 @@
-import { ofetch } from 'ofetch'
 import type { FetchError } from 'ofetch'
+import { ofetch } from 'ofetch'
 import { defineNuxtPrepareHandler } from '../src/config'
 
 export default defineNuxtPrepareHandler(async () => {

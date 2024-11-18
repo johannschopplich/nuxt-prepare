@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitepress'
 import type { DefaultTheme } from 'vitepress'
+import { defineConfig } from 'vitepress'
 import { description, version } from '../../package.json'
 import { github, name, ogImage, ogUrl, releases } from './meta'
 
