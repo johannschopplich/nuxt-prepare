@@ -202,6 +202,12 @@ export default defineNuxtModule<ModuleOptions>({
     // Add `#nuxt-prepare` module alias
     nuxt.options.alias[`#${moduleName}`] = join(nuxt.options.buildDir, `module/${moduleName}`)
 
+    nuxt.hooks.hook('nitro:config', (config) => {
+      // Provide `#nuxt-prepare` module alias for Nitro
+      config.alias ||= {}
+      config.alias[`#${moduleName}`] = join(nuxt.options.buildDir, `module/${moduleName}`)
+    })
+
     // Add global `#nuxt-prepare` state
     addTemplate({
       filename: `module/${moduleName}.ts`,

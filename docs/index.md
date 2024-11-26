@@ -30,9 +30,9 @@ features:
     details: Conditionally overwrite runtime config or app config values.
     link: /api/define-nuxt-prepare-handler
     linkText: Methods
-  - title: Pass State to Nuxt
+  - title: Pass State to Nuxt and Nitro
     icon: 🫴
-    details: Prefetch data to populate your Pinia (or any other) store.
+    details: Prefetch data to populate your Pinia store or used it in server routes.
     link: /guide/example-pass-state-to-nuxt
     linkText: Examples
   - title: Validate Your Environment

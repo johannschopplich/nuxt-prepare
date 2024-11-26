@@ -2,8 +2,6 @@ import { defineNuxtConfig } from 'nuxt/config'
 import NuxtPrepare from '../src/module'
 
 export default defineNuxtConfig({
-  compatibilityDate: '2024-04-03',
-
   modules: [NuxtPrepare],
 
   runtimeConfig: {
@@ -11,6 +9,8 @@ export default defineNuxtConfig({
       foo: '',
     },
   },
+
+  compatibilityDate: '2024-04-03',
 
   prepare: {
     scripts: [

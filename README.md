@@ -13,6 +13,7 @@
 - 🦎 Run sync or async operations when Nuxt builds your app
 - ✂️ Conditionally overwrite runtime config or app config values
 - 🍡 Run scripts in series or parallel
+- 🥢 Ready for [Nitro](https://nitro.build) server routes
 - 🦾 Better DX with [`defineNuxtPrepareHandler`](https://nuxt-prepare.byjohann.dev/api/define-nuxt-prepare-handler)
 
 ## Setup

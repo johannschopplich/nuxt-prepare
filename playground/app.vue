@@ -7,10 +7,16 @@ useServerHead({
   link: [
     { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css' },
   ],
-
 })
 
 const config = useRuntimeConfig().public
+
+if (import.meta.client) {
+  $fetch('/api/todos')
+    .then((res) => {
+      console.log('Fetched todos:', res)
+    })
+}
 </script>
 
 <template>
@@ -21,12 +27,12 @@ const config = useRuntimeConfig().public
   <h3>Nuxt Config</h3>
   <details>
     <summary>Public Runtime Options</summary>
-    <pre>{{ JSON.stringify(config, null, 2) }}</pre>
+    <pre>{{ JSON.stringify(config, undefined, 2) }}</pre>
   </details>
 
   <h3>Prepared State</h3>
   <details>
     <summary>Prefetched state <code>todos</code> at build-time</summary>
-    <pre>{{ JSON.stringify(todos, null, 2) }}</pre>
+    <pre>{{ JSON.stringify(todos, undefined, 2) }}</pre>
   </details>
 </template>
