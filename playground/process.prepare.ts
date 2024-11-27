@@ -1,3 +1,4 @@
+import process from 'node:process'
 import * as v from 'valibot'
 import { defineNuxtPrepareHandler } from '../src/config'
 

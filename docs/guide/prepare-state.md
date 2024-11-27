@@ -10,8 +10,8 @@ For a simple prepare script, let's retrieve the first todo item from the JSONPla
 
 ```ts
 // `server.prepare.ts`
-import { ofetch } from 'ofetch'
 import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
+import { ofetch } from 'ofetch'
 
 export default defineNuxtPrepareHandler(async () => {
   const todoItem = await ofetch('https://jsonplaceholder.typicode.com/todos/1')

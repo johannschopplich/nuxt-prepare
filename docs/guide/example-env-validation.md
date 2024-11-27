@@ -6,8 +6,8 @@ Since Nuxt reads the environment variables at build time from the local `.env` f
 
 ```ts
 // `server.prepare.ts`
-import * as v from 'valibot'
 import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
+import * as v from 'valibot'
 
 export default defineNuxtPrepareHandler(() => {
   const schema = v.object({

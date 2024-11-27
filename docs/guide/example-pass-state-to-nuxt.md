@@ -8,9 +8,9 @@ One use case is to populate an app store like [Pinia](https://pinia.vuejs.org) w
 
 ```ts
 // `store.prepare.ts`
-import { ofetch } from 'ofetch'
 import type { FetchError } from 'ofetch'
 import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
+import { ofetch } from 'ofetch'
 
 export default defineNuxtPrepareHandler(async () => {
   let todos: Record<string, unknown> | undefined
@@ -42,9 +42,9 @@ export default defineNuxtPrepareHandler(async () => {
 Once the fetch request succeeds, the `todos` data is be available from the `#nuxt-prepare` context:
 
 ```ts
+import { todos } from '#nuxt-prepare'
 // `stores/todo.ts`
 import { defineStore } from 'pinia'
-import { todos } from '#nuxt-prepare'
 
 export const useTodos = defineStore('todos', {
   state: () => ({
