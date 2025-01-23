@@ -90,7 +90,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     let resolvedScripts: ResolvedScriptMeta[] = []
 
-    const state: Record<string, unknown> = {}
+    let state: Record<string, unknown> = {}
 
     // Normalize script entries
     for (const script of toArray(options.scripts)) {
@@ -168,19 +168,19 @@ export default defineNuxtModule<ModuleOptions>({
       successCount++
 
       if (result.runtimeConfig) {
-        // @ts-expect-error: Type mismatch
         nuxt.options.runtimeConfig = defu(
-          result.runtimeConfig,
           nuxt.options.runtimeConfig,
+          result.runtimeConfig,
         )
       }
+
       if (result.appConfig)
-        // @ts-expect-error: Type mismatch
-        nuxt.options.appConfig = defu(result.appConfig, nuxt.options.appConfig)
+        nuxt.options.appConfig = defu(nuxt.options.appConfig, result.appConfig)
+
       if (result.state) {
         if (!isObject(result.state))
           throw new TypeError('Server prepare script returned invalid state')
-        Object.assign(state, result.state)
+        state = defu(state, result.state)
       }
     }
 
