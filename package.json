@@ -2,7 +2,7 @@
   "name": "nuxt-prepare",
   "type": "module",
   "version": "2.3.1",
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@10.12.1",
   "description": "Build actions for Nuxt",
   "author": "Johann Schopplich <hello@johannschopplich.com>",
   "license": "MIT",
@@ -21,11 +21,11 @@
   "exports": {
     ".": {
       "types": "./dist/types.d.mts",
-      "import": "./dist/module.mjs"
+      "default": "./dist/module.mjs"
     },
     "./config": {
       "types": "./dist/config.d.mts",
-      "import": "./dist/config.mjs"
+      "default": "./dist/config.mjs"
     }
   },
   "main": "./dist/module.mjs",
@@ -54,22 +54,22 @@
     "release": "bumpp"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.15.2",
+    "@nuxt/kit": "^3.17.5",
     "defu": "^6.1.4",
-    "importx": "^0.5.1",
+    "importx": "^0.5.2",
     "mlly": "^1.7.4",
-    "pathe": "^2.0.2",
+    "pathe": "^2.0.3",
     "scule": "^1.3.0",
-    "type-fest": "^4.33.0"
+    "type-fest": "^4.41.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.16.0",
-    "@nuxt/module-builder": "^1.0.0-alpha.1",
-    "@nuxt/schema": "^3.15.2",
-    "@types/node": "^22.10.9",
-    "bumpp": "^9.10.2",
-    "eslint": "^9.18.0",
-    "nuxt": "^3.15.2",
-    "typescript": "^5.7.3"
+    "@antfu/eslint-config": "^4.14.1",
+    "@nuxt/module-builder": "^1.0.1",
+    "@nuxt/schema": "^3.17.5",
+    "@types/node": "^24.0.0",
+    "bumpp": "^10.1.1",
+    "eslint": "^9.28.0",
+    "nuxt": "^3.17.5",
+    "typescript": "^5.8.3"
   }
 }
