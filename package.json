@@ -2,7 +2,7 @@
   "name": "nuxt-prepare",
   "type": "module",
   "version": "2.3.2",
-  "packageManager": "pnpm@10.12.1",
+  "packageManager": "pnpm@10.15.0",
   "description": "Build actions for Nuxt",
   "author": "Johann Schopplich <hello@johannschopplich.com>",
   "license": "MIT",
@@ -42,9 +42,9 @@
   ],
   "scripts": {
     "prepack": "nuxt-module-build build",
-    "dev": "nuxi dev playground",
-    "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "dev": "nuxt dev playground",
+    "dev:build": "nuxt build playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxt prepare playground",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
@@ -54,7 +54,7 @@
     "release": "bumpp"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.17.5",
+    "@nuxt/kit": "^4.0.3",
     "defu": "^6.1.4",
     "importx": "^0.5.2",
     "mlly": "^1.7.4",
@@ -63,13 +63,13 @@
     "type-fest": "^4.41.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.14.1",
-    "@nuxt/module-builder": "^1.0.1",
-    "@nuxt/schema": "^3.17.5",
-    "@types/node": "^24.0.0",
-    "bumpp": "^10.1.1",
-    "eslint": "^9.28.0",
-    "nuxt": "^3.17.5",
-    "typescript": "^5.8.3"
+    "@antfu/eslint-config": "^5.2.1",
+    "@nuxt/module-builder": "^1.0.2",
+    "@nuxt/schema": "^4.0.3",
+    "@types/node": "^24.3.0",
+    "bumpp": "^10.2.3",
+    "eslint": "^9.33.0",
+    "nuxt": "^4.0.3",
+    "typescript": "^5.9.2"
   }
 }
