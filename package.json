@@ -6,7 +6,7 @@
   "description": "Build actions for Nuxt",
   "author": "Johann Schopplich <hello@johannschopplich.com>",
   "license": "MIT",
-  "homepage": "https://github.com/johannschopplich/nuxt-prepare#readme",
+  "homepage": "https://nuxt-prepare.byjohann.dev",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/johannschopplich/nuxt-prepare.git"
