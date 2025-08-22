@@ -1,7 +1,7 @@
 {
   "name": "nuxt-prepare",
   "type": "module",
-  "version": "2.3.2",
+  "version": "3.0.0",
   "packageManager": "pnpm@10.15.0",
   "description": "Build actions for Nuxt",
   "author": "Johann Schopplich <hello@johannschopplich.com>",
