@@ -20,6 +20,7 @@ jobs:
           cache: pnpm
 
       - run: pnpm install
+      - run: pnpm run dev:prepare
       - run: pnpm run docs:build
 
       - name: Deploy to Cloudflare Workers
