@@ -13,7 +13,7 @@ This guide will walk you through the steps to get started with Nuxt Prepare.
 ## Step 1: Install Nuxt Prepare
 
 ```bash
-npx nuxi@latest module add prepare
+npx nuxt module add prepare
 ```
 
 ## Step 2: Use the `nuxt-prepare` Module

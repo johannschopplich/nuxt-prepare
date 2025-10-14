@@ -22,7 +22,7 @@
 > [📖 Read the documentation](https://nuxt-prepare.byjohann.dev)
 
 ```bash
-npx nuxi@latest module add prepare
+npx nuxt module add prepare
 ```
 
 ## Basic Usage
