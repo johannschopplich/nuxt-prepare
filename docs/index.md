@@ -27,12 +27,12 @@ features:
     linkText: Get Started
   - title: Unlimited Prepare Scripts
     icon: 🦾
-    details: Conditionally overwrite runtime config or app config values.
+    details: Run multiple scripts to set runtime config, app config, or pass state.
     link: /api/define-nuxt-prepare-handler
     linkText: Methods
   - title: Pass State to Nuxt and Nitro
     icon: 🫴
-    details: Prefetch data to populate your Pinia store or used it in server routes.
+    details: Prefetch data to populate your Pinia store or use it in server routes.
     link: /guide/example-pass-state-to-nuxt
     linkText: Examples
   - title: Validate Your Environment

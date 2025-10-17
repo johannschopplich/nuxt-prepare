@@ -1,6 +1,6 @@
 # Module Configuration
 
-Adapt Nuxt Prepare to your needs with the following options in your `nuxt.config.ts` file:
+Configure Nuxt Prepare in `nuxt.config.ts`:
 
 ::: code-group
 ```ts [nuxt.config.ts]

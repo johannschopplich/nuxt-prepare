@@ -30,11 +30,11 @@ export default defineNuxtPrepareHandler(async () => {
 ```
 :::
 
-When `ok: false` is returned, Nuxt Prepare will:
+When `ok: false` is returned:
 
-1. Log an error message
-2. Throw a `TypeError` to halt the build process
-3. Prevent your application from building with incomplete data
+1. An error is logged
+2. The build process halts
+3. Your application won't build with incomplete data
 
 ::: info
 If you don't return an `ok` property, it defaults to `true`. Only return `ok: false` when you want to halt the build.

@@ -90,7 +90,7 @@ return {
 
 **Type:** `Record<string, unknown>`
 
-Pass build-time data that can be imported anywhere via `#nuxt-prepare`. Values are JSON-serialized and code-generated with full TypeScript support.
+Pass build-time data importable via `#nuxt-prepare`. Values are JSON-serialized with full type safety.
 
 **When to use:**
 

@@ -1,10 +1,8 @@
-# Pass State to Nuxt and Populate Pinia Store
+# Populate Pinia Store
 
-A common scenario is to fetch data from an API during the build process and pass it to Nuxt. This can be done with the `#nuxt-prepare` context.
+You can prefetch data at build-time and use it to populate your [Pinia](https://pinia.vuejs.org) store. Return a `state` object from your prepare script to make data available via `#nuxt-prepare`.
 
-With returning a `state` object in your [`defineNuxtPrepareHandler`](/api/define-nuxt-prepare-handler) handler, you can pass data to Nuxt and import it anywhere from `#nuxt-prepare`.
-
-One use case is to populate an app store like [Pinia](https://pinia.vuejs.org) with the data that is pre-fetched during the build process. To do this, first create a `store.prepare.ts` file and define a `defineNuxtPrepareHandler` handler. Inside the handler, fetch the data from an API and return it in the `state` object:
+Create a prepare script that fetches data and returns it as state:
 
 ::: code-group
 ```ts [store.prepare.ts]
@@ -40,9 +38,7 @@ export default defineNuxtPrepareHandler(async () => {
 ```
 :::
 
-Once the fetch request succeeds, the `todos` data is available from the `#nuxt-prepare` context:
-
-**In a Pinia store:**
+Import the prefetched data in your Pinia store:
 
 ::: code-group
 ```ts [stores/todo.ts]
@@ -57,7 +53,7 @@ export const useTodos = defineStore('todos', {
 ```
 :::
 
-**In Nitro server routes:**
+Or use it in server routes:
 
 ::: code-group
 ```ts [server/api/todos.ts]

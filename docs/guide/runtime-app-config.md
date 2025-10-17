@@ -81,17 +81,13 @@ const isDarkModeEnabled = appConfig.features.darkMode
 Like runtime config, app config values are **merged** with existing configuration defined in `app.config.ts`.
 :::
 
-## State vs Config: When to Use Each
-
-Choose the right option based on how you want to access the data:
+## When to Use Each Option
 
 ### Use `state`
 
-When you want to:
 - Import data as constants
 - Get full TypeScript type inference from generated types
 - Share data between multiple modules without prop drilling
-- Access data during the build process
 
 ```ts
 import { features } from '#nuxt-prepare'
@@ -104,8 +100,7 @@ if (features.darkMode) {
 
 ### Use `runtimeConfig`
 
-When you want to:
-- Follow Nuxt's standard runtime configuration patterns
+- Follow Nuxt's runtime configuration patterns
 - Access environment variables and secrets
 - Use Nuxt's built-in public/private config separation
 
@@ -118,10 +113,9 @@ const apiUrl = config.public.apiUrl
 
 ### Use `appConfig`
 
-When you want to:
-- Follow Nuxt's standard app configuration patterns
-- Define app-wide settings that can be updated at runtime
-- Integrate with Nuxt's app config HMR (hot module replacement)
+- Define app-wide configuration
+- Support runtime updates with HMR
+- Follow Nuxt's app config patterns
 
 ```ts
 const appConfig = useAppConfig()

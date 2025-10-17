@@ -2,7 +2,7 @@
 
 ## Why Nuxt Prepare?
 
-**Wait!** Why do I need Nuxt Prepare, you may ask? Well, you can't run asynchronous code in your Nuxt configuration file. This is where Nuxt Prepare comes into play. It allows you to run synchronous or asynchronous code **at build-time** before your Nuxt application is built. This can be useful for:
+Nuxt's configuration file doesn't support async operations. Nuxt Prepare fills this gap by letting you run async code **at build-time** before your app builds. Use it for:
 
 - Fetching data from an API and embedding it in your app
 - Creating a global state that is available to all components, composables, and server routes
@@ -12,8 +12,6 @@
 ::: tip
 Prepare scripts run **during the build**, not at runtime. This means expensive operations only happen once per build, not on every request.
 :::
-
-This guide will walk you through the steps to get started with Nuxt Prepare.
 
 ## Step 1: Install Nuxt Prepare
 
@@ -33,9 +31,9 @@ export default defineNuxtConfig({
 ```
 :::
 
-## Step 3: Set up Prepare Scripts
+## Step 3: Create Your First Prepare Script
 
-By default, Nuxt Prepare will look for a `server.prepare.ts` file in your project root. To run synchronous or asynchronous code when Nuxt builds your app, create a file handler and export a default function:
+By default, Nuxt Prepare looks for `server.prepare.ts` in your project root. Create this file and export a handler function:
 
 ::: code-group
 ```ts [server.prepare.ts]
@@ -66,12 +64,12 @@ export default defineNuxtPrepareHandler(async () => {
 :::
 
 ::: tip
-Return `ok: false` to let the Nuxt Prepare module know that the script failed. It will then log an error and exit the process.
+Return `ok: false` to signal failure and halt the build process.
 :::
 
 ## Step 4: Import Your Prepare State
 
-The state you defined in your prepare script is now available globally in your Nuxt application. Behind the scenes, Nuxt Prepare generates a TypeScript file at `.nuxt/module/nuxt-prepare.mjs` that exports your state values with full type safety.
+State from your prepare script is available globally via the `#nuxt-prepare` alias. Nuxt Prepare generates type-safe exports at `.nuxt/module/nuxt-prepare.mjs`.
 
 You can import state from `#nuxt-prepare` in:
 
@@ -99,9 +97,9 @@ export default defineEventHandler(() => {
 The `#nuxt-prepare` alias works in both your Nuxt app and Nitro server, making build-time data universally accessible.
 :::
 
-## Step 5: Add More Prepare Scripts
+## Step 5: Run Multiple Prepare Scripts
 
-To run more prepare scripts, add them to the `prepare.scripts` module configuration:
+Add additional scripts to the `prepare.scripts` configuration:
 
 ::: code-group
 ```ts [nuxt.config.ts]
