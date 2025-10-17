@@ -1,6 +1,7 @@
 import type { AppConfig, RuntimeConfig } from '@nuxt/schema'
 import type { PartialDeep } from 'type-fest'
 
+// #region result
 export interface NuxtPrepareResult {
   /**
    * Indicates if the prepare script ran successfully. If an async operation
@@ -38,3 +39,4 @@ export interface NuxtPrepareResult {
    */
   state?: Record<string, unknown>
 }
+// #endregion result

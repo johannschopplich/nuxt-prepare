@@ -37,7 +37,6 @@ export default defineConfig({
     sidebar: {
       '/guide/': sidebarGuide(),
       '/config/': sidebarGuide(),
-      '/migration/': sidebarGuide(),
       '/api/': sidebarApi(),
     },
 
@@ -66,7 +65,10 @@ function nav(): DefaultTheme.NavItem[] {
           text: 'Guide',
           items: [
             { text: 'Getting Started', link: '/guide/getting-started' },
+            { text: 'Core Concepts', link: '/guide/core-concepts' },
             { text: 'Prepare State', link: '/guide/prepare-state' },
+            { text: 'Runtime & App Config', link: '/guide/runtime-app-config' },
+            { text: 'Error Handling', link: '/guide/error-handling' },
           ],
         },
         {
@@ -116,7 +118,10 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
       text: 'Guides',
       items: [
         { text: 'Getting Started', link: '/guide/getting-started' },
+        { text: 'Core Concepts', link: '/guide/core-concepts' },
         { text: 'Prepare State', link: '/guide/prepare-state' },
+        { text: 'Runtime & App Config', link: '/guide/runtime-app-config' },
+        { text: 'Error Handling', link: '/guide/error-handling' },
       ],
     },
     {
@@ -132,7 +137,6 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
         { text: 'Populate Pinia Store', link: '/guide/example-pass-state-to-nuxt' },
       ],
     },
-    { text: 'Migration', link: '/migration/' },
     { text: 'API', link: '/api/' },
     { text: 'Playground', link: 'https://github.com/johannschopplich/nuxt-prepare/tree/main/playground' },
   ]

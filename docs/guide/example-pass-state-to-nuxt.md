@@ -6,8 +6,8 @@ With returning a `state` object in your [`defineNuxtPrepareHandler`](/api/define
 
 One use case is to populate an app store like [Pinia](https://pinia.vuejs.org) with the data that is pre-fetched during the build process. To do this, first create a `store.prepare.ts` file and define a `defineNuxtPrepareHandler` handler. Inside the handler, fetch the data from an API and return it in the `state` object:
 
-```ts
-// `store.prepare.ts`
+::: code-group
+```ts [store.prepare.ts]
 import type { FetchError } from 'ofetch'
 import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
 import { ofetch } from 'ofetch'
@@ -38,12 +38,15 @@ export default defineNuxtPrepareHandler(async () => {
   }
 })
 ```
+:::
 
-Once the fetch request succeeds, the `todos` data is be available from the `#nuxt-prepare` context:
+Once the fetch request succeeds, the `todos` data is available from the `#nuxt-prepare` context:
 
-```ts
+**In a Pinia store:**
+
+::: code-group
+```ts [stores/todo.ts]
 import { todos } from '#nuxt-prepare'
-// `stores/todo.ts`
 import { defineStore } from 'pinia'
 
 export const useTodos = defineStore('todos', {
@@ -52,3 +55,21 @@ export const useTodos = defineStore('todos', {
   })
 })
 ```
+:::
+
+**In Nitro server routes:**
+
+::: code-group
+```ts [server/api/todos.ts]
+import { todos } from '#nuxt-prepare'
+
+export default defineEventHandler(() => {
+  // Use the prefetched data in your API
+  return { todos }
+})
+```
+:::
+
+::: info
+State from `#nuxt-prepare` works in both your Nuxt app and Nitro server, making it a versatile way to share build-time data across your entire application.
+:::

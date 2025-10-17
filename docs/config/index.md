@@ -2,8 +2,8 @@
 
 Adapt Nuxt Prepare to your needs with the following options in your `nuxt.config.ts` file:
 
-```ts
-// `nuxt.config.ts`
+::: code-group
+```ts [nuxt.config.ts]
 export default defineNuxtConfig({
   modules: ['nuxt-prepare'],
 
@@ -14,74 +14,108 @@ export default defineNuxtConfig({
   }
 })
 ```
+:::
 
 ## Parallel Script Execution
 
 By default, prepare scripts are run in series. If you want to run them in parallel, set the `parallel` option to `true`:
 
-```ts
-// `nuxt.config.ts`
+::: code-group
+```ts [nuxt.config.ts]
 export default defineNuxtConfig({
   modules: ['nuxt-prepare'],
 
   prepare: {
+    scripts: ['users.prepare', 'products.prepare', 'settings.prepare'],
     parallel: true
   }
 })
 ```
+:::
+
+::: warning
+Only use parallel execution when your scripts are truly independent. If one script depends on another's output, run them in series.
+:::
+
+## Continue on Error
+
+By default, if a prepare script fails (returns `ok: false`), the build process stops. Set `continueOnError` to `true` to allow the build to continue even when scripts fail:
+
+::: code-group
+```ts [nuxt.config.ts]
+export default defineNuxtConfig({
+  modules: ['nuxt-prepare'],
+
+  prepare: {
+    scripts: ['critical.prepare', 'optional.prepare'],
+    continueOnError: true
+  }
+})
+```
+:::
+
+When enabled:
+
+- Failed scripts are logged as errors
+- The build continues with remaining scripts
+- A warning summarizes failures at the end
+
+::: tip
+Use this when some prepare scripts are optional and their failure shouldn't block the build. Always ensure your script returns `ok: false` to signal failure.
+:::
+
+## Skip Scripts During `nuxt prepare`
+
+The `runOnNuxtPrepare` option controls whether scripts run during `nuxt prepare` (which generates TypeScript types without building the app).
+
+### Global Control
+
+Disable all prepare scripts during `nuxt prepare`:
+
+::: code-group
+```ts [nuxt.config.ts]
+export default defineNuxtConfig({
+  modules: ['nuxt-prepare'],
+
+  prepare: {
+    scripts: ['data.prepare', 'api.prepare'],
+    runOnNuxtPrepare: false
+  }
+})
+```
+:::
+
+### Per-Script Control
+
+Use the object syntax to control individual scripts:
+
+::: code-group
+```ts [nuxt.config.ts]
+export default defineNuxtConfig({
+  modules: ['nuxt-prepare'],
+
+  prepare: {
+    scripts: [
+      // Always run, including during `nuxt prepare`
+      'types.prepare',
+
+      // Skip during `nuxt prepare`, run during dev/build
+      {
+        file: 'data.prepare',
+        runOnNuxtPrepare: false
+      }
+    ]
+  }
+})
+```
+:::
+
+This is useful when:
+
+- A script makes expensive API calls that aren't needed for type generation
+- A script has side effects that should only run during actual builds
+- You want faster type generation with `nuxt prepare`
 
 ## Type Declarations
 
-```ts
-interface PrepareScript {
-  file: string
-  runOnNuxtPrepare?: boolean
-}
-
-interface ModuleOptions {
-  /**
-   * Accepts a list of prepare scripts to run. The scripts are executed in the
-   * order they are defined.
-   *
-   * @remarks
-   * You can omit the file extension. Supported extensions are: `.js`, `.mjs`, `.ts`.
-   *
-   * @default ['server.prepare']
-   */
-  scripts: string | string[] | PrepareScript | PrepareScript[]
-
-  /**
-   * If `true`, the prepare scripts will be run in parallel.
-   *
-   * @remarks
-   * This can be useful if you have multiple scripts that can be run independently.
-   *
-   * @default false
-   */
-  parallel?: boolean
-
-  /**
-   * If `true`, the module will not throw an error if a script fails.
-   *
-   * @remarks
-   * Ensure to add `ok: false` to your script's return value to indicate that
-   * the script failed. Otherwise, the module will assume that the script
-   * succeeded.
-   *
-   * @default false
-   */
-  continueOnError?: boolean
-
-  /**
-   * Whether the scripts should be run on `nuxi prepare`.
-   *
-   * @remarks
-   * If set to `false`, all scripts will be ignored when running `nuxi prepare`. If you want to
-   * exclude specific scripts, use the object syntax for the `scripts` option and set the
-   * `runOnNuxtPrepare` property individually for each script.
-   *
-   * @default true
-   */
-  runOnNuxtPrepare?: boolean
-}
-```
+<<< @/../src/module.ts#options

@@ -8,6 +8,7 @@ import { pascalCase } from 'scule'
 import { name, version } from '../package.json'
 import { isObject, toArray } from './utils'
 
+// #region options
 export interface PrepareScript {
   file: string
   runOnNuxtPrepare?: boolean
@@ -48,10 +49,10 @@ export interface ModuleOptions {
   continueOnError?: boolean
 
   /**
-   * Whether the scripts should be run on `nuxi prepare`.
+   * Whether the scripts should be run on `nuxt prepare`.
    *
    * @remarks
-   * If set to `false`, all scripts will be ignored when running `nuxi prepare`. If you want to
+   * If set to `false`, all scripts will be ignored when running `nuxt prepare`. If you want to
    * exclude specific scripts, use the object syntax for the `scripts` option and set the
    * `runOnNuxtPrepare` property individually for each script.
    *
@@ -59,6 +60,7 @@ export interface ModuleOptions {
    */
   runOnNuxtPrepare?: boolean
 }
+// #endregion options
 
 interface ResolvedScriptMeta {
   name: string

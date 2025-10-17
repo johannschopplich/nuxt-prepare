@@ -1,15 +1,26 @@
 # Prepare State
 
-In addition to running scripts before building your Nuxt application, for example to [validate your environment configuration](/guide/example-env-validation), you can also define a state that will be available globally to all components and composables.
+In addition to running scripts before building your Nuxt application, for example to [validate your environment configuration](/guide/example-env-validation), you can define a `state` that will be available globally throughout your application.
 
 ::: tip
-Think of the `state` as an alternative to the `nuxtServerInit` action in Nuxt 2 to make a state available globally (although technically speaking it was a hook and ran on server initialization, not during the build process).
+Think of the `state` as an alternative to the `nuxtServerInit` action in Nuxt 2 to make data available globally—but unlike `nuxtServerInit`, it runs during the build process and generates type-safe imports.
 :::
 
-For a simple prepare script, let's retrieve the first todo item from the JSONPlaceholder API and store it, so you can access it from any component, composable, etc.
+## When to Use State
 
-```ts
-// `server.prepare.ts`
+Use prepare state when you want to:
+
+- **Prefetch data** – Fetch data at build-time and embed it in your app
+- **Share constants** – Make build-time computed values available everywhere
+- **Type-safe imports** – Get full TypeScript inference without manual type definitions
+- **Universal access** – Use the same data in both client and server code
+
+## How It Works
+
+For a simple prepare script, let's retrieve the first todo item from the JSONPlaceholder API and make it available throughout the app:
+
+::: code-group
+```ts [server.prepare.ts]
 import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
 import { ofetch } from 'ofetch'
 
@@ -23,6 +34,7 @@ export default defineNuxtPrepareHandler(async () => {
   }
 })
 ```
+:::
 
 ::: info
 
@@ -41,11 +53,52 @@ export type TodoItem = typeof todoItem
 
 :::
 
-Now that the state is available globally, you can import it from `#nuxt-prepare` in any component, page, or layout. If the state is shared between multiple targets, a shared build chunk is created.
+Now that the state is available globally, you can import it from `#nuxt-prepare` anywhere in your application:
 
 ```ts
+// In any component, composable, page, layout, or plugin
 import { todoItem } from '#nuxt-prepare'
 
-// Pass initial state to the reactive variable
 const todos = ref([todoItem])
 ```
+
+```ts
+// In Nitro server routes and middleware
+import { todoItem } from '#nuxt-prepare'
+
+export default defineEventHandler(() => {
+  return { todo: todoItem }
+})
+```
+
+::: info
+State is available in both your **Nuxt app** (client and server) and **Nitro server** (API routes, middleware). If state is shared between multiple modules, Nuxt automatically creates a shared build chunk.
+:::
+
+## JSON Serialization
+
+State values are JSON-serialized when generating the module file. This means:
+
+**✅ Supported types:**
+- Objects, arrays, strings, numbers, booleans, null
+
+**❌ Not supported:**
+- Functions, classes, symbols, undefined (becomes null)
+- Circular references
+
+```
+// ✅ This works
+state: {
+  config: { url: 'https://api.example.com' },
+  items: [1, 2, 3],
+  enabled: true
+}
+
+// ❌ This doesn't work
+state: {
+  handler: () => console.log('hello'), // Lost during serialization
+  value: undefined // Becomes null
+}
+```
+
+For complex use cases that require functions or non-serializable data, consider using [`runtimeConfig`](/guide/runtime-app-config) or [`appConfig`](/guide/runtime-app-config) instead.
