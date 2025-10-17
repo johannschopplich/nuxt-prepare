@@ -4,7 +4,7 @@ titleTemplate: Build Actions for Nuxt
 hero:
   name: Nuxt Prepare
   text: Build Actions for Nuxt
-  tagline: Async initialization steps at build-time
+  tagline: Async operations with zero runtime cost
   image:
     src: /logo-shadow.svg
     alt: Nuxt Prepare Logo
@@ -20,24 +20,24 @@ hero:
       link: https://github.com/johannschopplich/nuxt-prepare
 
 features:
-  - title: Zero-Config
-    icon: 🦦
-    details: Uses `server.prepare.ts` by default.
-    link: /guide/getting-started
-    linkText: Get Started
-  - title: Unlimited Prepare Scripts
-    icon: 🦾
-    details: Run multiple scripts to set runtime config, app config, or pass state.
-    link: /api/define-nuxt-prepare-handler
-    linkText: Methods
-  - title: Pass State to Nuxt and Nitro
+  - title: Async Operations
     icon: 🫴
-    details: Prefetch data to populate your Pinia store or use it in server routes.
-    link: /guide/example-pass-state-to-nuxt
-    linkText: Examples
-  - title: Validate Your Environment
-    icon: 🦜
-    details: Ensure your `.env` is valid before Nuxt builds your app.
+    details: Run async code at build-time before your app builds.
+    link: /guide/core-concepts
+    linkText: Learn More
+  - title: Zero Runtime Cost
+    icon: 🚀
+    details: Expensive operations run once at build, not on every request.
+    link: /guide/core-concepts
+    linkText: Learn More
+  - title: Type-Safe Global State
+    icon: 🦾
+    details: Auto-generated imports with full TypeScript inference via `#nuxt-prepare`.
+    link: /guide/prepare-state
+    linkText: Learn More
+  - title: Fail Fast in CI/CD
+    icon: ✅
+    details: Validate environment and dependencies before deployment.
     link: /guide/example-env-validation
-    linkText: Examples
+    linkText: See Example
 ---
