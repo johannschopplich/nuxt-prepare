@@ -78,7 +78,7 @@ export default defineNuxtPrepareHandler(async () => {
 
 ## Credits
 
-- [Maronbeere](https://maronbeere.carrd.co) for his Chameleon pixel art.
+- [Konkon](https://konkon.zip) for his logo pixel art.
 - [McPizza0](https://github.com/McPizza0) for his inspirational [`nuxt-server-init`](https://github.com/McPizza0/nuxt-server-init) module.
 
 ## License
