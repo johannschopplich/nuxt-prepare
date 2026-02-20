@@ -8,6 +8,8 @@ import { pascalCase } from 'scule'
 import { name, version } from '../package.json'
 import { isObject, stripExtension, toArray } from './utils'
 
+const SCRIPT_EXTENSIONS = ['.js', '.mjs', '.ts']
+
 // #region options
 export interface PrepareScript {
   file: string
@@ -86,7 +88,6 @@ export default defineNuxtModule<ModuleOptions>({
   async setup(options, nuxt) {
     const moduleName = name
     const logger = useLogger(moduleName)
-    const extensions = ['.js', '.mjs', '.ts']
     let successCount = 0
     let errorCount = 0
 
@@ -97,7 +98,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     for (const [index, layer] of nuxt.options._layers.entries()) {
       const isAppLayer = index === 0
-      const layerPrepareScripts = layer.config.prepare?.scripts
+      const layerPrepareScripts = layer.config.prepare ? layer.config.prepare.scripts : undefined
       const scripts = layerPrepareScripts !== undefined
         ? toArray(layerPrepareScripts)
         : isAppLayer
@@ -107,7 +108,7 @@ export default defineNuxtModule<ModuleOptions>({
       for (const entry of scripts) {
         const scriptName = stripExtension(
           typeof entry === 'string' ? entry : entry.file,
-          extensions,
+          SCRIPT_EXTENSIONS,
         )
 
         layerScripts.push({
@@ -120,7 +121,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Resolve script file paths relative to each layer's root
     const resolvedEntries = await Promise.all(layerScripts.map(async (script) => {
-      const path = await findPath(script.name, { extensions, cwd: script.root }, 'file')
+      const path = await findPath(script.name, { extensions: SCRIPT_EXTENSIONS, cwd: script.root }, 'file')
 
       if (!path) {
         if (script.name === 'server.prepare') {
@@ -129,7 +130,7 @@ export default defineNuxtModule<ModuleOptions>({
         }
 
         logger.error(
-          `Server prepare script \`${script.name}{${extensions.join(',')}}\` not found. Please create the file or remove it from the \`prepare.scripts\` module option.`,
+          `Server prepare script \`${script.name}{${SCRIPT_EXTENSIONS.join(',')}}\` not found. Please create the file or remove it from the \`prepare.scripts\` module option.`,
         )
         throw new Error('Server prepare script not found')
       }
