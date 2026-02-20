@@ -6,7 +6,7 @@ import { interopDefault } from 'mlly'
 import { join } from 'pathe'
 import { pascalCase } from 'scule'
 import { name, version } from '../package.json'
-import { isObject, toArray } from './utils'
+import { isObject, stripExtension, toArray } from './utils'
 
 // #region options
 export interface PrepareScript {
@@ -90,51 +90,64 @@ export default defineNuxtModule<ModuleOptions>({
     let successCount = 0
     let errorCount = 0
 
-    let resolvedScripts: ResolvedScriptMeta[] = []
-
     let state: Record<string, unknown> = {}
 
-    // Normalize script entries
-    for (const script of toArray(options.scripts)) {
-      let name = typeof script === 'string' ? script : script.file
+    // Collect scripts from all layers
+    const layerScripts: { root: string, name: string, runOnNuxtPrepare: boolean }[] = []
 
-      // Remove extension if present
-      for (const ext of extensions) {
-        if (name.endsWith(ext)) {
-          name = name.slice(0, -ext.length)
-          break
-        }
+    for (const [index, layer] of nuxt.options._layers.entries()) {
+      const isAppLayer = index === 0
+      const layerPrepareScripts = layer.config.prepare?.scripts
+      const scripts = layerPrepareScripts !== undefined
+        ? toArray(layerPrepareScripts)
+        : isAppLayer
+          ? ['server.prepare']
+          : []
+
+      for (const entry of scripts) {
+        const scriptName = stripExtension(
+          typeof entry === 'string' ? entry : entry.file,
+          extensions,
+        )
+
+        layerScripts.push({
+          root: layer.config.rootDir,
+          name: scriptName,
+          runOnNuxtPrepare: typeof entry === 'string' ? true : (entry.runOnNuxtPrepare ?? true),
+        })
       }
+    }
 
-      const path = await findPath(name, { extensions }, 'file')
-
-      if (name === 'server.prepare' && !path) {
-        // Default server prepare script not found
-        continue
-      }
+    // Resolve script file paths relative to each layer's root
+    const resolvedEntries = await Promise.all(layerScripts.map(async (script) => {
+      const path = await findPath(script.name, { extensions, cwd: script.root }, 'file')
 
       if (!path) {
+        if (script.name === 'server.prepare') {
+          // Default server prepare script not found – skip silently
+          return
+        }
+
         logger.error(
-          `Server prepare script \`${name}{${extensions.join(',')}}\` not found. Please create the file or remove it from the \`prepare.scripts\` module option.`,
+          `Server prepare script \`${script.name}{${extensions.join(',')}}\` not found. Please create the file or remove it from the \`prepare.scripts\` module option.`,
         )
         throw new Error('Server prepare script not found')
       }
 
-      resolvedScripts.push({
-        name,
+      return {
+        name: script.name,
         path,
-        runOnNuxtPrepare: typeof script === 'string' ? true : script.runOnNuxtPrepare ?? true,
-      })
-    }
+        runOnNuxtPrepare: script.runOnNuxtPrepare,
+      }
+    }))
 
-    // Dedupe script entries
-    const scriptNames = new Set<string>()
-    resolvedScripts = resolvedScripts.filter(({ name }) => {
-      if (scriptNames.has(name))
-        return false
-      scriptNames.add(name)
-      return true
-    })
+    // Dedupe script entries by resolved path, filtering out undefined (skipped) entries
+    const scriptsByPath = new Map<string, ResolvedScriptMeta>()
+    for (const entry of resolvedEntries) {
+      if (entry && !scriptsByPath.has(entry.path))
+        scriptsByPath.set(entry.path, entry)
+    }
+    const resolvedScripts = [...scriptsByPath.values()]
 
     const runScript = async ({ name, path, runOnNuxtPrepare }: ResolvedScriptMeta) => {
       if (nuxt.options._prepare && !runOnNuxtPrepare) {

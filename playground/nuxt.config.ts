@@ -2,6 +2,8 @@ import { defineNuxtConfig } from 'nuxt/config'
 import NuxtPrepare from '../src/module'
 
 export default defineNuxtConfig({
+  extends: ['./layers/nested'],
+
   modules: [NuxtPrepare],
 
   runtimeConfig: {
@@ -10,7 +12,7 @@ export default defineNuxtConfig({
     },
   },
 
-  compatibilityDate: '2024-04-03',
+  compatibilityDate: '2026-01-01',
 
   prepare: {
     scripts: [
