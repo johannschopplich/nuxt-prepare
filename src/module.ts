@@ -90,51 +90,65 @@ export default defineNuxtModule<ModuleOptions>({
     let successCount = 0
     let errorCount = 0
 
-    let resolvedScripts: ResolvedScriptMeta[] = []
-
     let state: Record<string, unknown> = {}
 
-    // Normalize script entries
-    for (const script of toArray(options.scripts)) {
-      let name = typeof script === 'string' ? script : script.file
+    const layersScripts = nuxt.options._layers.map((layer) => {
+      const scripts = toArray(layer.config.prepare?.scripts ?? [])
+      const layerRoot = layer.config.rootDir
 
-      // Remove extension if present
-      for (const ext of extensions) {
-        if (name.endsWith(ext)) {
-          name = name.slice(0, -ext.length)
-          break
+      return scripts.map((entry) => {
+        let name = typeof entry === 'string' ? entry : entry.file
+
+        // Remove extension if present
+        for (const ext of extensions) {
+          if (name.endsWith(ext)) {
+            name = name.slice(0, -ext.length)
+            break
+          }
         }
-      }
 
-      const path = await findPath(name, { extensions }, 'file')
+        return {
+          root: layerRoot,
+          name,
+          runOnNuxtPrepare: typeof entry === 'string' ? undefined : entry.runOnNuxtPrepare,
+        }
+      })
+    }).flat()
 
-      if (name === 'server.prepare' && !path) {
-        // Default server prepare script not found
-        continue
-      }
+    // Normalize script entries
+    const scriptsPathResolutionResult = await Promise.all(layersScripts.map(async (script) => {
+      const name = script.name
+      const path = await findPath(script.name, { extensions, cwd: script.root }, 'file')
 
       if (!path) {
+        if (name === 'server.prepare') {
+          // Default server prepare script not found
+          return
+        }
+
         logger.error(
           `Server prepare script \`${name}{${extensions.join(',')}}\` not found. Please create the file or remove it from the \`prepare.scripts\` module option.`,
         )
         throw new Error('Server prepare script not found')
       }
 
-      resolvedScripts.push({
+      return {
         name,
         path,
         runOnNuxtPrepare: typeof script === 'string' ? true : script.runOnNuxtPrepare ?? true,
-      })
-    }
+      }
+    }))
 
     // Dedupe script entries
-    const scriptNames = new Set<string>()
-    resolvedScripts = resolvedScripts.filter(({ name }) => {
-      if (scriptNames.has(name))
-        return false
-      scriptNames.add(name)
-      return true
-    })
+    const scriptPaths = new Set<string>()
+    const resolvedScripts: ResolvedScriptMeta[] = scriptsPathResolutionResult
+      .filter(entry => entry !== undefined)
+      .filter(({ path }) => {
+        if (scriptPaths.has(path))
+          return false
+        scriptPaths.add(path)
+        return true
+      })
 
     const runScript = async ({ name, path, runOnNuxtPrepare }: ResolvedScriptMeta) => {
       if (nuxt.options._prepare && !runOnNuxtPrepare) {
