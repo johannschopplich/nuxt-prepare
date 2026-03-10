@@ -1,6 +1,9 @@
 name = "nuxt-prepare"
 compatibility_date = "2025-09-01"
-routes = [ { pattern = "nuxt-prepare.byjohann.dev", custom_domain = true } ]
+
+[[routes]]
+pattern = "nuxt-prepare.byjohann.dev"
+custom_domain = true
 
 [assets]
 directory = "./docs/.vitepress/dist/"
