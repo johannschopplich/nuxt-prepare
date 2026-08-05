@@ -4,7 +4,7 @@ import type { PartialDeep } from 'type-fest'
 // #region result
 export interface NuxtPrepareResult {
   /**
-   * Indicates if the prepare script ran successfully. If an async operation
+   * Whether the prepare script ran successfully. If an async operation
    * inside your prepare script fails, you can return `ok: false` to let the
    * Nuxt Prepare module know that the script failed.
    *
@@ -12,15 +12,15 @@ export interface NuxtPrepareResult {
    */
   ok?: boolean
   /**
-   * Runtime config to merge with `nuxt.options.runtimeConfig`
+   * Runtime config to merge with `nuxt.options.runtimeConfig`.
    */
   runtimeConfig?: PartialDeep<RuntimeConfig>
   /**
-   * App config to merge with `nuxt.options.appConfig`
+   * App config to merge with `nuxt.options.appConfig`.
    */
   appConfig?: PartialDeep<AppConfig>
   /**
-   * Pass custom state to Nuxt and import it anywhere from `#nuxt-prepare`
+   * Custom state to pass to Nuxt and import anywhere from `#nuxt-prepare`.
    *
    * @remarks
    * Use this to prefetch data, i.e. populate the Pinia store with data from

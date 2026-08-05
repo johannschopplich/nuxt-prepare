@@ -18,7 +18,7 @@ export interface PrepareScript {
 
 export interface ModuleOptions {
   /**
-   * Accepts a list of prepare scripts to run. The scripts are executed in the
+   * List of prepare scripts to run. The scripts are executed in the
    * order they are defined.
    *
    * @remarks
@@ -93,7 +93,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     let state: Record<string, unknown> = {}
 
-    // Collect scripts from all layers
+    // Collect scripts from all layers.
     const layerScripts: { root: string, name: string, runOnNuxtPrepare: boolean }[] = []
 
     for (const [index, layer] of nuxt.options._layers.entries()) {
@@ -119,13 +119,13 @@ export default defineNuxtModule<ModuleOptions>({
       }
     }
 
-    // Resolve script file paths relative to each layer's root
+    // Resolve script file paths relative to each layer's root.
     const resolvedEntries = await Promise.all(layerScripts.map(async (script) => {
       const path = await findPath(script.name, { extensions: SCRIPT_EXTENSIONS, cwd: script.root }, 'file')
 
       if (!path) {
         if (script.name === 'server.prepare') {
-          // Default server prepare script not found – skip silently
+          // Default server prepare script not found – skip silently.
           return
         }
 
@@ -142,7 +142,7 @@ export default defineNuxtModule<ModuleOptions>({
       }
     }))
 
-    // Dedupe script entries by resolved path, filtering out undefined (skipped) entries
+    // Dedupe script entries by resolved path, filtering out undefined (skipped) entries.
     const scriptsByPath = new Map<string, ResolvedScriptMeta>()
     for (const entry of resolvedEntries) {
       if (entry && !scriptsByPath.has(entry.path))
@@ -164,7 +164,7 @@ export default defineNuxtModule<ModuleOptions>({
           cache: false,
           loaderOptions: {
             // Nuxt's TypeScript config will only be generated along
-            // with prepare scripts, so we disable config resolution
+            // with prepare scripts, so we disable config resolution.
             tsx: { tsconfig: false },
           },
         }),
@@ -200,7 +200,6 @@ export default defineNuxtModule<ModuleOptions>({
       }
     }
 
-    // Run scripts
     if (nuxt.options._prepare && !options.runOnNuxtPrepare) {
       logger.info('Skipping prepare scripts')
     }
@@ -215,16 +214,15 @@ export default defineNuxtModule<ModuleOptions>({
       }
     }
 
-    // Add `#nuxt-prepare` module alias
+    // Add `#nuxt-prepare` module alias.
     nuxt.options.alias[`#${moduleName}`] = join(nuxt.options.buildDir, `module/${moduleName}`)
 
     nuxt.hooks.hook('nitro:config', (config) => {
-      // Provide `#nuxt-prepare` module alias for Nitro
+      // Provide `#nuxt-prepare` module alias for Nitro.
       config.alias ||= {}
       config.alias[`#${moduleName}`] = join(nuxt.options.buildDir, `module/${moduleName}`)
     })
 
-    // Add global `#nuxt-prepare` state
     addTemplate({
       filename: `module/${moduleName}.mjs`,
       write: true,
@@ -247,7 +245,6 @@ export const ${key} = ${JSON.stringify(value, undefined, 2)}
       },
     })
 
-    // Add TypeScript definitions
     addTemplate({
       filename: `module/${moduleName}.d.ts`,
       write: true,
