@@ -18,19 +18,13 @@
 
 ## Setup
 
-> [!TIP]
-> [📖 Read the documentation](https://nuxt-prepare.byjohann.dev)
-
 ```bash
 npx nuxt module add prepare
 ```
 
 ## Basic Usage
 
-> [!TIP]
-> [📖 Read the documentation](https://nuxt-prepare.byjohann.dev)
-
-Add the `nuxt-prepare` module to your `nuxt.config.ts`:
+Add Nuxt Prepare to your Nuxt configuration:
 
 ```ts
 // `nuxt.config.ts`
