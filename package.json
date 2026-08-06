@@ -41,17 +41,18 @@
     "dist"
   ],
   "scripts": {
-    "prepack": "nuxt-module-build build",
     "dev": "nuxt dev playground",
     "dev:build": "nuxt build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxt prepare playground",
-    "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
+    "docs:dev": "vitepress dev docs",
     "docs:preview": "vitepress preview docs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test:types": "tsc --noEmit",
-    "release": "bumpp"
+    "prepack": "nuxt-module-build build",
+    "release": "bumpp",
+    "test": "vitest",
+    "test:types": "tsc --noEmit"
   },
   "dependencies": {
     "@nuxt/kit": "^4.5.2",
@@ -71,6 +72,7 @@
     "eslint": "^10.8.0",
     "nuxt": "^4.5.2",
     "typescript": "^6.0.3",
-    "unbuild": "^3.6.1"
+    "unbuild": "^3.6.1",
+    "vitest": "^4.1.10"
   }
 }
