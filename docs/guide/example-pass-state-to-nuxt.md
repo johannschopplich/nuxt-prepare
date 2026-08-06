@@ -42,8 +42,8 @@ Import the prefetched data in your Pinia store:
 
 ::: code-group
 ```ts [stores/todo.ts]
-import { todos } from '#nuxt-prepare'
 import { defineStore } from 'pinia'
+import { todos } from '#nuxt-prepare'
 
 export const useTodos = defineStore('todos', {
   state: () => ({
