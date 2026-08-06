@@ -1,17 +1,6 @@
 # Getting Started
 
-## Why Nuxt Prepare?
-
-Nuxt's configuration file doesn't support async operations. Nuxt Prepare fills this gap by letting you run async code **at build-time** before your app builds. Use it for:
-
-- Fetching data from an API and embedding it in your app
-- Creating a global state that is available to all components, composables, and server routes
-- Dynamically setting runtime or app config based on async operations
-- Validating your environment and failing early in CI/CD pipelines
-
-::: tip
-Prepare scripts run **during the build**, not at runtime. This means expensive operations only happen once per build, not on every request.
-:::
+Nuxt's configuration file cannot await anything. Nuxt Prepare fills that gap: it runs your async code once, while Nuxt builds, and folds the result into the configuration and into a state your app can import. See [Core Concepts](/guide/core-concepts) for what that means for runtime cost and serialization.
 
 ## Step 1: Install Nuxt Prepare
 
@@ -19,7 +8,7 @@ Prepare scripts run **during the build**, not at runtime. This means expensive o
 npx nuxt module add prepare
 ```
 
-## Step 2: Use the `nuxt-prepare` Module
+## Step 2: Add the Module
 
 Add `nuxt-prepare` to your Nuxt configuration:
 
@@ -69,12 +58,7 @@ Return `ok: false` to signal failure and halt the build process.
 
 ## Step 4: Import Your Prepare State
 
-State from your prepare script is available globally via the `#nuxt-prepare` alias. Nuxt Prepare generates type-safe exports at `.nuxt/module/nuxt-prepare.mjs`.
-
-You can import state from `#nuxt-prepare` in:
-
-- **Nuxt app** – Components, composables, pages, layouts, plugins
-- **Nitro server** – API routes, server middleware, server utilities
+Whatever the script returns under `state` is generated as typed exports at `.nuxt/module/nuxt-prepare.mjs`, reachable through the `#nuxt-prepare` alias from both your Nuxt app and the Nitro server:
 
 ```vue
 <script setup lang="ts">
@@ -92,10 +76,6 @@ export default defineEventHandler(() => {
   return { foo } // 'bar'
 })
 ```
-
-::: info
-The `#nuxt-prepare` alias works in both your Nuxt app and Nitro server, making build-time data universally accessible.
-:::
 
 ## Step 5: Run Multiple Prepare Scripts
 
@@ -121,9 +101,7 @@ By default, prepare scripts are run in series. If you want to run them in parall
 
 ## Next Steps
 
-Now that you've set up Nuxt Prepare, explore more features:
-
-- [**Core Concepts**](/guide/core-concepts) - Understand how prepare scripts work under the hood
-- [**Prepare State**](/guide/prepare-state) - Learn more about passing state to your app
-- [**Runtime & App Config**](/guide/runtime-app-config) - Dynamically set configuration values
-- [**Error Handling**](/guide/error-handling) - Handle errors gracefully in prepare scripts
+- [Core Concepts](/guide/core-concepts) – When scripts run, in what order, and what survives serialization.
+- [Prepare State](/guide/prepare-state) – Pass build-time data to your app.
+- [Runtime & App Config](/guide/runtime-app-config) – Set configuration values from a script.
+- [Error Handling](/guide/error-handling) – Fail the build, or carry on.

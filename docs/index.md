@@ -24,17 +24,17 @@ features:
     icon: 🫴
     details: Run async code at build-time before your app builds.
     link: /guide/core-concepts
-    linkText: Learn More
+    linkText: Core Concepts
   - title: Zero Runtime Cost
     icon: 🚀
     details: Expensive operations run once at build, not on every request.
     link: /guide/core-concepts
-    linkText: Learn More
+    linkText: Build-Time vs Runtime
   - title: Type-Safe Global State
     icon: 🦾
-    details: Auto-generated imports with full TypeScript inference via `#nuxt-prepare`.
+    details: Auto-generated imports with full TypeScript inference via <code>#nuxt-prepare</code>.
     link: /guide/prepare-state
-    linkText: Learn More
+    linkText: Pass State to Nuxt
   - title: Fail Fast in CI/CD
     icon: ✅
     details: Validate environment and dependencies before deployment.
