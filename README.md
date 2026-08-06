@@ -62,6 +62,8 @@ export default defineNuxtPrepareHandler(async () => {
 > [!TIP]
 > You can run as many prepare scripts as you want – add them to the `prepare.scripts` module configuration.
 
+The [documentation](https://nuxt-prepare.byjohann.dev) covers the handler API, prepare state and every module option.
+
 ## 💻 Development
 
 1. Clone this repository
