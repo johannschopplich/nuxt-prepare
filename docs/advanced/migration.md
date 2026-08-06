@@ -1,6 +1,6 @@
 # Migration
 
-## v3.0.0
+## v4.0.0
 
 ### A Script's Result Wins Over What It Merges Into
 

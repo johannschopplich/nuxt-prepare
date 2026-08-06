@@ -42,26 +42,7 @@ If you don't return an `ok` property, it defaults to `true`. Only return `ok: fa
 
 ## Continue on Error
 
-By default, if any prepare script fails, the entire build stops. Use the `continueOnError` option to allow the build to continue even when scripts fail:
-
-::: code-group
-```ts [nuxt.config.ts]
-export default defineNuxtConfig({
-  modules: ['nuxt-prepare'],
-
-  prepare: {
-    scripts: ['critical.prepare', 'optional.prepare'],
-    continueOnError: true
-  }
-})
-```
-:::
-
-With `continueOnError: true`:
-
-- Failed scripts are logged as errors
-- The build continues with remaining scripts
-- A warning is shown at the end if any scripts failed
+By default a failing script stops the build. The [`continueOnError`](/config/#continue-on-error) option lets the remaining scripts run instead, and reports the failures at the end.
 
 ::: warning
 Use `continueOnError` carefully. If your application depends on data from prepare scripts, continuing on error might cause runtime issues.
@@ -124,7 +105,7 @@ When a prepare script fails, Nuxt Prepare logs the script name and error:
 
 ```
 ✖ Server prepare script `data.prepare` returned an error
-✖ Server prepare scripts completed with 1 error
+⚠ Server prepare scripts completed with 1 error
 ```
 
 To debug:

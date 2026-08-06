@@ -47,7 +47,6 @@ export const todoItem = {
   title: 'delectus aut autem',
   completed: false
 }
-export type TodoItem = typeof todoItem
 ```
 
 :::

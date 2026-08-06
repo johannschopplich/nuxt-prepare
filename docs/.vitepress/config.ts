@@ -37,6 +37,7 @@ export default defineConfig({
     sidebar: {
       '/guide/': sidebarGuide(),
       '/config/': sidebarGuide(),
+      '/advanced/': sidebarGuide(),
       '/api/': sidebarApi(),
     },
 
@@ -74,7 +75,7 @@ function nav(): DefaultTheme.NavItem[] {
         {
           text: 'Examples',
           items: [
-            { text: 'Dotenv Validation', link: '/guide/example-env-validation' },
+            { text: 'Environment Variable Validation', link: '/guide/example-env-validation' },
             { text: 'Populate Pinia Store', link: '/guide/example-pass-state-to-nuxt' },
           ],
         },
@@ -128,13 +129,13 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
     {
       text: 'Module',
       items: [
-        { text: 'Configuration', link: '/config/' },
+        { text: 'Module Configuration', link: '/config/' },
       ],
     },
     {
       text: 'Examples',
       items: [
-        { text: 'Dotenv Validation', link: '/guide/example-env-validation' },
+        { text: 'Environment Variable Validation', link: '/guide/example-env-validation' },
         { text: 'Populate Pinia Store', link: '/guide/example-pass-state-to-nuxt' },
       ],
     },
