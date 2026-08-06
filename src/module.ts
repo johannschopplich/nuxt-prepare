@@ -146,11 +146,16 @@ export default defineNuxtModule<ModuleOptions>({
       }
     }))
 
-    // Dedupe script entries by resolved path, filtering out undefined (skipped) entries.
+    // Dedupe script entries by resolved path, filtering out undefined (skipped)
+    // entries. A path listed by several layers keeps the last entry and the last
+    // position, so the highest-priority layer decides both when the script runs
+    // and whether `nuxt prepare` runs it.
     const scriptsByPath = new Map<string, ResolvedScriptMeta>()
     for (const entry of resolvedEntries) {
-      if (entry && !scriptsByPath.has(entry.path))
+      if (entry) {
+        scriptsByPath.delete(entry.path)
         scriptsByPath.set(entry.path, entry)
+      }
     }
     const resolvedScripts = [...scriptsByPath.values()]
 
@@ -189,9 +194,8 @@ export default defineNuxtModule<ModuleOptions>({
 
       // A script's result takes precedence over what it merges into, so that
       // returning a key overrides the value `nuxt.config` gave it and a later
-      // script overrides an earlier one.
-      // Both casts hold because the second argument is already complete; only
-      // `defu` cannot see that through the partial it merges on top.
+      // script overrides an earlier one. The casts hold because the defaults
+      // stay whole underneath; `defu` just cannot see that through the partial.
       if (result.runtimeConfig) {
         nuxt.options.runtimeConfig = defu(
           result.runtimeConfig,
