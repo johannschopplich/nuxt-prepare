@@ -94,9 +94,8 @@ export default defineNuxtModule<ModuleOptions>({
 
     let state: Record<string, unknown> = {}
 
-    // Collect scripts from all layers, lowest priority first: a later script
-    // overrides an earlier one, and the app layer has to have the last word over
-    // the layers it extends.
+    // Lowest priority first: a later script overrides an earlier one, and the
+    // app layer has to have the last word over the layers it extends.
     const layerScripts: { root: string, name: string, runOnNuxtPrepare: boolean }[] = []
     const appLayer = nuxt.options._layers[0]
 
@@ -146,8 +145,7 @@ export default defineNuxtModule<ModuleOptions>({
       }
     }))
 
-    // Dedupe script entries by resolved path, filtering out undefined (skipped)
-    // entries. A path listed by several layers keeps the last entry and the last
+    // A path listed by several layers keeps the last entry and the last
     // position, so the highest-priority layer decides both when the script runs
     // and whether `nuxt prepare` runs it.
     const scriptsByPath = new Map<string, ResolvedScriptMeta>()
