@@ -94,11 +94,14 @@ export default defineNuxtModule<ModuleOptions>({
 
     let state: Record<string, unknown> = {}
 
-    // Collect scripts from all layers.
+    // Collect scripts from all layers, lowest priority first: a later script
+    // overrides an earlier one, and the app layer has to have the last word over
+    // the layers it extends.
     const layerScripts: { root: string, name: string, runOnNuxtPrepare: boolean }[] = []
+    const appLayer = nuxt.options._layers[0]
 
-    for (const [index, layer] of nuxt.options._layers.entries()) {
-      const isAppLayer = index === 0
+    for (const layer of [...nuxt.options._layers].reverse()) {
+      const isAppLayer = layer === appLayer
       const layerPrepareScripts = layer.config.prepare ? layer.config.prepare.scripts : undefined
       const scripts = layerPrepareScripts !== undefined
         ? toArray(layerPrepareScripts)
