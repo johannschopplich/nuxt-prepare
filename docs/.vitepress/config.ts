@@ -107,6 +107,7 @@ function nav(): DefaultTheme.NavItem[] {
           text: 'Release Notes ',
           link: releases,
         },
+        { text: 'Migration', link: '/advanced/migration' },
       ],
     },
   ]
@@ -135,6 +136,12 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
       items: [
         { text: 'Dotenv Validation', link: '/guide/example-env-validation' },
         { text: 'Populate Pinia Store', link: '/guide/example-pass-state-to-nuxt' },
+      ],
+    },
+    {
+      text: 'Advanced',
+      items: [
+        { text: 'Migration', link: '/advanced/migration' },
       ],
     },
     { text: 'API', link: '/api/' },

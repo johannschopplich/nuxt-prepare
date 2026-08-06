@@ -35,6 +35,8 @@ Nuxt Prepare fills this gap by running async code before the configuration is fi
 
 When Nuxt builds your app, prepare scripts are executed in order (or in parallel if configured). Each script returns a result that can modify your Nuxt configuration or pass data to your app.
 
+Scripts from extended layers run before the ones your own project lists, so your project has the last word – its result is merged over theirs. Where several layers list the same script path, it runs once, at the position the highest-priority layer gives it.
+
 ### 2. Generated Files
 
 The module generates files in `.nuxt/module/`:

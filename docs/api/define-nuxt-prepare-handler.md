@@ -45,7 +45,7 @@ return {
 
 **Type:** `PartialDeep<RuntimeConfig>`
 
-Dynamically set or override runtime configuration values. These are merged with existing `runtimeConfig` from `nuxt.config.ts` and can be accessed via `useRuntimeConfig()`.
+Dynamically set or override runtime configuration values. They are merged over the `runtimeConfig` from `nuxt.config.ts`, taking precedence where both set a key, and can be accessed via `useRuntimeConfig()`.
 
 **When to use:**
 
@@ -68,7 +68,7 @@ return {
 
 **Type:** `PartialDeep<AppConfig>`
 
-Dynamically set or override app configuration values. These are merged with existing `appConfig` from `app.config.ts` and can be accessed via `useAppConfig()`.
+Dynamically set or override app configuration values. They are merged over the `appConfig` from `app.config.ts`, taking precedence where both set a key, and can be accessed via `useAppConfig()`.
 
 **When to use:**
 

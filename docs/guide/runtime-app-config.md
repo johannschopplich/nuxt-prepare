@@ -38,8 +38,8 @@ const config = useRuntimeConfig()
 console.log(config.public.apiUrl) // Set by prepare script
 ```
 
-::: info
-Values returned from prepare scripts are **merged** with existing runtime config. This means you can override specific values without replacing the entire configuration.
+::: info Precedence
+A script's result is merged into the runtime config rather than replacing it, so keys you leave out keep the value `nuxt.config.ts` gave them. Keys you do return win over it, and a later script wins over an earlier one.
 :::
 
 ## App Config
@@ -77,8 +77,8 @@ const isDarkModeEnabled = appConfig.features.darkMode
 </script>
 ```
 
-::: info
-Like runtime config, app config values are **merged** with existing configuration defined in `app.config.ts`.
+::: info Precedence
+App config merges the same way, over what `app.config.ts` defines.
 :::
 
 ## When to Use Each Option
