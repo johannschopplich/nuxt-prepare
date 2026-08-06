@@ -1,3 +1,4 @@
+import type { AppConfig, RuntimeConfig } from '@nuxt/schema'
 import type { NuxtPrepareResult } from './types'
 import { addTemplate, defineNuxtModule, findPath, useLogger } from '@nuxt/kit'
 import { defu } from 'defu'
@@ -183,20 +184,25 @@ export default defineNuxtModule<ModuleOptions>({
 
       successCount++
 
+      // A script's result takes precedence over what it merges into, so that
+      // returning a key overrides the value `nuxt.config` gave it and a later
+      // script overrides an earlier one.
+      // Both casts hold because the second argument is already complete; only
+      // `defu` cannot see that through the partial it merges on top.
       if (result.runtimeConfig) {
         nuxt.options.runtimeConfig = defu(
-          nuxt.options.runtimeConfig,
           result.runtimeConfig,
-        )
+          nuxt.options.runtimeConfig,
+        ) as RuntimeConfig
       }
 
       if (result.appConfig)
-        nuxt.options.appConfig = defu(nuxt.options.appConfig, result.appConfig)
+        nuxt.options.appConfig = defu(result.appConfig, nuxt.options.appConfig) as AppConfig
 
       if (result.state) {
         if (!isObject(result.state))
           throw new TypeError('Server prepare script returned invalid state')
-        state = defu(state, result.state)
+        state = defu(result.state, state)
       }
     }
 
