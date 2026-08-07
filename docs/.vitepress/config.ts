@@ -40,9 +40,9 @@ export default defineConfig({
     nav: nav(),
 
     sidebar: {
-      '/essentials/': sidebarCore(),
-      '/guides/': sidebarCore(),
-      '/advanced/': sidebarCore(),
+      '/essentials/': sidebarMain(),
+      '/guides/': sidebarMain(),
+      '/advanced/': sidebarMain(),
       '/api/': sidebarApi(),
     },
 
@@ -61,27 +61,31 @@ export default defineConfig({
   },
 })
 
+const essentialsItems = [
+  { text: 'What is Nuxt Prepare?', link: '/essentials/what-is-nuxt-prepare' },
+  { text: 'Getting Started', link: '/essentials/getting-started' },
+  { text: 'Core Concepts', link: '/essentials/core-concepts' },
+]
+
+const guidesItems = [
+  { text: 'Prepare State', link: '/guides/prepare-state' },
+  { text: 'Runtime & App Config', link: '/guides/runtime-app-config' },
+  { text: 'Error Handling', link: '/guides/error-handling' },
+  { text: 'Environment Variable Validation', link: '/guides/example-env-validation' },
+  { text: 'Populate Pinia Store', link: '/guides/example-pass-state-to-nuxt' },
+]
+
 function nav(): DefaultTheme.NavItem[] {
   return [
     {
       text: 'Essentials',
       activeMatch: '^/essentials/',
-      items: [
-        { text: 'What is Nuxt Prepare?', link: '/essentials/what-is-nuxt-prepare' },
-        { text: 'Getting Started', link: '/essentials/getting-started' },
-        { text: 'Core Concepts', link: '/essentials/core-concepts' },
-      ],
+      items: essentialsItems,
     },
     {
       text: 'Guides',
       activeMatch: '^/guides/',
-      items: [
-        { text: 'Prepare State', link: '/guides/prepare-state' },
-        { text: 'Runtime & App Config', link: '/guides/runtime-app-config' },
-        { text: 'Error Handling', link: '/guides/error-handling' },
-        { text: 'Environment Variable Validation', link: '/guides/example-env-validation' },
-        { text: 'Populate Pinia Store', link: '/guides/example-pass-state-to-nuxt' },
-      ],
+      items: guidesItems,
     },
     {
       text: 'API',
@@ -101,25 +105,15 @@ function nav(): DefaultTheme.NavItem[] {
   ]
 }
 
-function sidebarCore(): DefaultTheme.SidebarItem[] {
+function sidebarMain(): DefaultTheme.SidebarItem[] {
   return [
     {
       text: 'Essentials',
-      items: [
-        { text: 'What is Nuxt Prepare?', link: '/essentials/what-is-nuxt-prepare' },
-        { text: 'Getting Started', link: '/essentials/getting-started' },
-        { text: 'Core Concepts', link: '/essentials/core-concepts' },
-      ],
+      items: essentialsItems,
     },
     {
       text: 'Guides',
-      items: [
-        { text: 'Prepare State', link: '/guides/prepare-state' },
-        { text: 'Runtime & App Config', link: '/guides/runtime-app-config' },
-        { text: 'Error Handling', link: '/guides/error-handling' },
-        { text: 'Environment Variable Validation', link: '/guides/example-env-validation' },
-        { text: 'Populate Pinia Store', link: '/guides/example-pass-state-to-nuxt' },
-      ],
+      items: guidesItems,
     },
     {
       text: 'Advanced',
