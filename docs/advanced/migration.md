@@ -2,6 +2,10 @@
 
 ## v4.0.0
 
+### Nuxt 4 Is Required
+
+The module declares `nuxt: '>=4.0.0'` and no longer installs on Nuxt 3. Stay on `nuxt-prepare` v3 until you have upgraded.
+
 ### A Script's Result Wins Over What It Merges Into
 
 A prepare script's `runtimeConfig`, `appConfig` and `state` used to lose against the values already in place, so a key set in `nuxt.config.ts` survived whatever the script returned. The script now wins, and a later script wins over an earlier one.

@@ -8,12 +8,14 @@ The module's surface is small: a handful of options in `nuxt.config.ts`, one fun
 
 ## Methods
 
-Auto-imported in every prepare script:
+Imported from `nuxt-prepare/config` in every prepare script:
 
 - [`defineNuxtPrepareHandler`](/api/define-nuxt-prepare-handler) – Wraps the handler and types its result.
 
 ```ts
 // `server.prepare.ts`
+import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
+
 export default defineNuxtPrepareHandler(async () => {
   const { apiUrl } = await fetch('https://config.example.com/env').then(r => r.json())
 
