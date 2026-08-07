@@ -22,11 +22,13 @@ dist
 .output
 .vercel_build_output
 .build-*
-.env
 .netlify
 
 # Env
 .env
+
+# The playground demonstrates env validation and carries no secret.
+!playground/.env
 
 # Testing
 reports
