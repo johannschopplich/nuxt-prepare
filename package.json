@@ -24,8 +24,14 @@
       "default": "./dist/module.mjs"
     },
     "./config": {
-      "types": "./dist/config.d.mts",
-      "default": "./dist/config.mjs"
+      "import": {
+        "types": "./dist/config.d.mts",
+        "default": "./dist/config.mjs"
+      },
+      "require": {
+        "types": "./dist/config.d.cts",
+        "default": "./dist/config.cjs"
+      }
     }
   },
   "main": "./dist/module.mjs",
