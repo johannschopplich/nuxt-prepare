@@ -1,4 +1,4 @@
-import type { Nuxt } from '@nuxt/schema'
+import type { Nuxt, NuxtApp } from '@nuxt/schema'
 import { fileURLToPath } from 'node:url'
 import { loadNuxt } from '@nuxt/kit'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
@@ -38,5 +38,15 @@ describe('prepare script results', () => {
 
   it('lets the app layer override what an extended layer returned', () => {
     expect(publicRuntimeConfig.fromLayer).toBe('first.prepare')
+  })
+
+  it('places its appConfig ahead of every app.config file, which Nuxt merges first', async () => {
+    // Carries only the fields the registered `app:resolve` hooks reach for.
+    const app = { configs: ['/fixture/app.config.ts'], middleware: [], plugins: [] }
+
+    await nuxt.callHook('app:resolve', app as unknown as NuxtApp)
+
+    expect(app.configs[0]).toMatch(/nuxt-prepare-app-config\.mjs$/)
+    expect(app.configs).toHaveLength(2)
   })
 })
