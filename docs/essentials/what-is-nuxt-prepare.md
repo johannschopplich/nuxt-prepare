@@ -4,10 +4,12 @@ Nuxt Prepare is a [Nuxt](https://nuxt.com) module that runs your own async code 
 
 ## A Prepare Script
 
-A script is a file ending in `.prepare.ts` that default-exports a handler:
+A script is a file that default-exports a handler. The module looks for `server.prepare.ts` by default, and the `.prepare` part is convention rather than a rule – [`prepare.scripts`](/api/module-configuration#prepare-scripts) takes whatever names you give it:
 
 ```ts
 // `server.prepare.ts`
+import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
+
 export default defineNuxtPrepareHandler(async () => {
   const { apiUrl } = await fetch('https://config.example.com/env').then(r => r.json())
 

@@ -16,9 +16,21 @@ export default defineNuxtConfig({
 
 The defaults cover the common case: a single `server.prepare.ts` in your project root, run in series, stopping the build when it fails. Reach for the options below when that isn't what you want.
 
+The same options can travel with the module entry instead, which is what a layer publishing its own scripts usually wants:
+
+```ts
+import NuxtPrepare from 'nuxt-prepare'
+
+export default defineNuxtConfig({
+  modules: [
+    [NuxtPrepare, { scripts: ['users.prepare'] }]
+  ]
+})
+```
+
 ## `prepare.scripts`
 
-The scripts to run, in the order given. A script is named by its path relative to the layer it belongs to, without the file extension – `.js`, `.mjs` and `.ts` are all resolved.
+The scripts to run, in the order given. A script is named by its path relative to the layer it belongs to, usually without the file extension – `.js`, `.mjs` and `.ts` are all resolved, and an extension you do write is stripped before the lookup.
 
 Pass a single name, a list of names, or an object per script to set [`runOnNuxtPrepare`](#per-script-control) individually:
 
