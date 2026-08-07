@@ -24,12 +24,13 @@ The `NuxtPrepareResult` object can include the following properties:
 
 ### `ok`
 
-**Type:** `boolean`
-**Default:** `true`
+Whether the script succeeded. Return `ok: false` to stop the build – see [`continueOnError`](/api/module-configuration#prepare-continueonerror) for the other way that can go.
 
-Indicates whether the prepare script executed successfully. Return `ok: false` to signal failure and halt the build process.
+**Type**: `boolean`
 
-**When to use:**
+**Default value**: `true`
+
+Reach for it where:
 
 - Validation fails (missing environment variables, invalid configuration)
 - Critical API calls fail
@@ -43,11 +44,11 @@ return {
 
 ### `runtimeConfig`
 
-**Type:** `PartialDeep<RuntimeConfig>`
+Runtime config to merge over the one from `nuxt.config.ts`, taking precedence where both set a key. Read it back with `useRuntimeConfig()`.
 
-Dynamically set or override runtime configuration values. They are merged over the `runtimeConfig` from `nuxt.config.ts`, taking precedence where both set a key, and can be accessed via `useRuntimeConfig()`.
+**Type**: `PartialDeep<RuntimeConfig>`
 
-**When to use:**
+Reach for it where:
 
 - Set configuration based on async operations
 - Fetch API URLs or credentials from external sources
@@ -66,11 +67,11 @@ return {
 
 ### `appConfig`
 
-**Type:** `PartialDeep<AppConfig>`
+App config to merge over the one from `app.config.ts`, taking precedence where both set a key. Read it back with `useAppConfig()`.
 
-Dynamically set or override app configuration values. They are merged over the `appConfig` from `app.config.ts`, taking precedence where both set a key, and can be accessed via `useAppConfig()`.
+**Type**: `PartialDeep<AppConfig>`
 
-**When to use:**
+Reach for it where:
 
 - Set feature flags from a CMS or feature flag service
 - Configure themes based on tenant data
@@ -88,11 +89,11 @@ return {
 
 ### `state`
 
-**Type:** `Record<string, unknown>`
+Build-time data importable from `#nuxt-prepare`. Values are JSON-serialized, and their types are inferred from the values themselves.
 
-Pass build-time data importable via `#nuxt-prepare`. Values are JSON-serialized with full type safety.
+**Type**: `Record<string, unknown>`
 
-**When to use:**
+Reach for it where:
 
 - Prefetch data to embed in your app
 - Share build-time computed constants
