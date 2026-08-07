@@ -35,7 +35,7 @@ export default defineNuxtConfig({
 
 A script listed here that doesn't exist stops the build with an error. The one exception is the default `server.prepare`, whose absence is silently ignored – it is a convention, not a requirement.
 
-**Default value**: `['server.prepare']`
+**Default Value**: `['server.prepare']`
 
 ## `prepare.parallel`
 
@@ -43,7 +43,7 @@ Whether the scripts run all at once instead of one after another.
 
 Only turn this on when the scripts are genuinely independent. Each result is merged the moment its script resolves, so in parallel the order two scripts write the same key in is the order they happen to finish in, not the order you listed them. See [Script Execution](/essentials/core-concepts#_1-script-execution).
 
-**Default value**: `false`
+**Default Value**: `false`
 
 ## `prepare.continueOnError`
 
@@ -51,7 +51,7 @@ Whether a failing script lets the build carry on.
 
 A script fails by returning `ok: false`. With this off, the first failure stops the build. With it on, the failure is logged, the remaining scripts still run, and a warning summarizes what failed at the end. Use it where a script is genuinely optional – an enrichment that is nice to have rather than a validation the app depends on. See [Error Handling](/guides/error-handling).
 
-**Default value**: `false`
+**Default Value**: `false`
 
 ## `prepare.runOnNuxtPrepare`
 
@@ -59,7 +59,7 @@ Whether the scripts run during `nuxt prepare`, which generates TypeScript types 
 
 Turn it off where a script makes an expensive request or has a side effect that type generation has no use for. Note that a script's `state` shapes the types importable from `#nuxt-prepare`, so skipping a script means its state is typed from whatever the last real run wrote.
 
-**Default value**: `true`
+**Default Value**: `true`
 
 ### Per-Script Control
 

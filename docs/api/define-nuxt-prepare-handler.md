@@ -28,7 +28,7 @@ Whether the script succeeded. Return `ok: false` to stop the build – see [`con
 
 **Type**: `boolean`
 
-**Default value**: `true`
+**Default Value**: `true`
 
 Reach for it where:
 
