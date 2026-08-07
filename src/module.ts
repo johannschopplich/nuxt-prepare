@@ -122,15 +122,13 @@ export default defineNuxtModule<ModuleOptions>({
       }
     }
 
-    // Resolve script file paths relative to each layer's root.
     const resolvedEntries = await Promise.all(layerScripts.map(async (script) => {
       const path = await findPath(script.name, { extensions: SCRIPT_EXTENSIONS, cwd: script.root }, 'file')
 
       if (!path) {
-        if (script.name === 'server.prepare') {
-          // Default server prepare script not found – skip silently.
+        // The default script is a convention, not a requirement, so its absence is not an error.
+        if (script.name === 'server.prepare')
           return
-        }
 
         logger.error(
           `Server prepare script \`${script.name}{${SCRIPT_EXTENSIONS.join(',')}}\` not found. Please create the file or remove it from the \`prepare.scripts\` module option.`,
@@ -170,8 +168,7 @@ export default defineNuxtModule<ModuleOptions>({
           parentURL: nuxt.options.rootDir,
           cache: false,
           loaderOptions: {
-            // Nuxt's TypeScript config will only be generated along
-            // with prepare scripts, so we disable config resolution.
+            // Nuxt's TypeScript config is generated along with the prepare scripts, so it cannot be resolved yet.
             tsx: { tsconfig: false },
           },
         }),
@@ -227,11 +224,9 @@ export default defineNuxtModule<ModuleOptions>({
       }
     }
 
-    // Add `#nuxt-prepare` module alias.
     nuxt.options.alias[`#${moduleName}`] = join(nuxt.options.buildDir, `module/${moduleName}`)
 
     nuxt.hooks.hook('nitro:config', (config) => {
-      // Provide `#nuxt-prepare` module alias for Nitro.
       config.alias ||= {}
       config.alias[`#${moduleName}`] = join(nuxt.options.buildDir, `module/${moduleName}`)
     })
