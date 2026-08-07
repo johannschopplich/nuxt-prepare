@@ -28,7 +28,7 @@ export default defineNuxtPrepareHandler(() => ({
 
 If you relied on `nuxt.config.ts` having the last word, stop returning that key from the script, or read the current value and return it unchanged.
 
-::: warning Arrays are concatenated, not replaced
+::: warning Arrays Are Concatenated, Not Replaced
 Precedence applies to plain values and objects. An array coming back from a script is appended to the one already in place rather than replacing it, because that is how `defu` merges arrays regardless of argument order. To replace an array, return the full list you want and remove the original from `nuxt.config.ts`.
 :::
 
