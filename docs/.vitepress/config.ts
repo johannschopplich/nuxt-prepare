@@ -61,13 +61,13 @@ export default defineConfig({
   },
 })
 
-const essentialsItems = [
+const essentialsItems: DefaultTheme.NavItemWithLink[] = [
   { text: 'What is Nuxt Prepare?', link: '/essentials/what-is-nuxt-prepare' },
   { text: 'Getting Started', link: '/essentials/getting-started' },
   { text: 'Core Concepts', link: '/essentials/core-concepts' },
 ]
 
-const guidesItems = [
+const guidesItems: DefaultTheme.NavItemWithLink[] = [
   { text: 'Prepare State', link: '/guides/prepare-state' },
   { text: 'Runtime & App Config', link: '/guides/runtime-app-config' },
   { text: 'Error Handling', link: '/guides/error-handling' },
