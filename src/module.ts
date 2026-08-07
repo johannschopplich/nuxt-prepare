@@ -238,10 +238,7 @@ export default ${JSON.stringify(appConfig, undefined, 2)}
 `.trimStart(),
       })
 
-      // Nuxt builds the app config as `defuFn(...appConfigFiles, nuxt.options.appConfig)`,
-      // where the first argument wins. A script's values reach the app as an app
-      // config of their own, placed ahead of the ones the layers bring – writing
-      // `nuxt.options.appConfig` alone would leave every `app.config.ts` on top.
+      // The earliest entry in `app.configs` has the final say, so the script outranks every `app.config.ts`.
       nuxt.hooks.hook('app:resolve', (app) => {
         app.configs.unshift(template.dst)
       })
