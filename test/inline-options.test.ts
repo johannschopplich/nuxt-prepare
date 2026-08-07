@@ -16,7 +16,7 @@ describe('inline module options', () => {
     await nuxt?.close()
   })
 
-  it('runs a script listed in scripts passed beside the module', () => {
+  it('runs the script they name', () => {
     expect(nuxt.options.runtimeConfig.public.fromInline).toBe('inline.prepare')
   })
 })
