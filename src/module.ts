@@ -1,4 +1,4 @@
-import type { AppConfig, RuntimeConfig } from '@nuxt/schema'
+import type { AppConfig, NuxtConfigLayer, RuntimeConfig } from '@nuxt/schema'
 import type { PartialDeep } from 'type-fest'
 import type { NuxtPrepareResult } from './types'
 import { addTemplate, defineNuxtModule, findPath, useLogger } from '@nuxt/kit'
@@ -8,7 +8,7 @@ import { interopDefault } from 'mlly'
 import { join } from 'pathe'
 import { pascalCase } from 'scule'
 import { name, version } from '../package.json'
-import { isObject, stripExtension, toArray } from './utils'
+import { isObject, stripExtension, toArray, withoutEntries } from './utils'
 
 const SCRIPT_EXTENSIONS = ['.js', '.mjs', '.ts']
 
@@ -28,7 +28,7 @@ export interface ModuleOptions {
    *
    * @default ['server.prepare']
    */
-  scripts: string | string[] | PrepareScript | PrepareScript[]
+  scripts?: string | string[] | PrepareScript | PrepareScript[]
 
   /**
    * If `true`, the prepare scripts will be run in parallel.
@@ -82,7 +82,6 @@ export default defineNuxtModule<ModuleOptions>({
     },
   },
   defaults: {
-    scripts: ['server.prepare'],
     parallel: false,
     continueOnError: false,
     runOnNuxtPrepare: true,
@@ -101,14 +100,23 @@ export default defineNuxtModule<ModuleOptions>({
     const layerScripts: { root: string, name: string, runOnNuxtPrepare: boolean }[] = []
     const appLayer = nuxt.options._layers[0]
 
+    // Nuxt hands the module every layer's list concatenated into one, so what the app
+    // layer asks for on its own – a list passed inline to the module included – is
+    // whatever the layers it extends did not ask for.
+    const declaredScripts = (layer: NuxtConfigLayer) => {
+      const config = layer.config.prepare
+      return config ? toArray(config.scripts ?? []) : []
+    }
+
+    const appScripts = withoutEntries(
+      toArray(options.scripts ?? []),
+      nuxt.options._layers.filter(layer => layer !== appLayer).flatMap(declaredScripts),
+    )
+
     for (const layer of [...nuxt.options._layers].reverse()) {
-      const isAppLayer = layer === appLayer
-      const layerPrepareScripts = layer.config.prepare ? layer.config.prepare.scripts : undefined
-      const scripts = layerPrepareScripts !== undefined
-        ? toArray(layerPrepareScripts)
-        : isAppLayer
-          ? ['server.prepare']
-          : []
+      const scripts = layer === appLayer
+        ? (appScripts.length > 0 ? appScripts : ['server.prepare'])
+        : declaredScripts(layer)
 
       for (const entry of scripts) {
         const scriptName = stripExtension(
