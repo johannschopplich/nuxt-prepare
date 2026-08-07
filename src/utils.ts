@@ -6,18 +6,22 @@ export function isObject(value: unknown): value is Record<any, any> {
   return Object.prototype.toString.call(value) === '[object Object]'
 }
 
-/** The entries of `list` with one occurrence dropped for every entry naming the same file in `removed`. */
-export function withoutEntries<T extends string | { file: string }>(list: T[], removed: T[]): T[] {
-  const remaining = removed.map(entry => (typeof entry === 'string' ? entry : entry.file))
+/** The entries of `scripts`, one occurrence dropped for each entry of `exclusions` naming the same file. */
+export function withoutScripts<T extends string | { file: string }>(scripts: T[], exclusions: T[]): T[] {
+  const excludedFiles = exclusions.map(scriptFile)
 
-  return list.filter((entry) => {
-    const index = remaining.indexOf(typeof entry === 'string' ? entry : entry.file)
+  return scripts.filter((entry) => {
+    const index = excludedFiles.indexOf(scriptFile(entry))
     if (index === -1)
       return true
 
-    remaining.splice(index, 1)
+    excludedFiles.splice(index, 1)
     return false
   })
+}
+
+function scriptFile(entry: string | { file: string }): string {
+  return typeof entry === 'string' ? entry : entry.file
 }
 
 export function stripExtension(name: string, extensions: string[]): string {

@@ -1,9 +1,9 @@
 import type { Nuxt, NuxtApp, NuxtTemplate } from '@nuxt/schema'
-import { fileURLToPath } from 'node:url'
+import { join } from 'node:path'
 import { loadNuxt } from '@nuxt/kit'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
-const appConfigFile = fileURLToPath(new URL('./fixture/app.config.ts', import.meta.url))
+const appConfigFile = join(import.meta.dirname, 'fixture/app.config.ts')
 
 describe('prepare script results', () => {
   let nuxt: Nuxt
@@ -12,7 +12,7 @@ describe('prepare script results', () => {
 
   beforeAll(async () => {
     nuxt = await loadNuxt({
-      cwd: fileURLToPath(new URL('./fixture', import.meta.url)),
+      cwd: join(import.meta.dirname, 'fixture'),
     })
     publicRuntimeConfig = nuxt.options.runtimeConfig.public
     appConfig = nuxt.options.appConfig

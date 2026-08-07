@@ -1,5 +1,5 @@
 import type { Nuxt } from '@nuxt/schema'
-import { fileURLToPath } from 'node:url'
+import { join } from 'node:path'
 import { loadNuxt } from '@nuxt/kit'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
@@ -8,7 +8,7 @@ describe('inline module options', () => {
 
   beforeAll(async () => {
     nuxt = await loadNuxt({
-      cwd: fileURLToPath(new URL('./fixture-inline', import.meta.url)),
+      cwd: join(import.meta.dirname, 'fixture-inline'),
     })
   }, 120_000)
 
