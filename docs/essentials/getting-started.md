@@ -1,6 +1,6 @@
 # Getting Started
 
-Nuxt's configuration file cannot await anything. Nuxt Prepare fills that gap: it runs your async code once, while Nuxt builds, and folds the result into the configuration and into a state your app can import. See [Core Concepts](/guide/core-concepts) for what that means for runtime cost and serialization.
+Nuxt's configuration file cannot await anything. Nuxt Prepare fills that gap: it runs your async code once, while Nuxt builds, and folds the result into the configuration and into a state your app can import. See [Core Concepts](/essentials/core-concepts) for what that means for runtime cost and serialization.
 
 ## Step 1: Install Nuxt Prepare
 
@@ -101,7 +101,7 @@ By default, prepare scripts are run in series. If you want to run them in parall
 
 ## Next Steps
 
-- [Core Concepts](/guide/core-concepts) – When scripts run, in what order, and what survives serialization.
-- [Prepare State](/guide/prepare-state) – Pass build-time data to your app.
-- [Runtime & App Config](/guide/runtime-app-config) – Set configuration values from a script.
-- [Error Handling](/guide/error-handling) – Fail the build, or carry on.
+- [Core Concepts](/essentials/core-concepts) – When scripts run, in what order, and what survives serialization.
+- [Prepare State](/guides/prepare-state) – Pass build-time data to your app.
+- [Runtime & App Config](/guides/runtime-app-config) – Set configuration values from a script.
+- [Error Handling](/guides/error-handling) – Fail the build, or carry on.

@@ -1,9 +1,14 @@
 import type { DefaultTheme } from 'vitepress'
+import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vitepress'
 import { description, version } from '../../package.json'
 import { github, name, ogImage, ogUrl, releases } from './meta'
 
 export default defineConfig({
+  vite: {
+    plugins: [UnoCSS()],
+  },
+
   lang: 'en-US',
   title: name,
   description: 'Build actions for Nuxt',
@@ -35,9 +40,9 @@ export default defineConfig({
     nav: nav(),
 
     sidebar: {
-      '/guide/': sidebarGuide(),
-      '/config/': sidebarGuide(),
-      '/advanced/': sidebarGuide(),
+      '/essentials/': sidebarCore(),
+      '/guides/': sidebarCore(),
+      '/advanced/': sidebarCore(),
       '/api/': sidebarApi(),
     },
 
@@ -59,47 +64,29 @@ export default defineConfig({
 function nav(): DefaultTheme.NavItem[] {
   return [
     {
-      text: 'Guide',
-      activeMatch: '^/guide/',
+      text: 'Essentials',
+      activeMatch: '^/essentials/',
       items: [
-        {
-          text: 'Guide',
-          items: [
-            { text: 'Getting Started', link: '/guide/getting-started' },
-            { text: 'Core Concepts', link: '/guide/core-concepts' },
-            { text: 'Prepare State', link: '/guide/prepare-state' },
-            { text: 'Runtime & App Config', link: '/guide/runtime-app-config' },
-            { text: 'Error Handling', link: '/guide/error-handling' },
-          ],
-        },
-        {
-          text: 'Examples',
-          items: [
-            { text: 'Environment Variable Validation', link: '/guide/example-env-validation' },
-            { text: 'Populate Pinia Store', link: '/guide/example-pass-state-to-nuxt' },
-          ],
-        },
+        { text: 'What is Nuxt Prepare?', link: '/essentials/what-is-nuxt-prepare' },
+        { text: 'Getting Started', link: '/essentials/getting-started' },
+        { text: 'Core Concepts', link: '/essentials/core-concepts' },
       ],
     },
     {
-      text: 'Config',
-      link: '/config/',
-      activeMatch: '^/config/',
+      text: 'Guides',
+      activeMatch: '^/guides/',
+      items: [
+        { text: 'Prepare State', link: '/guides/prepare-state' },
+        { text: 'Runtime & App Config', link: '/guides/runtime-app-config' },
+        { text: 'Error Handling', link: '/guides/error-handling' },
+        { text: 'Environment Variable Validation', link: '/guides/example-env-validation' },
+        { text: 'Populate Pinia Store', link: '/guides/example-pass-state-to-nuxt' },
+      ],
     },
     {
       text: 'API',
-      items: [
-        {
-          text: 'Overview',
-          link: '/api/',
-        },
-        {
-          text: 'Methods',
-          items: [
-            { text: 'defineNuxtPrepareHandler', link: '/api/define-nuxt-prepare-handler' },
-          ],
-        },
-      ],
+      link: '/api/',
+      activeMatch: '^/api/',
     },
     {
       text: `v${version}`,
@@ -114,29 +101,24 @@ function nav(): DefaultTheme.NavItem[] {
   ]
 }
 
-function sidebarGuide(): DefaultTheme.SidebarItem[] {
+function sidebarCore(): DefaultTheme.SidebarItem[] {
   return [
+    {
+      text: 'Essentials',
+      items: [
+        { text: 'What is Nuxt Prepare?', link: '/essentials/what-is-nuxt-prepare' },
+        { text: 'Getting Started', link: '/essentials/getting-started' },
+        { text: 'Core Concepts', link: '/essentials/core-concepts' },
+      ],
+    },
     {
       text: 'Guides',
       items: [
-        { text: 'Getting Started', link: '/guide/getting-started' },
-        { text: 'Core Concepts', link: '/guide/core-concepts' },
-        { text: 'Prepare State', link: '/guide/prepare-state' },
-        { text: 'Runtime & App Config', link: '/guide/runtime-app-config' },
-        { text: 'Error Handling', link: '/guide/error-handling' },
-      ],
-    },
-    {
-      text: 'Module',
-      items: [
-        { text: 'Module Configuration', link: '/config/' },
-      ],
-    },
-    {
-      text: 'Examples',
-      items: [
-        { text: 'Environment Variable Validation', link: '/guide/example-env-validation' },
-        { text: 'Populate Pinia Store', link: '/guide/example-pass-state-to-nuxt' },
+        { text: 'Prepare State', link: '/guides/prepare-state' },
+        { text: 'Runtime & App Config', link: '/guides/runtime-app-config' },
+        { text: 'Error Handling', link: '/guides/error-handling' },
+        { text: 'Environment Variable Validation', link: '/guides/example-env-validation' },
+        { text: 'Populate Pinia Store', link: '/guides/example-pass-state-to-nuxt' },
       ],
     },
     {
@@ -145,7 +127,7 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
         { text: 'Migration', link: '/advanced/migration' },
       ],
     },
-    { text: 'API', link: '/api/' },
+    { text: 'API Reference', link: '/api/' },
     { text: 'Playground', link: 'https://github.com/johannschopplich/nuxt-prepare/tree/main/playground' },
   ]
 }
@@ -155,6 +137,10 @@ function sidebarApi(): DefaultTheme.SidebarItem[] {
     {
       text: 'Overview',
       link: '/api/',
+    },
+    {
+      text: 'Module Configuration',
+      link: '/api/module-configuration',
     },
     {
       text: 'Methods',

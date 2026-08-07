@@ -8,6 +8,8 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
+    "@iconify-json/carbon": "^1.2.25",
+    "unocss": "^66.7.5",
     "vitepress": "^1.6.4"
   }
 }

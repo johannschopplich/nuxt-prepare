@@ -74,5 +74,5 @@ State is available in both your **Nuxt app** (client and server) and **Nitro ser
 :::
 
 ::: tip
-State values are JSON-serialized. See [State Serialization](/guide/core-concepts#state-serialization) for details on supported types.
+State values are JSON-serialized. See [State Serialization](/essentials/core-concepts#state-serialization) for details on supported types.
 :::

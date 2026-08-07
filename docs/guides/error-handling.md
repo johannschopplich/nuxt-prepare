@@ -42,7 +42,7 @@ If you don't return an `ok` property, it defaults to `true`. Only return `ok: fa
 
 ## Continue on Error
 
-By default a failing script stops the build. The [`continueOnError`](/config/#continue-on-error) option lets the remaining scripts run instead, and reports the failures at the end.
+By default a failing script stops the build. The [`continueOnError`](/api/module-configuration#continue-on-error) option lets the remaining scripts run instead, and reports the failures at the end.
 
 ::: warning
 Use `continueOnError` carefully. If your application depends on data from prepare scripts, continuing on error might cause runtime issues.
