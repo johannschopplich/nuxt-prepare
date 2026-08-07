@@ -192,8 +192,10 @@ export default defineNuxtModule<ModuleOptions>({
 
       // A script's result takes precedence over what it merges into, so that
       // returning a key overrides the value `nuxt.config` gave it and a later
-      // script overrides an earlier one. The casts hold because the defaults
-      // stay whole underneath; `defu` just cannot see that through the partial.
+      // script overrides an earlier one. An array is the exception – `defu`
+      // concatenates those whichever way around it is called. The casts hold
+      // because the defaults stay whole underneath; `defu` just cannot see
+      // that through the partial.
       if (result.runtimeConfig) {
         nuxt.options.runtimeConfig = defu(
           result.runtimeConfig,
