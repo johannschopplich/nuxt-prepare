@@ -4,6 +4,20 @@ import { defineConfig } from 'vitepress'
 import { description, version } from '../../package.json'
 import { github, name, ogImage, ogUrl, releases } from './meta'
 
+const essentialsItems: DefaultTheme.NavItemWithLink[] = [
+  { text: 'What is Nuxt Prepare?', link: '/essentials/what-is-nuxt-prepare' },
+  { text: 'Getting Started', link: '/essentials/getting-started' },
+  { text: 'Core Concepts', link: '/essentials/core-concepts' },
+]
+
+const guidesItems: DefaultTheme.NavItemWithLink[] = [
+  { text: 'Prepare State', link: '/guides/prepare-state' },
+  { text: 'Runtime & App Config', link: '/guides/runtime-app-config' },
+  { text: 'Error Handling', link: '/guides/error-handling' },
+  { text: 'Environment Variable Validation', link: '/guides/example-env-validation' },
+  { text: 'Populate Pinia Store', link: '/guides/example-pass-state-to-nuxt' },
+]
+
 export default defineConfig({
   vite: {
     plugins: [UnoCSS()],
@@ -60,20 +74,6 @@ export default defineConfig({
     },
   },
 })
-
-const essentialsItems: DefaultTheme.NavItemWithLink[] = [
-  { text: 'What is Nuxt Prepare?', link: '/essentials/what-is-nuxt-prepare' },
-  { text: 'Getting Started', link: '/essentials/getting-started' },
-  { text: 'Core Concepts', link: '/essentials/core-concepts' },
-]
-
-const guidesItems: DefaultTheme.NavItemWithLink[] = [
-  { text: 'Prepare State', link: '/guides/prepare-state' },
-  { text: 'Runtime & App Config', link: '/guides/runtime-app-config' },
-  { text: 'Error Handling', link: '/guides/error-handling' },
-  { text: 'Environment Variable Validation', link: '/guides/example-env-validation' },
-  { text: 'Populate Pinia Store', link: '/guides/example-pass-state-to-nuxt' },
-]
 
 function nav(): DefaultTheme.NavItem[] {
   return [
