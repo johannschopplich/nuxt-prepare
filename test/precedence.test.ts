@@ -1,7 +1,9 @@
-import type { Nuxt, NuxtApp } from '@nuxt/schema'
+import type { Nuxt, NuxtApp, NuxtTemplate } from '@nuxt/schema'
 import { fileURLToPath } from 'node:url'
 import { loadNuxt } from '@nuxt/kit'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+
+const appConfigFile = fileURLToPath(new URL('./fixture/app.config.ts', import.meta.url))
 
 describe('prepare script results', () => {
   let nuxt: Nuxt
@@ -40,13 +42,20 @@ describe('prepare script results', () => {
     expect(publicRuntimeConfig.fromLayer).toBe('first.prepare')
   })
 
-  it('places its appConfig ahead of every app.config file, which Nuxt merges first', async () => {
-    // Carries only the fields the registered `app:resolve` hooks reach for.
-    const app = { configs: ['/fixture/app.config.ts'], middleware: [], plugins: [] }
+  it('places the generated app config ahead of every app.config file', async () => {
+    // Only the fields the registered `app:resolve` hooks reach for.
+    const app = { configs: [appConfigFile], middleware: [], plugins: [] }
 
     await nuxt.callHook('app:resolve', app as unknown as NuxtApp)
 
-    expect(app.configs[0]).toMatch(/nuxt-prepare-app-config\.mjs$/)
-    expect(app.configs).toHaveLength(2)
+    expect(app.configs).toEqual([expect.stringMatching(/nuxt-prepare-app-config\.mjs$/), appConfigFile])
+  })
+
+  it('writes what the script returned into the generated app config', () => {
+    const template = nuxt.options.build.templates.find(
+      ({ filename }) => filename?.endsWith('nuxt-prepare-app-config.mjs'),
+    )
+
+    expect(template?.getContents?.({} as Parameters<NonNullable<NuxtTemplate['getContents']>>[0])).toContain('"fromConfig": "first.prepare"')
   })
 })
