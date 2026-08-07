@@ -25,7 +25,7 @@ export default defineConfig({
 
   lang: 'en-US',
   title: name,
-  description: 'Build actions for Nuxt',
+  description: 'Run async code before your Nuxt config is final',
   head: [
     ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
     ['meta', { name: 'author', content: 'Johann Schopplich' }],
