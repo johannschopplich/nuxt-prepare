@@ -12,7 +12,7 @@ This means:
 
 - Scripts run **once per build**, not on every request
 - Expensive operations (API calls, data fetching) don't impact runtime performance
-- Results are embedded into your application at build-time
+- Results are embedded into your application at build time
 
 ## The Problem Nuxt Prepare Solves
 

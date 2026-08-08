@@ -29,7 +29,7 @@ By default, Nuxt Prepare looks for `server.prepare.ts` in your project root. Cre
 import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
 
 export default defineNuxtPrepareHandler(async () => {
-  // Do some async magic here, e.g. fetch data from an API
+  // Fetch data from an API, read a file, query a database …
 
   return {
     // If not set, defaults to `true`

@@ -112,5 +112,5 @@ To debug:
 
 1. Check the console output for error messages from your script
 2. Verify that async operations are properly awaited
-3. Ensure environment variables and dependencies are available at build-time
+3. Ensure environment variables and dependencies are available at build time
 4. Add detailed error logging to pinpoint the failure

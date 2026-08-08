@@ -1,6 +1,6 @@
 # Populate Pinia Store
 
-You can prefetch data at build-time and use it to populate your [Pinia](https://pinia.vuejs.org) store. Return a `state` object from your prepare script to make data available via `#nuxt-prepare`.
+You can prefetch data at build time and use it to populate your [Pinia](https://pinia.vuejs.org) store. Return a `state` object from your prepare script to make data available via `#nuxt-prepare`.
 
 Create a prepare script that fetches data and returns it as state:
 

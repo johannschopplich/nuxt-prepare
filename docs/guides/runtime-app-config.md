@@ -1,6 +1,6 @@
 # Runtime & App Config
 
-Prepare scripts can dynamically set `runtimeConfig` and `appConfig` values based on async operations. This is useful when configuration values need to be computed or fetched at build-time.
+Prepare scripts can dynamically set `runtimeConfig` and `appConfig` values based on async operations. This is useful when configuration values need to be computed or fetched at build time.
 
 ## Runtime Config
 

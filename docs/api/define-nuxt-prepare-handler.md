@@ -52,7 +52,7 @@ Reach for it where:
 
 - Set configuration based on async operations
 - Fetch API URLs or credentials from external sources
-- Compute configuration values at build-time
+- Compute configuration values at build time
 
 ```ts
 return {
@@ -75,7 +75,7 @@ Reach for it where:
 
 - Set feature flags from a CMS or feature flag service
 - Configure themes based on tenant data
-- Define app-wide settings computed at build-time
+- Define app-wide settings computed at build time
 
 ```ts
 return {
@@ -119,7 +119,7 @@ import { todos } from '#nuxt-prepare'
 import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
 
 export default defineNuxtPrepareHandler(async () => {
-  // Do some async magic here, e.g. fetch data from an API
+  // Fetch data from an API, read a file, query a database …
 
   return {
     // If not set, defaults to `true`

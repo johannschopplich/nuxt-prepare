@@ -1,6 +1,5 @@
 ---
 layout: home
-titleTemplate: Build Actions for Nuxt
 hero:
   name: Nuxt Prepare
   text: Build Actions for Nuxt

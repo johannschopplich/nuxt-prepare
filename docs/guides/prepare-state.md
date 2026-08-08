@@ -3,14 +3,14 @@
 Prepare scripts can return a `state` object that becomes available globally throughout your application via `#nuxt-prepare`.
 
 ::: tip
-Similar to Nuxt 2's `nuxtServerInit`, but runs at build-time and generates type-safe imports.
+Similar to Nuxt 2's `nuxtServerInit`, but runs at build time and generates type-safe imports.
 :::
 
 ## When to Use State
 
 Use prepare state when you want to:
 
-- **Prefetch data** – Fetch data at build-time and embed it in your app
+- **Prefetch data** – Fetch data at build time and embed it in your app
 - **Share constants** – Make build-time computed values available everywhere
 - **Type-safe imports** – Get full TypeScript inference without manual type definitions
 - **Universal access** – Use the same data in both client and server code

@@ -2,19 +2,19 @@
 
 # Nuxt Prepare
 
-[Nuxt](https://nuxt.com) module to run async initialization steps at build-time.
+Run async code at build time, before [Nuxt](https://nuxt.com) finalizes its config.
 
 - [✨ &nbsp;Release Notes](https://github.com/johannschopplich/nuxt-prepare/releases)
 - [📖 &nbsp;Read the documentation](https://nuxt-prepare.byjohann.dev)
 
 ## Features
 
-- 🦦 Zero-Config
+- 🦦 Zero configuration
 - 🦎 Run sync or async operations when Nuxt builds your app
 - ✂️ Conditionally overwrite runtime config or app config values
 - 🍡 Run scripts in series or parallel
 - 🥢 Ready for [Nitro](https://nitro.build) server routes
-- 🦾 Better DX with [`defineNuxtPrepareHandler`](https://nuxt-prepare.byjohann.dev/api/define-nuxt-prepare-handler)
+- 🦾 Typed handlers with [`defineNuxtPrepareHandler`](https://nuxt-prepare.byjohann.dev/api/define-nuxt-prepare-handler)
 
 ## Setup
 
@@ -40,7 +40,7 @@ By default, Nuxt Prepare will look for a `server.prepare.ts` file in your projec
 import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
 
 export default defineNuxtPrepareHandler(async () => {
-  // Do some async magic here, e.g. fetch data from an API
+  // Fetch data from an API, read a file, query a database …
 
   return {
     // Overwrite the runtime config variable `foo`
