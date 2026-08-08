@@ -34,7 +34,6 @@ When `ok: false` is returned:
 
 1. An error is logged
 2. The build process halts
-3. Your application won't build with incomplete data
 
 ::: info
 If you don't return an `ok` property, it defaults to `true`. Only return `ok: false` when you want to halt the build.

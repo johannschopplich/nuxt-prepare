@@ -16,14 +16,10 @@ Imported from `nuxt-prepare/config` in every prepare script:
 // `server.prepare.ts`
 import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
 
-export default defineNuxtPrepareHandler(async () => {
-  const { apiUrl } = await fetch('https://config.example.com/env').then(r => r.json())
-
-  return {
-    runtimeConfig: { public: { apiUrl } },
-    state: { buildRegion: 'eu-central-1' }
-  }
-})
+export default defineNuxtPrepareHandler(async () => ({
+  runtimeConfig: { public: { apiUrl: await resolveApiUrl() } },
+  state: { buildRegion: 'eu-central-1' }
+}))
 ```
 
 A result carries `ok`, `runtimeConfig`, `appConfig` and `state`, each optional. [`defineNuxtPrepareHandler`](/api/define-nuxt-prepare-handler#return-value-properties) documents what each one does.

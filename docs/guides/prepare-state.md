@@ -6,15 +6,6 @@ Prepare scripts can return a `state` object that becomes available globally thro
 Similar to Nuxt 2's `nuxtServerInit`, but runs at build time and generates type-safe imports.
 :::
 
-## When to Use State
-
-Use prepare state when you want to:
-
-- **Prefetch data** – Fetch data at build time and embed it in your app
-- **Share constants** – Make build-time computed values available everywhere
-- **Type-safe imports** – Get full TypeScript inference without manual type definitions
-- **Universal access** – Use the same data in both client and server code
-
 ## How It Works
 
 For a simple prepare script, let's retrieve the first todo item from the JSONPlaceholder API and make it available throughout the app:
@@ -70,10 +61,6 @@ export default defineEventHandler(() => {
   return { todo: todoItem }
 })
 ```
-
-::: info
-State is available in both your **Nuxt app** (client and server) and **Nitro server** (API routes, middleware). If state is shared between multiple modules, Nuxt automatically creates a shared build chunk.
-:::
 
 ::: tip
 State values are JSON-serialized. See [State Serialization](/essentials/core-concepts#state-serialization) for details on supported types.
