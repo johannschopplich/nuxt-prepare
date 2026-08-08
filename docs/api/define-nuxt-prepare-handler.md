@@ -110,3 +110,31 @@ Then import anywhere:
 ```ts
 import { todos } from '#nuxt-prepare'
 ```
+
+## Example
+
+```ts
+import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
+
+export default defineNuxtPrepareHandler(async () => {
+  // Fetch data from an API, read a file, query a database …
+
+  return {
+    // If not set, defaults to `true`
+    ok: true,
+
+    // Overwrite the runtime config variable `foo`
+    runtimeConfig: {
+      public: {
+        foo: 'Overwritten by prepare script'
+      }
+    },
+
+    // Pass custom state to Nuxt and import it
+    // anywhere from `#nuxt-prepare`
+    state: {
+      foo: 'bar'
+    }
+  }
+})
+```
