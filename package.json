@@ -3,7 +3,7 @@
   "type": "module",
   "version": "4.0.0",
   "packageManager": "pnpm@11.20.0",
-  "description": "Run async code before your Nuxt config is final",
+  "description": "Run async code at build time, before Nuxt finalizes its config",
   "author": "Johann Schopplich <hello@johannschopplich.com>",
   "license": "MIT",
   "homepage": "https://nuxt-prepare.byjohann.dev",
