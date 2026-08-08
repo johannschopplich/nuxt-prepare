@@ -1,6 +1,6 @@
 # Prepare State
 
-Prepare scripts can return a `state` object that becomes available globally throughout your application via `#nuxt-prepare`.
+A prepare script's `state` is generated as typed exports and importable from `#nuxt-prepare`.
 
 ::: tip
 Similar to Nuxt 2's `nuxtServerInit`, but runs at build time and generates type-safe imports.
@@ -8,7 +8,7 @@ Similar to Nuxt 2's `nuxtServerInit`, but runs at build time and generates type-
 
 ## How It Works
 
-For a simple prepare script, let's retrieve the first todo item from the JSONPlaceholder API and make it available throughout the app:
+This script fetches one todo item and returns it as state:
 
 ::: code-group
 ```ts [server.prepare.ts]

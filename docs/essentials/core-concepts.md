@@ -8,11 +8,7 @@ Prepare scripts run **during the build process**, not at runtime:
 nuxt dev/build → Prepare scripts run → Nuxt builds your app → App runs
 ```
 
-This means:
-
-- Scripts run **once per build**, not on every request
-- Expensive operations (API calls, data fetching) don't impact runtime performance
-- Results are embedded into your application at build time
+Scripts run once per build, so an API call or a database query in a prepare script costs build time, never request time, and what the app ships is the result rather than the code that produced it.
 
 ## The Problem Nuxt Prepare Solves
 

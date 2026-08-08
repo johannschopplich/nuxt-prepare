@@ -2,7 +2,7 @@
 layout: home
 hero:
   name: Nuxt Prepare
-  text: Build Actions for Nuxt
+  text: Async Config for Nuxt
   tagline: Run async code before your Nuxt config is final, and ship only the result.
   image:
     src: /logo-shadow.svg

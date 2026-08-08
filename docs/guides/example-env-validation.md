@@ -1,6 +1,6 @@
 # Environment Variable Validation
 
-Using a schema validation library like [valibot](https://valibot.dev) lets you validate if all environment variables required for the application are set correctly.
+A schema validation library like [valibot](https://valibot.dev) checks that every environment variable the app needs is set.
 
 Since Nuxt reads environment variables at build time from the local `.env` file, you can validate them in a prepare script. This ensures your build **fails early** if required configuration is missing, preventing deployment of misconfigured applications in CI/CD pipelines.
 

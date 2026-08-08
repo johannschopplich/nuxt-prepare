@@ -6,8 +6,6 @@ This helper method defines a prepare script with full type safety. The `init` pa
 - An asynchronous function that returns a `Promise<NuxtPrepareResult>`
 - An object of type `NuxtPrepareResult`
 
-Use this helper in all your prepare scripts to get TypeScript IntelliSense and type checking.
-
 ## Type Declarations
 
 <<< @/../src/types.ts#result
@@ -30,7 +28,7 @@ Whether the script succeeded. Return `ok: false` to stop the build – see [`con
 
 **Default Value**: `true`
 
-Reach for it where:
+Reach for it when you need to:
 
 - Validation fails (missing environment variables, invalid configuration)
 - Critical API calls fail
@@ -48,7 +46,7 @@ Runtime config to merge over the one from `nuxt.config.ts`, taking precedence wh
 
 **Type**: `PartialDeep<RuntimeConfig>`
 
-Reach for it where:
+Reach for it when you need to:
 
 - Set configuration based on async operations
 - Fetch API URLs or credentials from external sources
@@ -71,7 +69,7 @@ App config to merge over the one from `app.config.ts`, taking precedence where b
 
 **Type**: `PartialDeep<AppConfig>`
 
-Reach for it where:
+Reach for it when you need to:
 
 - Set feature flags from a CMS or feature flag service
 - Configure themes based on tenant data
@@ -93,10 +91,10 @@ Build-time data importable from `#nuxt-prepare`. Values are JSON-serialized, and
 
 **Type**: `Record<string, unknown>`
 
-Reach for it where:
+Reach for it when you need to:
 
 - Prefetch data to embed in your app
-- Share build-time computed constants
+- Share constants computed at build time
 - Populate stores or provide initial data
 
 ```ts

@@ -1,6 +1,6 @@
 # Error Handling
 
-Prepare scripts run during the build process, so proper error handling ensures your build fails gracefully when something goes wrong.
+A prepare script signals failure by returning `ok: false`. What that does to the build depends on [`continueOnError`](/api/module-configuration#prepare-continueonerror).
 
 ## Indicating Script Failure
 

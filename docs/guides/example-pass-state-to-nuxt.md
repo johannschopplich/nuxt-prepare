@@ -66,6 +66,3 @@ export default defineEventHandler(() => {
 ```
 :::
 
-::: info
-State from `#nuxt-prepare` works in both your Nuxt app and Nitro server, making it a versatile way to share build-time data across your entire application.
-:::

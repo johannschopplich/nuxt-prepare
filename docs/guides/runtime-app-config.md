@@ -1,6 +1,6 @@
 # Runtime & App Config
 
-Prepare scripts can dynamically set `runtimeConfig` and `appConfig` values based on async operations. This is useful when configuration values need to be computed or fetched at build time.
+A prepare script can set `runtimeConfig` and `appConfig` values it had to fetch or compute first.
 
 ## Runtime Config
 
@@ -126,7 +126,7 @@ const theme = appConfig.theme
 
 ## Practical Example: Multi-Tenant Configuration
 
-Here's a real-world example that uses all three options appropriately:
+A multi-tenant build uses all three:
 
 ::: code-group
 ```ts [tenant.prepare.ts]
