@@ -34,7 +34,7 @@ Whatever your scripts returned as `state` is importable by key, typed from the v
 
 ```ts
 import { buildRegion } from '#nuxt-prepare'
-//     ^? string
+//     ^? "eu-central-1"
 ```
 
 See [Prepare State](/guides/prepare-state).

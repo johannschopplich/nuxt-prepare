@@ -90,10 +90,10 @@ App config merges the same way, over what `app.config.ts` defines.
 - Share data between multiple modules without prop drilling
 
 ```ts
-import { features } from '#nuxt-prepare'
+import { tenant } from '#nuxt-prepare'
 
 // Direct constant access with full type safety
-if (features.darkMode) {
+if (tenant.id) {
   // ...
 }
 ```

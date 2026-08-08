@@ -79,15 +79,15 @@ The generated files are available via the `#nuxt-prepare` alias, which works in:
 
 ```ts
 // Works everywhere
-import { todos } from '#nuxt-prepare'
+import { todo } from '#nuxt-prepare'
 ```
 
 ## State Serialization
 
 State values are JSON-serialized during code generation. This means:
 
-- ✅ Objects, arrays, strings, numbers, booleans, null
-- ❌ Functions, classes, symbols, undefined
+- ✅ Objects, arrays, strings, numbers, booleans
+- ❌ Functions, classes, symbols, `undefined`, `null`
 
 ```
 // ✅ This works
@@ -99,7 +99,8 @@ state: {
 // ❌ This doesn't work
 state: {
   handler: () => console.log('hello'), // Functions are lost
-  data: undefined // The key is dropped entirely
+  data: undefined, // The key is dropped entirely
+  fallback: null // So is this
 }
 ```
 
