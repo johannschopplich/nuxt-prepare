@@ -194,7 +194,9 @@ export default defineNuxtModule<ModuleOptions>({
       if (!isObject(awaitedResult)) {
         const exportedType = awaitedResult === null
           ? 'null'
-          : typeof awaitedResult
+          : Array.isArray(awaitedResult)
+            ? 'array'
+            : typeof awaitedResult
         throw new TypeError(`Server prepare script \`${name}\` must export a result object as default, got ${exportedType}`)
       }
 
