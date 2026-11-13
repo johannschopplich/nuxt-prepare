@@ -12,7 +12,7 @@ Scripts run once per build, so an API call or a database query in a prepare scri
 
 ## A Script's Result Wins Over `nuxt.config.ts`
 
-A result is merged over `nuxt.config.ts` rather than under it, so a key a script returns overrides the value already in place, and keys it leaves out keep theirs. A later script wins over an earlier one, and a script's `appConfig` wins over `app.config.ts` the same way. Arrays are the exception: they are concatenated rather than replaced.
+A result is merged over `nuxt.config.ts` rather than under it, so a key a script returns overrides the value already in place, and keys it leaves out keep theirs. A later script wins over an earlier one, and a script's `appConfig` wins over `app.config.ts` the same way. Two exceptions: arrays are concatenated rather than replaced, and a `null` never overrides – the earlier value stays.
 
 ## Layers Run Before Your Project
 

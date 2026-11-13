@@ -62,7 +62,7 @@ export default defineEventHandler(() => {
 
 State values are JSON-serialized:
 
-- Objects, arrays, strings, numbers, and booleans survive, and so does `null` inside an object or array.
+- Objects, arrays, strings, numbers, and booleans survive, and so does `null` inside an array or object.
 - Functions, symbols, and `undefined` are dropped from an object and become `null` in an array.
 - A `state` key set to a function or symbol is exported as `undefined`; one set to `undefined` or `null` gets no export at all.
 - A `Date` arrives as its ISO string, a `Map` or `Set` as `{}`.
