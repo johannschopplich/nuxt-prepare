@@ -186,8 +186,17 @@ export default defineNuxtModule<ModuleOptions>({
 
       logger.info(`Running prepare script \`${name}\``)
 
-      const { default: exportedResult } = await jiti.import<{ default: NuxtPrepareResult }>(path)
-      const result = await exportedResult
+      const { default: exportedResult } = await jiti.import<{ default?: unknown }>(path)
+      const awaitedResult = await exportedResult
+
+      if (!isObject(awaitedResult)) {
+        const exportedType = awaitedResult === null
+          ? 'null'
+          : typeof awaitedResult
+        throw new TypeError(`Server prepare script \`${name}\` must export a result object as default, got ${exportedType}`)
+      }
+
+      const result: NuxtPrepareResult = awaitedResult
       const isOk = result.ok ?? true
 
       if (!isOk) {
