@@ -174,7 +174,7 @@ export default defineNuxtModule<ModuleOptions>({
       ...scriptsByPath.values(),
     ]
 
-    // Every run evaluates the scripts afresh, since a dev restart has to pick up their edits.
+    // Without the module cache, every run evaluates the scripts afresh, since a dev restart has to pick up their edits.
     const jiti = createJiti(import.meta.url, {
       moduleCache: false,
       fsCache: false,
@@ -251,7 +251,7 @@ export default defineNuxtModule<ModuleOptions>({
     if (Object.keys(scriptAppConfig).length > 0) {
       nuxt.options.appConfig = defu(scriptAppConfig, nuxt.options.appConfig) as AppConfig
 
-      // TypeScript, so that Nuxt's `AppConfig` type picks up the keys, widened like those of an `app.config.ts`.
+      // TypeScript, since Nuxt's `AppConfig` type imports each app config without its extension, which resolves no `.mjs`.
       const template = addTemplate({
         filename: `module/${moduleName}-app-config.ts`,
         write: true,
