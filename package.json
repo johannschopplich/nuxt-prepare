@@ -1,7 +1,7 @@
 {
   "name": "nuxt-prepare",
   "type": "module",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "packageManager": "pnpm@12.18.0",
   "description": "Run async code at build time, before Nuxt finalizes its config",
   "author": "Johann Schopplich <hello@johannschopplich.com>",
