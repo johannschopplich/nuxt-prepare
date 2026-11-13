@@ -17,7 +17,9 @@ Imported from `nuxt-prepare/config` in every prepare script:
 import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
 
 export default defineNuxtPrepareHandler(async () => ({
-  runtimeConfig: { public: { apiUrl: await resolveApiUrl() } },
+  runtimeConfig: {
+    public: { apiUrl: await resolveApiUrl() }
+  },
   state: { buildRegion: 'eu-central-1' }
 }))
 ```

@@ -44,11 +44,18 @@ describe('prepare script results', () => {
 
   it('places the generated app config ahead of every app.config file', async () => {
     // Only the fields the registered `app:resolve` hooks reach for.
-    const app = { configs: [appConfigFile], middleware: [], plugins: [] }
+    const app = {
+      configs: [appConfigFile],
+      middleware: [],
+      plugins: [],
+    }
 
     await nuxt.callHook('app:resolve', app as unknown as NuxtApp)
 
-    expect(app.configs).toEqual([expect.stringMatching(/nuxt-prepare-app-config\.mjs$/), appConfigFile])
+    expect(app.configs).toEqual([
+      expect.stringMatching(/nuxt-prepare-app-config\.mjs$/),
+      appConfigFile,
+    ])
   })
 
   it('writes what the script returned into the generated app config', () => {

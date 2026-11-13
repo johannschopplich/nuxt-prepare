@@ -104,7 +104,9 @@ Build-time data importable from `#nuxt-prepare`. Values are JSON-serialized, and
 ```ts
 return {
   state: {
-    todos: [{ id: 1, title: 'Learn Nuxt Prepare' }]
+    todos: [
+      { id: 1, title: 'Learn Nuxt Prepare' }
+    ]
   }
 }
 ```

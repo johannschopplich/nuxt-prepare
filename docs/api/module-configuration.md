@@ -23,7 +23,12 @@ import NuxtPrepare from 'nuxt-prepare'
 
 export default defineNuxtConfig({
   modules: [
-    [NuxtPrepare, { scripts: ['users.prepare'] }]
+    [
+      NuxtPrepare,
+      {
+        scripts: ['users.prepare']
+      }
+    ]
   ]
 })
 ```

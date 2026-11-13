@@ -1,5 +1,7 @@
 export function toArray<T>(value: T | T[]): T[] {
-  return Array.isArray(value) ? value : [value]
+  return Array.isArray(value)
+    ? value
+    : [value]
 }
 
 export function isObject(value: unknown): value is Record<any, any> {
@@ -21,7 +23,9 @@ export function withoutScripts<T extends string | { file: string }>(scripts: T[]
 }
 
 function scriptFile(entry: string | { file: string }): string {
-  return typeof entry === 'string' ? entry : entry.file
+  return typeof entry === 'string'
+    ? entry
+    : entry.file
 }
 
 export function stripExtension(name: string, extensions: string[]): string {

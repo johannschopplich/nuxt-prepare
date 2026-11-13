@@ -102,7 +102,9 @@ export default defineNuxtModule<ModuleOptions>({
 
     const declaredScripts = (layer: NuxtConfigLayer) => {
       const config = layer.config.prepare
-      return config ? toArray(config.scripts ?? []) : []
+      return config
+        ? toArray(config.scripts ?? [])
+        : []
     }
 
     // `options.scripts` arrives as every layer's list concatenated, inline module options included.
@@ -113,19 +115,25 @@ export default defineNuxtModule<ModuleOptions>({
 
     for (const layer of [...nuxt.options._layers].reverse()) {
       const scripts = layer === appLayer
-        ? (appScripts.length > 0 ? appScripts : ['server.prepare'])
+        ? (appScripts.length > 0
+            ? appScripts
+            : ['server.prepare'])
         : declaredScripts(layer)
 
       for (const entry of scripts) {
         const scriptName = stripExtension(
-          typeof entry === 'string' ? entry : entry.file,
+          typeof entry === 'string'
+            ? entry
+            : entry.file,
           SCRIPT_EXTENSIONS,
         )
 
         layerScripts.push({
           root: layer.config.rootDir,
           name: scriptName,
-          runOnNuxtPrepare: typeof entry === 'string' ? true : (entry.runOnNuxtPrepare ?? true),
+          runOnNuxtPrepare: typeof entry === 'string'
+            ? true
+            : (entry.runOnNuxtPrepare ?? true),
         })
       }
     }
@@ -161,7 +169,9 @@ export default defineNuxtModule<ModuleOptions>({
         scriptsByPath.set(entry.path, entry)
       }
     }
-    const resolvedScripts = [...scriptsByPath.values()]
+    const resolvedScripts = [
+      ...scriptsByPath.values(),
+    ]
 
     const runScript = async ({ name, path, runOnNuxtPrepare }: ResolvedScriptMeta) => {
       if (nuxt.options._prepare && !runOnNuxtPrepare) {
@@ -298,9 +308,13 @@ export type ${pascalCase(key)} = typeof ${key}
       },
     })
 
-    if (errorCount > 0)
-      logger.warn(`Server prepare scripts completed with ${errorCount} error${errorCount > 1 ? 's' : ''}`)
-    else if (successCount > 0)
+    if (errorCount > 0) {
+      logger.warn(`Server prepare scripts completed with ${errorCount} error${errorCount > 1
+        ? 's'
+        : ''}`)
+    }
+    else if (successCount > 0) {
       logger.success('Server prepare scripts completed')
+    }
   },
 })
