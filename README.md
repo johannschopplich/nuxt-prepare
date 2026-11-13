@@ -18,22 +18,15 @@ Run async code at build time, before [Nuxt](https://nuxt.com) finalizes its conf
 
 ## Setup
 
+Nuxt Prepare requires Nuxt 4 or later.
+
 ```bash
 npx nuxt module add prepare
 ```
 
 ## Basic Usage
 
-Add Nuxt Prepare to your Nuxt configuration:
-
-```ts
-// `nuxt.config.ts`
-export default defineNuxtConfig({
-  modules: ['nuxt-prepare']
-})
-```
-
-By default, Nuxt Prepare will look for a `server.prepare.ts` file in your project root. To run synchronous or asynchronous code when Nuxt builds your app, define a handler in your project root and export a default function:
+By default, Nuxt Prepare looks for a `server.prepare.ts` file in your project root. To run synchronous or asynchronous code when Nuxt builds your app, create it and default-export the result of `defineNuxtPrepareHandler`:
 
 ```ts
 // `server.prepare.ts`
@@ -75,7 +68,7 @@ The [documentation](https://nuxt-prepare.byjohann.dev) covers the handler API, p
 ## Credits
 
 - [Konkon](https://konkon.zip) for his logo pixel art.
-- [McPizza0](https://github.com/McPizza0) for his inspirational [`nuxt-server-init`](https://github.com/McPizza0/nuxt-server-init) module.
+- [OmarMcAdam](https://github.com/OmarMcAdam) for his inspirational [`nuxt-server-init`](https://github.com/OmarMcAdam/nuxt-server-init) module.
 
 ## License
 
