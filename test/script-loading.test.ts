@@ -25,4 +25,15 @@ describe('script loading', () => {
       cwd: join(import.meta.dirname, 'fixture-invalid-export'),
     })).rejects.toThrow('Server prepare script `function.prepare` must export a result object')
   }, 120_000)
+
+  it('evaluates a script afresh on a second loadNuxt', async () => {
+    for (let run = 0; run < 2; run++) {
+      const rerunNuxt = await loadNuxt({
+        cwd: join(import.meta.dirname, 'fixture-rerun'),
+      })
+      await rerunNuxt.close()
+    }
+
+    expect((globalThis as { prepareRuns?: number }).prepareRuns).toBe(2)
+  }, 120_000)
 })
