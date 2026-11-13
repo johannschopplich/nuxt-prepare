@@ -84,21 +84,28 @@ export default defineEventHandler(() => {
 
 State values are JSON-serialized during code generation. This means:
 
-- ✅ Objects, arrays, strings, numbers, booleans
-- ❌ Functions, classes, symbols, `undefined`
+- ✅ Objects, arrays, strings, numbers, booleans, and `null` inside an object or array
+- ❌ Functions, symbols, and `undefined` – dropped from an object, `null` in an array
+- ❌ At the top level, a function or symbol is exported as `undefined`, while `undefined` and `null` get no export at all, since merging the scripts' state skips them
+- ❌ A `Date` arrives as its ISO string, a `Map` or `Set` as `{}`
 
 ```
 // ✅ This works
 state: {
-  config: { api: 'https://api.example.com' },
+  config: { api: 'https://api.example.com', fallback: null },
   items: [1, 2, 3]
 }
 
 // ❌ This doesn't work
 state: {
-  handler: () => console.log('hello'), // Functions are lost
-  data: undefined, // The key is dropped entirely
-  fallback: null // So is this
+  handler: () => console.log('hello'), // Exported as `undefined`
+  data: undefined, // No `data` export at all
+  fallback: null, // No `fallback` export either
+  nested: {
+    handler: () => console.log('hello'), // Dropped from the object
+    list: [undefined, () => 1], // Becomes `[null, null]`
+    createdAt: new Date(0) // Becomes "1970-01-01T00:00:00.000Z"
+  }
 }
 ```
 
