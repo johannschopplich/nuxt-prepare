@@ -1,8 +1,6 @@
 # Environment Variable Validation
 
-A schema validation library like [valibot](https://valibot.dev) checks that every environment variable the app needs is set.
-
-Since Nuxt reads environment variables at build time from the local `.env` file, you can validate them in a prepare script. This ensures your build **fails early** if required configuration is missing, preventing deployment of misconfigured applications in CI/CD pipelines.
+A prepare script can check that every environment variable the app needs is set. Nuxt reads the local `.env` file before the script runs, so a schema library like [valibot](https://valibot.dev) can validate `process.env`. When a variable is missing, the build **fails early** – in CI, before a misconfigured app ships.
 
 ::: code-group
 ```ts [server.prepare.ts]

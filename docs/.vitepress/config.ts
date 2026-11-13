@@ -4,18 +4,18 @@ import { defineConfig } from 'vitepress'
 import { description, version } from '../../package.json'
 import { github, name, ogImage, ogUrl, releases } from './meta'
 
-const essentialsItems: DefaultTheme.NavItemWithLink[] = [
-  { text: 'What is Nuxt Prepare?', link: '/essentials/what-is-nuxt-prepare' },
-  { text: 'Getting Started', link: '/essentials/getting-started' },
-  { text: 'Core Concepts', link: '/essentials/core-concepts' },
+const guideItems: DefaultTheme.NavItemWithLink[] = [
+  { text: 'Getting Started', link: '/guide/getting-started' },
+  { text: 'Prepare Scripts', link: '/guide/prepare-scripts' },
+  { text: 'Prepare State', link: '/guide/prepare-state' },
+  { text: 'Runtime & App Config', link: '/guide/runtime-app-config' },
+  { text: 'Error Handling', link: '/guide/error-handling' },
+  { text: 'Migration', link: '/guide/migration' },
 ]
 
-const guidesItems: DefaultTheme.NavItemWithLink[] = [
-  { text: 'Prepare State', link: '/guides/prepare-state' },
-  { text: 'Runtime & App Config', link: '/guides/runtime-app-config' },
-  { text: 'Error Handling', link: '/guides/error-handling' },
-  { text: 'Environment Variable Validation', link: '/guides/example-env-validation' },
-  { text: 'Populate Pinia Store', link: '/guides/example-pass-state-to-nuxt' },
+const cookbookItems: DefaultTheme.NavItemWithLink[] = [
+  { text: 'Environment Variable Validation', link: '/cookbook/env-validation' },
+  { text: 'Multi-Tenant Configuration', link: '/cookbook/multi-tenant-configuration' },
 ]
 
 export default defineConfig({
@@ -54,9 +54,8 @@ export default defineConfig({
     nav: nav(),
 
     sidebar: {
-      '/essentials/': sidebarMain(),
-      '/guides/': sidebarMain(),
-      '/advanced/': sidebarMain(),
+      '/guide/': sidebarMain(),
+      '/cookbook/': sidebarMain(),
       '/api/': sidebarApi(),
     },
 
@@ -78,14 +77,14 @@ export default defineConfig({
 function nav(): DefaultTheme.NavItem[] {
   return [
     {
-      text: 'Essentials',
-      activeMatch: '^/essentials/',
-      items: essentialsItems,
+      text: 'Guide',
+      activeMatch: '^/guide/',
+      items: guideItems,
     },
     {
-      text: 'Guides',
-      activeMatch: '^/guides/',
-      items: guidesItems,
+      text: 'Cookbook',
+      activeMatch: '^/cookbook/',
+      items: cookbookItems,
     },
     {
       text: 'API',
@@ -99,7 +98,7 @@ function nav(): DefaultTheme.NavItem[] {
           text: 'Release Notes ',
           link: releases,
         },
-        { text: 'Migration', link: '/advanced/migration' },
+        { text: 'Migration', link: '/guide/migration' },
       ],
     },
   ]
@@ -108,18 +107,12 @@ function nav(): DefaultTheme.NavItem[] {
 function sidebarMain(): DefaultTheme.SidebarItem[] {
   return [
     {
-      text: 'Essentials',
-      items: essentialsItems,
+      text: 'Guide',
+      items: guideItems,
     },
     {
-      text: 'Guides',
-      items: guidesItems,
-    },
-    {
-      text: 'Advanced',
-      items: [
-        { text: 'Migration', link: '/advanced/migration' },
-      ],
+      text: 'Cookbook',
+      items: cookbookItems,
     },
     { text: 'API Reference', link: '/api/' },
     { text: 'Playground', link: 'https://github.com/johannschopplich/nuxt-prepare/tree/main/playground' },
@@ -129,7 +122,7 @@ function sidebarMain(): DefaultTheme.SidebarItem[] {
 function sidebarApi(): DefaultTheme.SidebarItem[] {
   return [
     {
-      text: 'Overview',
+      text: 'Reference',
       link: '/api/',
     },
     {

@@ -1,6 +1,6 @@
-# Overview
+# Reference
 
-The module's surface is small: a handful of options in `nuxt.config.ts`, one function your scripts export, and one virtual module their results land in.
+The module's surface is small: a handful of options in `nuxt.config.ts`, one function your scripts call, and one virtual module their results land in.
 
 ## Configuration
 
@@ -33,4 +33,4 @@ import { buildRegion } from '#nuxt-prepare'
 //     ^? "eu-central-1"
 ```
 
-See [Prepare State](/guides/prepare-state).
+See [Prepare State](/guide/prepare-state).

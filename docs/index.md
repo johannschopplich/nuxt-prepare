@@ -10,7 +10,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /essentials/what-is-nuxt-prepare
+      link: /guide/getting-started
     - theme: alt
       text: API
       link: /api/
@@ -22,21 +22,21 @@ features:
   - title: Async Operations
     icon: <span class="i-carbon:function"></span>
     details: Await anything your config depends on – a remote value, a database, a computed default.
-    link: /essentials/core-concepts
-    linkText: Core Concepts
+    link: /guide/runtime-app-config
+    linkText: Runtime & App Config
   - title: Zero Runtime Cost
     icon: <span class="i-carbon:meter"></span>
     details: Expensive work happens once during the build, not on every request.
-    link: /essentials/core-concepts
-    linkText: Build-Time vs Runtime
+    link: /guide/prepare-scripts#scripts-run-at-build-time
+    linkText: Scripts Run at Build Time
   - title: Type-Safe Global State
     icon: <span class="i-carbon:ibm-watson-knowledge-studio"></span>
     details: Return state from a script and import it from <code>#nuxt-prepare</code>, fully inferred.
-    link: /guides/prepare-state
+    link: /guide/prepare-state
     linkText: Pass State to Nuxt
   - title: A Build That Fails on Bad Input
     icon: <span class="i-carbon:checkmark-outline"></span>
     details: 'A script that returns <code>ok: false</code> stops the build, so bad input never reaches production.'
-    link: /guides/example-env-validation
+    link: /cookbook/env-validation
     linkText: See Example
 ---

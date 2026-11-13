@@ -1,28 +1,18 @@
 # Getting Started
 
-Nuxt's configuration file cannot await anything. Nuxt Prepare fills that gap: it runs your async code once, while Nuxt builds, and folds the result into the configuration and into a state your app can import. See [Core Concepts](/essentials/core-concepts) for what that means for runtime cost and serialization.
+Nuxt Prepare is a [Nuxt](https://nuxt.com) module that runs your async code once, while Nuxt builds, and folds the result into the configuration and into a state your app can import. It fills a gap: Nuxt's configuration file cannot await anything.
 
-## Step 1: Install Nuxt Prepare
+## Install Nuxt Prepare
+
+Nuxt Prepare requires Nuxt 4 or later. This command installs `nuxt-prepare` and adds it to the `modules` of your `nuxt.config.ts`:
 
 ```bash
 npx nuxt module add prepare
 ```
 
-## Step 2: Add the Module
+## Create Your First Prepare Script
 
-Add `nuxt-prepare` to your Nuxt configuration:
-
-::: code-group
-```ts [nuxt.config.ts]
-export default defineNuxtConfig({
-  modules: ['nuxt-prepare']
-})
-```
-:::
-
-## Step 3: Create Your First Prepare Script
-
-By default, Nuxt Prepare looks for `server.prepare.ts` in your project root. Create this file and export a handler function:
+By default, Nuxt Prepare looks for `server.prepare.ts` in your project root. Create this file and default-export the result of `defineNuxtPrepareHandler`:
 
 ::: code-group
 ```ts [server.prepare.ts]
@@ -56,7 +46,7 @@ export default defineNuxtPrepareHandler(async () => {
 Return `ok: false` to signal failure and halt the build process.
 :::
 
-## Step 4: Import Your Prepare State
+## Import Your Prepare State
 
 Whatever the script returns under `state` is generated as typed exports at `.nuxt/module/nuxt-prepare.mjs`, reachable through the `#nuxt-prepare` alias from both your Nuxt app and the Nitro server:
 
@@ -77,7 +67,7 @@ export default defineEventHandler(() => {
 })
 ```
 
-## Step 5: Run Multiple Prepare Scripts
+## Run Multiple Prepare Scripts
 
 Add additional scripts to the `prepare.scripts` configuration:
 
@@ -97,9 +87,4 @@ export default defineNuxtConfig({
 Scripts run in series by default. Set the [`prepare.parallel`](/api/module-configuration#prepare-parallel) option to `true` to run them all at once.
 :::
 
-## Next Steps
-
-- [Core Concepts](/essentials/core-concepts) – When scripts run, in what order, and what survives serialization.
-- [Prepare State](/guides/prepare-state) – Pass build-time data to your app.
-- [Runtime & App Config](/guides/runtime-app-config) – Set configuration values from a script.
-- [Error Handling](/guides/error-handling) – Fail the build, or carry on.
+See [Prepare Scripts](/guide/prepare-scripts) for when scripts run and whose result wins.
