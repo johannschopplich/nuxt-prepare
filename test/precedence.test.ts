@@ -53,14 +53,14 @@ describe('prepare script results', () => {
     await nuxt.callHook('app:resolve', app as unknown as NuxtApp)
 
     expect(app.configs).toEqual([
-      expect.stringMatching(/nuxt-prepare-app-config\.mjs$/),
+      expect.stringMatching(/nuxt-prepare-app-config\.ts$/),
       appConfigFile,
     ])
   })
 
   it('writes what the script returned into the generated app config', () => {
     const template = nuxt.options.build.templates.find(
-      ({ filename }) => filename?.endsWith('nuxt-prepare-app-config.mjs'),
+      ({ filename }) => filename?.endsWith('nuxt-prepare-app-config.ts'),
     )
 
     expect(template?.getContents?.({} as Parameters<NonNullable<NuxtTemplate['getContents']>>[0])).toContain('"fromConfig": "first.prepare"')
