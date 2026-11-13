@@ -352,9 +352,9 @@ async function declaredScripts(layer: NuxtConfigLayer): Promise<(string | Prepar
     : inlineScripts
 }
 
-async function isNuxtPrepare(module: string | NuxtModule): Promise<boolean> {
+async function isNuxtPrepare(module: string | NuxtModule | undefined): Promise<boolean> {
   if (typeof module === 'string')
     return module === name
 
-  return (await module.getMeta?.())?.name === name
+  return (await module?.getMeta?.())?.name === name
 }
