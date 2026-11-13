@@ -3,8 +3,7 @@ import type { PartialDeep } from 'type-fest'
 import type { NuxtPrepareResult } from './types'
 import { addTemplate, defineNuxtModule, findPath, useLogger } from '@nuxt/kit'
 import { defu } from 'defu'
-import * as importx from 'importx'
-import { interopDefault } from 'mlly'
+import { createJiti } from 'jiti'
 import { join } from 'pathe'
 import { pascalCase } from 'scule'
 import { name, version } from '../package.json'
@@ -173,6 +172,12 @@ export default defineNuxtModule<ModuleOptions>({
       ...scriptsByPath.values(),
     ]
 
+    // Every run evaluates the scripts afresh, since a dev restart has to pick up their edits.
+    const jiti = createJiti(import.meta.url, {
+      moduleCache: false,
+      fsCache: false,
+    })
+
     const runScript = async ({ name, path, runOnNuxtPrepare }: ResolvedScriptMeta) => {
       if (nuxt.options._prepare && !runOnNuxtPrepare) {
         logger.info(`Skipping prepare script \`${name}\``)
@@ -181,16 +186,8 @@ export default defineNuxtModule<ModuleOptions>({
 
       logger.info(`Running prepare script \`${name}\``)
 
-      const result: NuxtPrepareResult = await interopDefault(
-        await importx.import(path, {
-          parentURL: nuxt.options.rootDir,
-          cache: false,
-          loaderOptions: {
-            // Nuxt's TypeScript config is generated along with the prepare scripts, so it cannot be resolved yet.
-            tsx: { tsconfig: false },
-          },
-        }),
-      )
+      const { default: exportedResult } = await jiti.import<{ default: NuxtPrepareResult }>(path)
+      const result = await exportedResult
       const isOk = result.ok ?? true
 
       if (!isOk) {
