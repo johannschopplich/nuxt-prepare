@@ -2,7 +2,7 @@
   "name": "nuxt-prepare",
   "type": "module",
   "version": "4.0.0",
-  "packageManager": "pnpm@12.16.1",
+  "packageManager": "pnpm@12.18.0",
   "description": "Run async code at build time, before Nuxt finalizes its config",
   "author": "Johann Schopplich <hello@johannschopplich.com>",
   "license": "MIT",
@@ -55,24 +55,24 @@
     "test:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@nuxt/kit": "^4.5.2",
+    "@nuxt/kit": "^4.6.4",
     "defu": "^6.1.7",
     "importx": "^0.5.2",
     "mlly": "^1.8.2",
     "pathe": "^2.0.3",
     "scule": "^1.3.0",
-    "type-fest": "^5.8.0"
+    "type-fest": "^5.10.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^9.3.0",
-    "@nuxt/module-builder": "^1.0.3",
-    "@nuxt/schema": "^4.5.2",
-    "@types/node": "^26.1.2",
-    "bumpp": "^12.2.0",
-    "eslint": "^10.8.0",
-    "nuxt": "^4.5.2",
+    "@antfu/eslint-config": "^10.0.0",
+    "@nuxt/module-builder": "^1.0.4",
+    "@nuxt/schema": "^4.6.4",
+    "@types/node": "^26.6.6",
+    "bumpp": "^12.3.0",
+    "eslint": "^10.14.0",
+    "nuxt": "^4.6.4",
     "typescript": "^6.0.3",
     "unbuild": "^3.6.1",
-    "vitest": "^4.1.10"
+    "vitest": "^5.1.0"
   }
 }
