@@ -31,13 +31,6 @@ export default defineNuxtPrepareHandler(async () => {
 ```
 :::
 
-Access runtime config values anywhere in your app:
-
-```ts
-const config = useRuntimeConfig()
-console.log(config.public.apiUrl) // Set by prepare script
-```
-
 A key the script returns [wins over `nuxt.config.ts`](/guide/prepare-scripts#a-script-s-result-wins-over-nuxt-config-ts), and keys it leaves out keep their value.
 
 ## App Config
@@ -65,14 +58,5 @@ export default defineNuxtPrepareHandler(async () => {
 })
 ```
 :::
-
-Access app config values anywhere in your app:
-
-```vue
-<script setup lang="ts">
-const appConfig = useAppConfig()
-const isDarkModeEnabled = appConfig.features.darkMode
-</script>
-```
 
 App config [merges the same way](/guide/prepare-scripts#a-script-s-result-wins-over-nuxt-config-ts), over what `app.config.ts` defines.

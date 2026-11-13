@@ -22,9 +22,6 @@ export default defineNuxtPrepareHandler(async () => {
   // Fetch data from an API, read a file, query a database …
 
   return {
-    // If not set, defaults to `true`
-    ok: true,
-
     // Overwrite the runtime config variable `foo`
     runtimeConfig: {
       public: {
@@ -42,13 +39,11 @@ export default defineNuxtPrepareHandler(async () => {
 ```
 :::
 
-::: tip
-Return `ok: false` to signal failure and halt the build process.
-:::
+A script that returns `ok: false` stops the build – see [Error Handling](/guide/error-handling).
 
 ## Import Your Prepare State
 
-Whatever the script returns under `state` is generated as typed exports at `.nuxt/module/nuxt-prepare.mjs`, reachable through the `#nuxt-prepare` alias from both your Nuxt app and the Nitro server:
+Whatever the script returns under `state` is importable as typed exports from `#nuxt-prepare`, in both your Nuxt app and the Nitro server:
 
 ```vue
 <script setup lang="ts">

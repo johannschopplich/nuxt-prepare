@@ -60,11 +60,7 @@ export default defineNuxtPrepareHandler(async () => {
 
 ## Let the Remaining Scripts Run
 
-The [`continueOnError`](/api/module-configuration#prepare-continueonerror) option lets the remaining scripts run after a failure, and reports the failures at the end.
-
-::: warning
-Use `continueOnError` carefully. If your application depends on data from prepare scripts, continuing on error might cause runtime issues.
-:::
+The [`continueOnError`](/api/module-configuration#prepare-continueonerror) option lets the remaining scripts run after a failure, and reports the failures at the end. Turn it on only where your app does not depend on the failing script's data.
 
 ## What a Failed Script Logs
 
@@ -81,9 +77,4 @@ With `continueOnError` enabled, a warning closes the run:
 [nuxt-prepare]  WARN  Server prepare scripts completed with 1 error
 ```
 
-To debug:
-
-1. Check the console output for error messages from your script
-2. Verify that async operations are properly awaited
-3. Ensure environment variables and dependencies are available at build time
-4. Add detailed error logging to pinpoint the failure
+A script runs during the build, so the environment variables and dependencies it needs must be available at build time.

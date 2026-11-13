@@ -39,7 +39,7 @@ The scripts to run, in the order given.
 
 **Default Value**: `['server.prepare']`
 
-A script is named by its path relative to the layer it belongs to, usually without the file extension – `.js`, `.mjs` and `.ts` are all resolved, and an extension you do write is stripped before the lookup.
+A script is named by its path relative to the layer it belongs to, without the file extension – `.js`, `.mjs` and `.ts` are all resolved.
 
 Pass a single name, a list of names, or an object per script to set [`runOnNuxtPrepare`](/api/module-configuration#prepare-runonnuxtprepare) individually:
 
