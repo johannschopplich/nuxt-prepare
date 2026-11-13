@@ -18,8 +18,6 @@ Run async code at build time, before [Nuxt](https://nuxt.com) finalizes its conf
 
 ## Setup
 
-Nuxt Prepare requires Nuxt 4 or later.
-
 ```bash
 npx nuxt module add prepare
 ```

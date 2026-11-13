@@ -4,7 +4,7 @@ Nuxt Prepare is a [Nuxt](https://nuxt.com) module that runs your async code once
 
 ## Install Nuxt Prepare
 
-Nuxt Prepare requires Nuxt 4 or later. This command installs `nuxt-prepare` and adds it to the `modules` of your `nuxt.config.ts`:
+This command installs `nuxt-prepare` and adds it to the `modules` of your `nuxt.config.ts`:
 
 ```bash
 npx nuxt module add prepare
