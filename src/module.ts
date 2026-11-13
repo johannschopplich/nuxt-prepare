@@ -27,7 +27,7 @@ export interface ModuleOptions {
    *
    * @default ['server.prepare']
    */
-  scripts?: string | string[] | PrepareScript | PrepareScript[]
+  scripts?: string | PrepareScript | (string | PrepareScript)[]
 
   /**
    * If `true`, the prepare scripts will be run in parallel.
