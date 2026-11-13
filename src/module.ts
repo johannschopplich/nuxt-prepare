@@ -1,4 +1,4 @@
-import type { AppConfig, NuxtConfigLayer, RuntimeConfig } from '@nuxt/schema'
+import type { AppConfig, NuxtConfigLayer, NuxtModule, RuntimeConfig } from '@nuxt/schema'
 import type { PartialDeep } from 'type-fest'
 import type { NuxtPrepareResult } from './types'
 import { addTemplate, defineNuxtModule, findPath, useLogger } from '@nuxt/kit'
@@ -99,25 +99,27 @@ export default defineNuxtModule<ModuleOptions>({
     const layerScripts: { root: string, name: string, runOnNuxtPrepare: boolean }[] = []
     const appLayer = nuxt.options._layers[0]
 
-    const declaredScripts = (layer: NuxtConfigLayer) => {
-      const config = layer.config.prepare
-      return config
-        ? toArray(config.scripts ?? [])
-        : []
-    }
-
-    // `options.scripts` arrives as every layer's list concatenated, inline module options included.
-    const appScripts = withoutScripts(
-      toArray(options.scripts ?? []),
-      nuxt.options._layers.filter(layer => layer !== appLayer).flatMap(declaredScripts),
+    const declaredByLayer = await Promise.all(
+      nuxt.options._layers.map(async layer => ({ layer, declared: await declaredScripts(layer) })),
     )
 
-    for (const layer of [...nuxt.options._layers].reverse()) {
-      const scripts = layer === appLayer
-        ? (appScripts.length > 0
-            ? appScripts
-            : ['server.prepare'])
-        : declaredScripts(layer)
+    // Whatever `options.scripts` holds beyond the layers' own lists came from elsewhere, such as `installModule`.
+    const extraScripts = withoutScripts(
+      toArray(options.scripts ?? []),
+      declaredByLayer.flatMap(({ declared }) => declared),
+    )
+
+    for (const { layer, declared } of declaredByLayer.reverse()) {
+      let scripts = declared
+
+      if (layer === appLayer) {
+        scripts = [
+          ...declared,
+          ...extraScripts,
+        ]
+        if (scripts.length === 0)
+          scripts = ['server.prepare']
+      }
 
       for (const entry of scripts) {
         const scriptName = stripExtension(
@@ -325,3 +327,31 @@ export type ${pascalCase(key)} = typeof ${key}
     }
   },
 })
+
+/**
+ * Collects the scripts a layer declares, inline module options first, as Nuxt merges them.
+ * Nuxt passes only one layer's inline options to `setup`, so each layer's are read from its own config.
+ */
+async function declaredScripts(layer: NuxtConfigLayer): Promise<(string | PrepareScript)[]> {
+  const inlineScripts: (string | PrepareScript)[] = []
+
+  for (const entry of layer.config.modules ?? []) {
+    if (Array.isArray(entry) && await isNuxtPrepare(entry[0]))
+      inlineScripts.push(...toArray((entry[1] as ModuleOptions | undefined)?.scripts ?? []))
+  }
+
+  const config = layer.config.prepare
+  return config
+    ? [
+        ...inlineScripts,
+        ...toArray(config.scripts ?? []),
+      ]
+    : inlineScripts
+}
+
+async function isNuxtPrepare(module: string | NuxtModule): Promise<boolean> {
+  if (typeof module === 'string')
+    return module === name
+
+  return (await module.getMeta?.())?.name === name
+}

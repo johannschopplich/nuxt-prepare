@@ -2,6 +2,8 @@ import { defineNuxtConfig } from 'nuxt/config'
 import NuxtPrepare from '../../src/module'
 
 export default defineNuxtConfig({
+  extends: ['./layers/base'],
+
   modules: [
     [
       NuxtPrepare,

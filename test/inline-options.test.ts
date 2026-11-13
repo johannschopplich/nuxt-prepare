@@ -19,4 +19,8 @@ describe('inline module options', () => {
   it('runs the script they name', () => {
     expect(nuxt.options.runtimeConfig.public.fromInline).toBe('inline.prepare')
   })
+
+  it('runs the script a layer names, from the layer\'s directory', () => {
+    expect(nuxt.options.runtimeConfig.public.fromLayerInline).toBe('layer.prepare')
+  })
 })
