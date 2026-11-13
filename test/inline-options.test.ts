@@ -24,3 +24,25 @@ describe('inline module options', () => {
     expect(nuxt.options.runtimeConfig.public.fromLayerInline).toBe('layer.prepare')
   })
 })
+
+describe('installModule options', () => {
+  let nuxt: Nuxt
+
+  beforeAll(async () => {
+    nuxt = await loadNuxt({
+      cwd: join(import.meta.dirname, 'fixture-installed'),
+    })
+  }, 120_000)
+
+  afterAll(async () => {
+    await nuxt?.close()
+  })
+
+  it('runs the script they name', () => {
+    expect(nuxt.options.runtimeConfig.public.fromExtra).toBe('extra.prepare')
+  })
+
+  it('lets app.prepare override what extra.prepare returned', () => {
+    expect(nuxt.options.runtimeConfig.public.fromScriptOrder).toBe('app.prepare')
+  })
+})

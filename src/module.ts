@@ -114,8 +114,8 @@ export default defineNuxtModule<ModuleOptions>({
 
       if (layer === appLayer) {
         scripts = [
-          ...declared,
           ...extraScripts,
+          ...declared,
         ]
         if (scripts.length === 0)
           scripts = ['server.prepare']
