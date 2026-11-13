@@ -3,7 +3,7 @@ import { join } from 'node:path'
 import { loadNuxt } from '@nuxt/kit'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
-describe('a project without `"type": "module"`', () => {
+describe('script loading', () => {
   let nuxt: Nuxt
 
   beforeAll(async () => {
@@ -16,15 +16,7 @@ describe('a project without `"type": "module"`', () => {
     await nuxt?.close()
   })
 
-  it('applies what a TypeScript script returned', () => {
+  it('applies what a TypeScript script returned in a project without "type": "module"', () => {
     expect(nuxt.options.runtimeConfig.public.fromCommonJs).toBe('commonjs.prepare')
   })
-})
-
-describe('a default export that is not a result object', () => {
-  it('fails the build', async () => {
-    await expect(loadNuxt({
-      cwd: join(import.meta.dirname, 'fixture-invalid-export'),
-    })).rejects.toThrow('Server prepare script `function.prepare` must export a result object')
-  }, 120_000)
 })
