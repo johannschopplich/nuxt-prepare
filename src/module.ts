@@ -318,9 +318,10 @@ export type ${pascalCase(key)} = typeof ${key}
     })
 
     if (errorCount > 0) {
-      logger.warn(`Server prepare scripts completed with ${errorCount} error${errorCount > 1
-        ? 's'
-        : ''}`)
+      const errorNoun = errorCount === 1
+        ? 'error'
+        : 'errors'
+      logger.warn(`Server prepare scripts completed with ${errorCount} ${errorNoun}`)
     }
     else if (successCount > 0) {
       logger.success('Server prepare scripts completed')
