@@ -39,7 +39,7 @@ export default defineNuxtPrepareHandler(async () => {
 ```
 :::
 
-A script that returns `ok: false` stops the build – see [Error Handling](/guide/error-handling).
+A script signals failure by returning `ok: false` – see [Error Handling](/guide/error-handling).
 
 ## Import Your Prepare State
 
