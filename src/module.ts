@@ -6,7 +6,7 @@ import { createJiti } from 'jiti'
 import { join } from 'pathe'
 import { pascalCase } from 'scule'
 import { name, version } from '../package.json'
-import { isObject, stripExtension, toArray, withoutScripts } from './utils'
+import { assertExportableKeys, isObject, stripExtension, toArray, withoutScripts } from './utils'
 
 const SCRIPT_EXTENSIONS = ['.js', '.mjs', '.ts']
 
@@ -220,6 +220,8 @@ export default defineNuxtModule<ModuleOptions>({
         }
       }
     }
+
+    assertExportableKeys(Object.keys(data))
 
     if (Object.keys(scriptAppConfig).length > 0) {
       // TypeScript, since Nuxt's `AppConfig` type imports each app config without its extension, which resolves no `.mjs`.

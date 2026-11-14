@@ -40,6 +40,8 @@ export declare const todoItem: {
 export type TodoItem = typeof todoItem
 ```
 
+A key that cannot be an export name, such as `build-region` or the reserved word `default`, stops the build, and so do two keys whose type aliases match, such as `buildRegion` and `build_region`.
+
 Import it from `#nuxt-prepare` anywhere:
 
 ```ts

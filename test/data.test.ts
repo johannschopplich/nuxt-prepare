@@ -37,3 +37,11 @@ describe('prepare data', () => {
     expect(templateContents(nuxt, 'module/nuxt-prepare.mjs')).toContain('export const region = "later.prepare"')
   })
 })
+
+describe('prepare data keys', () => {
+  it('stops the build for build-region', async () => {
+    await expect(loadNuxt({
+      cwd: join(import.meta.dirname, 'fixture-invalid-key'),
+    })).rejects.toThrow('Prepare data key `build-region` is not a valid export name')
+  }, 120_000)
+})
