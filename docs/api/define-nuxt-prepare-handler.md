@@ -32,6 +32,8 @@ export default defineNuxtPrepareHandler(async () => {
 
 ## Type Declarations
 
+Import `NuxtPrepareResult` from `nuxt-prepare/config`:
+
 <<< @/../src/types.ts#result
 
 ```ts

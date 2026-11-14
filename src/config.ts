@@ -1,5 +1,7 @@
 import type { NuxtPrepareResult } from './types'
 
+export type { NuxtPrepareResult }
+
 export async function defineNuxtPrepareHandler(
   handler: NuxtPrepareResult | (() => NuxtPrepareResult | Promise<NuxtPrepareResult>),
 ): Promise<NuxtPrepareResult> {
