@@ -1,5 +1,76 @@
 # Migration
 
+## v5.0.0
+
+### Code to Change
+
+These changes break a script or the build until you change your code.
+
+#### `state` Is Now `data`
+
+A script used to return its importable values under `state`. Return them under `data` – the imports from `#nuxt-prepare` stay the same:
+
+<!-- eslint-skip -->
+
+```ts
+export default defineNuxtPrepareHandler(async () => ({
+  state: { todos: await fetchTodos() } // [!code --]
+  data: { todos: await fetchTodos() } // [!code ++]
+}))
+```
+
+#### A Thrown Error Stops the Build Instead of `ok: false`
+
+`ok: false` used to stop the build. The key is gone, so throw instead:
+
+<!-- eslint-skip -->
+
+```ts
+export default defineNuxtPrepareHandler(async () => {
+  const response = await fetch('https://api.example.com/todos')
+
+  if (!response.ok)
+    return { ok: false } // [!code --]
+    throw new Error(`Failed to fetch todos: ${response.status}`) // [!code ++]
+
+  return { data: { todos: await response.json() } }
+})
+```
+
+`prepare.continueOnError` is gone with it, so delete it from `nuxt.config.ts`. To keep building after a failure, catch the error in the script and return a fallback – see [A Thrown Error Stops the Build](/guide/prepare-scripts#a-thrown-error-stops-the-build).
+
+#### Data Keys Without Their Own Type Alias Stop the Build
+
+Two `data` keys whose type aliases match, such as `buildRegion` and `build_region`, used to build with a duplicate type in the generated declarations, and so did a key like `_` that gives no type alias name. Both now stop the build. Rename the key.
+
+### Stricter Types
+
+These changes touch no runtime behavior. They reach you as compile errors.
+
+#### Imports From `#nuxt-prepare` Are Read-Only
+
+An import used to be typed as mutable, though the server shares it across all requests. Build a new value from it instead of changing it in place, such as `[...todos, newTodo]`.
+
+#### `defineNuxtPrepareHandler` Takes No Type Argument
+
+Remove the type argument from `defineNuxtPrepareHandler<…>()`. A result passed as an object now reports a misspelled key.
+
+#### Prepare Scripts Are Type-Checked
+
+`nuxi typecheck` now checks your prepare scripts with the same tsconfig as `nuxt.config.ts`. Fix the errors it reports in them.
+
+### Changed Behavior
+
+These changes compile and build as before, but change which values your app reads.
+
+#### A Script's `appConfig` Stays Out of `nuxt.options.appConfig`
+
+A script's `appConfig` used to be merged into `nuxt.options.appConfig` as well, which added each of its arrays twice at runtime. If you removed the duplicates yourself, drop that workaround. A module that reads `nuxt.options.appConfig` no longer sees the script's values; `useAppConfig()` still does.
+
+#### Parallel Results Merge in the Listed Order
+
+With `prepare.parallel` on, results used to merge in the order the scripts finished. They now merge in the order you listed them, as in series. If two scripts set the same key, check that the one listed later holds the value you want.
+
 ## v4.0.0
 
 ### Nuxt 4 Is Required
