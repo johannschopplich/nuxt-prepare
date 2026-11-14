@@ -13,10 +13,11 @@
   },
   "bugs": "https://github.com/johannschopplich/nuxt-prepare/issues",
   "keywords": [
-    "init",
+    "build-time",
+    "data",
     "nuxt",
-    "prepare",
-    "server"
+    "nuxt-module",
+    "prepare"
   ],
   "exports": {
     ".": {
