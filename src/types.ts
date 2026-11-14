@@ -12,11 +12,11 @@ export interface NuxtPrepareResult {
    */
   ok?: boolean
   /**
-   * Runtime config to merge with `nuxt.options.runtimeConfig`.
+   * Runtime config to merge over `nuxt.config.ts`.
    */
   runtimeConfig?: PartialDeep<RuntimeConfig>
   /**
-   * App config to merge with `nuxt.options.appConfig`.
+   * App config to merge over every `app.config.ts`.
    */
   appConfig?: PartialDeep<AppConfig>
   /**

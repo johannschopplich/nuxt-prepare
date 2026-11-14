@@ -17,6 +17,7 @@ export default defineNuxtConfig({
 
   appConfig: {
     fromConfig: 'nuxt.config',
+    items: ['nuxt.config'],
   },
 
   compatibilityDate: '2026-01-01',

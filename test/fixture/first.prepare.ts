@@ -11,5 +11,6 @@ export default defineNuxtPrepareHandler(() => ({
 
   appConfig: {
     fromConfig: 'first.prepare',
+    items: ['first.prepare'],
   },
 }))

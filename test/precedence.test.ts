@@ -26,8 +26,8 @@ describe('prepare script results', () => {
     expect(publicRuntimeConfig.fromConfig).toBe('first.prepare')
   })
 
-  it('overrides an appConfig key that nuxt.config already set', () => {
-    expect(appConfig.fromConfig).toBe('first.prepare')
+  it('leaves nuxt.options.appConfig as nuxt.config set it', () => {
+    expect(appConfig.items).toEqual(['nuxt.config'])
   })
 
   it('leaves a runtimeConfig key no script returned untouched', () => {
@@ -63,6 +63,6 @@ describe('prepare script results', () => {
       ({ filename }) => filename?.endsWith('nuxt-prepare-app-config.ts'),
     )
 
-    expect(template?.getContents?.({} as Parameters<NonNullable<NuxtTemplate['getContents']>>[0])).toContain('"fromConfig": "first.prepare"')
+    expect(template?.getContents?.({} as Parameters<NonNullable<NuxtTemplate['getContents']>>[0])).toContain('"fromConfig": "first.prepare",\n  "items": [\n    "first.prepare"\n  ]')
   })
 })

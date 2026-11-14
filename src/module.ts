@@ -249,8 +249,6 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     if (Object.keys(scriptAppConfig).length > 0) {
-      nuxt.options.appConfig = defu(scriptAppConfig, nuxt.options.appConfig) as AppConfig
-
       // TypeScript, since Nuxt's `AppConfig` type imports each app config without its extension, which resolves no `.mjs`.
       const template = addTemplate({
         filename: `module/${moduleName}-app-config.ts`,
