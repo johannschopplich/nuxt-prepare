@@ -35,9 +35,9 @@ export default defineNuxtPrepareHandler(async () => {
 <<< @/../src/types.ts#result
 
 ```ts
-function defineNuxtPrepareHandler<T extends NuxtPrepareResult>(
-  init: T | (() => T | Promise<T>)
-): Promise<T>
+function defineNuxtPrepareHandler(
+  handler: NuxtPrepareResult | (() => NuxtPrepareResult | Promise<NuxtPrepareResult>)
+): Promise<NuxtPrepareResult>
 ```
 
 ## Return Value Properties
