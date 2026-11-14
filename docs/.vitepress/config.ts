@@ -26,6 +26,7 @@ export default defineConfig({
   lang: 'en-US',
   title: name,
   description,
+  srcExclude: ['adr/**'],
   head: [
     [
       'link',
