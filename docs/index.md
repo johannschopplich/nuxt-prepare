@@ -38,5 +38,5 @@ features:
     icon: <span class="i-carbon:checkmark-outline"></span>
     details: A script that throws stops the build, so bad input never reaches production.
     link: /guide/prepare-scripts#a-thrown-error-stops-the-build
-    linkText: See Example
+    linkText: A Thrown Error Stops the Build
 ---

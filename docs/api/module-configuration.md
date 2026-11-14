@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 ```
 :::
 
-The defaults cover the common case: a single `server.prepare.ts` in your project root, run in series, stopping the build when it fails. Reach for the options below when that isn't what you want.
+The defaults cover the common case: a single `server.prepare.ts` in your project root, run in series. Reach for the options below when that is not what you want.
 
 The same options can travel with the module entry instead, which is what a layer publishing its own scripts usually wants:
 
@@ -54,7 +54,7 @@ export default defineNuxtConfig({
 })
 ```
 
-A script listed here that doesn't exist stops the build with an error. The one exception is the default `server.prepare`, whose absence is silently ignored – it is a convention, not a requirement.
+A script listed here that does not exist stops the build with an error. The one exception is the default `server.prepare`, whose absence is silently ignored – it is a convention, not a requirement.
 
 ## `prepare.parallel`
 

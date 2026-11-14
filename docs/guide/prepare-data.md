@@ -42,12 +42,6 @@ export declare const todoItem: _DeepReadonly<{
 export type TodoItem = typeof todoItem
 ```
 
-The types are read-only because the server shares one instance of each import across all requests, so a change would reach every later request.
-
-A key that cannot be an export name, such as `build-region` or the reserved word `default`, stops the build, and so do two keys whose type aliases match, such as `buildRegion` and `build_region`.
-
-Import it from `#nuxt-prepare` anywhere:
-
 ```ts
 // In any component, composable, page, layout, or plugin
 import { todoItem } from '#nuxt-prepare'
@@ -63,6 +57,10 @@ export default defineEventHandler(() => {
   return { todo: todoItem }
 })
 ```
+
+The types are read-only because the server shares one instance of each import across all requests, so a change would reach every later request.
+
+A key that cannot be an export name, such as `build-region` or the reserved word `default`, stops the build, and so do two keys whose type aliases match, such as `buildRegion` and `build_region`, or a key like `_` that gives no type alias name.
 
 ## What Survives Serialization
 

@@ -77,7 +77,7 @@ return {
 
 ### `data`
 
-Build-time data importable from `#nuxt-prepare`. Values are JSON-serialized, and their types are inferred from the values themselves.
+Build-time data importable from `#nuxt-prepare`. Values are JSON-serialized, and their read-only types are inferred from the values themselves – see [Prepare Data](/guide/prepare-data).
 
 **Type**: `Record<string, unknown>`
 
@@ -89,10 +89,4 @@ return {
     ]
   }
 }
-```
-
-Then import anywhere:
-
-```ts
-import { todos } from '#nuxt-prepare'
 ```

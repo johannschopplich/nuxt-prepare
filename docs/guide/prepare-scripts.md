@@ -8,15 +8,15 @@ Prepare scripts run **during the build process**, not at runtime:
 nuxt dev/build → Prepare scripts run → Nuxt builds your app → App runs
 ```
 
-Scripts run once per build, so an API call or a database query in a prepare script costs build time, never request time, and what the app ships is the result rather than the code that produced it. In `nuxt dev`, editing a script restarts Nuxt, which runs the scripts again.
+Scripts run once per build, so an API call or a database query in a prepare script costs build time, never request time, and what the app ships is the result rather than the code that produced it. The environment variables and dependencies a script needs must be available at build time. In `nuxt dev`, editing a script restarts Nuxt, which runs the scripts again.
 
 ## A Script's Result Wins Over `nuxt.config.ts`
 
 A result is merged over `nuxt.config.ts` rather than under it, so a key a script returns overrides the value already in place, and keys it leaves out keep theirs. A later script wins over an earlier one, and a script's `appConfig` wins over `app.config.ts` the same way. Two exceptions: arrays are concatenated rather than replaced, and a `null` never overrides – the earlier value stays.
 
-## Layers Run Before Your Project
+## Your Project Wins Over Its Layers
 
-Scripts from extended layers run before the ones your own project lists, so your project has the last word – its result is merged over theirs. Where several layers list the same script path, it runs once, at the position the highest-priority layer gives it.
+Scripts from extended layers come before the ones your own project lists, so your project has the last word – its result is merged over theirs. Where several layers list the same script path, it runs once, at the position the highest-priority layer gives it.
 
 ## A Thrown Error Stops the Build
 
@@ -52,8 +52,6 @@ export default defineNuxtPrepareHandler(async () => {
 })
 ```
 :::
-
-A script runs during the build, so the environment variables and dependencies it needs must be available at build time.
 
 ## Data, Runtime Config, or App Config?
 
