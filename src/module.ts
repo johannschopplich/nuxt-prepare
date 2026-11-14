@@ -151,6 +151,12 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.options.watch.push(...resolvedScripts.map(script => script.path))
 
+    // Scripts run in Node.js at build time, like `nuxt.config.ts`, so they share its tsconfig.
+    nuxt.hooks.hook('prepare:types', ({ nodeTsConfig }) => {
+      nodeTsConfig.include ||= []
+      nodeTsConfig.include.push(...resolvedScripts.map(script => script.path))
+    })
+
     // Without the module cache, every run evaluates the scripts afresh, since a dev restart has to pick up their edits.
     const jiti = createJiti(import.meta.url, {
       moduleCache: false,

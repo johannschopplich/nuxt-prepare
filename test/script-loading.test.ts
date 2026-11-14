@@ -1,6 +1,7 @@
 import type { Nuxt } from '@nuxt/schema'
+import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { loadNuxt } from '@nuxt/kit'
+import { loadNuxt, writeTypes } from '@nuxt/kit'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 describe('script loading', () => {
@@ -23,6 +24,18 @@ describe('script loading', () => {
   it('adds a script to nuxt.options.watch', () => {
     expect(nuxt.options.watch).toContain(join(import.meta.dirname, 'fixture-commonjs/commonjs.prepare.ts'))
   })
+
+  it('includes a script in tsconfig.node.json', async () => {
+    const prepareNuxt = await loadNuxt({
+      cwd: join(import.meta.dirname, 'fixture-commonjs'),
+      overrides: { _prepare: true },
+    })
+    await writeTypes(prepareNuxt)
+    await prepareNuxt.close()
+    const nodeTsConfig = JSON.parse(await readFile(join(prepareNuxt.options.typesDir, 'tsconfig.node.json'), 'utf8'))
+
+    expect(nodeTsConfig.include).toContain('../commonjs.prepare.ts')
+  }, 120_000)
 
   it('fails the build for a function as the default export', async () => {
     await expect(loadNuxt({
