@@ -3,7 +3,7 @@ layout: home
 hero:
   name: Nuxt Prepare
   text: Fetch Once, Import Anywhere
-  tagline: Fetch data once when Nuxt builds, then import it anywhere, fully typed.
+  tagline: Turn API responses into typed imports when Nuxt builds.
   image:
     src: /logo-shadow.svg
     alt: Nuxt Prepare Logo

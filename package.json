@@ -3,7 +3,7 @@
   "type": "module",
   "version": "4.1.0",
   "packageManager": "pnpm@12.18.0",
-  "description": "Fetch data once when Nuxt builds, then import it anywhere, fully typed",
+  "description": "Turn API responses into typed imports when Nuxt builds",
   "author": "Johann Schopplich <hello@johannschopplich.com>",
   "license": "MIT",
   "homepage": "https://nuxt-prepare.byjohann.dev",

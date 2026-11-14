@@ -2,7 +2,7 @@
 
 # Nuxt Prepare
 
-Fetch data once when [Nuxt](https://nuxt.com) builds, then import it anywhere, fully typed.
+Turn API responses into typed imports when [Nuxt](https://nuxt.com) builds.
 
 - [✨ &nbsp;Release Notes](https://github.com/johannschopplich/nuxt-prepare/releases)
 - [📖 &nbsp;Read the documentation](https://nuxt-prepare.byjohann.dev)
