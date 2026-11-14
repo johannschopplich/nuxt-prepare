@@ -20,6 +20,10 @@ describe('script loading', () => {
     expect(nuxt.options.runtimeConfig.public.fromCommonJs).toBe('commonjs.prepare')
   })
 
+  it('adds a script to nuxt.options.watch', () => {
+    expect(nuxt.options.watch).toContain(join(import.meta.dirname, 'fixture-commonjs/commonjs.prepare.ts'))
+  })
+
   it('fails the build for a function as the default export', async () => {
     await expect(loadNuxt({
       cwd: join(import.meta.dirname, 'fixture-invalid-export'),

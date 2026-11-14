@@ -8,7 +8,7 @@ Prepare scripts run **during the build process**, not at runtime:
 nuxt dev/build → Prepare scripts run → Nuxt builds your app → App runs
 ```
 
-Scripts run once per build, so an API call or a database query in a prepare script costs build time, never request time, and what the app ships is the result rather than the code that produced it.
+Scripts run once per build, so an API call or a database query in a prepare script costs build time, never request time, and what the app ships is the result rather than the code that produced it. In `nuxt dev`, editing a script restarts Nuxt, which runs the scripts again.
 
 ## A Script's Result Wins Over `nuxt.config.ts`
 

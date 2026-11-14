@@ -159,6 +159,8 @@ export default defineNuxtModule<ModuleOptions>({
       ...scriptsByPath.values(),
     ]
 
+    nuxt.options.watch.push(...resolvedScripts.map(script => script.path))
+
     // Without the module cache, every run evaluates the scripts afresh, since a dev restart has to pick up their edits.
     const jiti = createJiti(import.meta.url, {
       moduleCache: false,
