@@ -1,7 +1,7 @@
 {
   "name": "nuxt-prepare",
   "type": "module",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "packageManager": "pnpm@12.18.0",
   "description": "Turn API responses into typed imports when Nuxt builds",
   "author": "Johann Schopplich <hello@johannschopplich.com>",
