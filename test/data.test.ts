@@ -25,10 +25,11 @@ describe('prepare data', () => {
     expect(templateContents(nuxt, 'module/nuxt-prepare.mjs')).toContain('export const todo = {\n  "id": 1,')
   })
 
-  it('declares each key with its literal type and a type alias', () => {
+  it('declares each key with its literal type, read-only, and a type alias', () => {
     const declarations = templateContents(nuxt, 'module/nuxt-prepare.d.ts')
 
-    expect(declarations).toContain('export declare const todo:')
+    expect(declarations).toContain('type _DeepReadonly<T> = T extends object ? { readonly [K in keyof T]: _DeepReadonly<T[K]> } : T')
+    expect(declarations).toContain('export declare const todo: _DeepReadonly<{')
     expect(declarations).toContain('"id": 1,')
     expect(declarations).toContain('export type Todo = typeof todo')
   })
