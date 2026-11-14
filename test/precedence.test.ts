@@ -66,3 +66,14 @@ describe('prepare script results', () => {
     expect(template?.getContents?.({} as Parameters<NonNullable<NuxtTemplate['getContents']>>[0])).toContain('"fromConfig": "first.prepare",\n  "items": [\n    "first.prepare"\n  ]')
   })
 })
+
+describe('parallel prepare script results', () => {
+  it('lets fast.prepare, listed after slow.prepare, override it although fast.prepare finishes first', async () => {
+    const nuxt = await loadNuxt({
+      cwd: join(import.meta.dirname, 'fixture-parallel'),
+    })
+    await nuxt.close()
+
+    expect(nuxt.options.runtimeConfig.public.fromScriptOrder).toBe('fast.prepare')
+  }, 120_000)
+})

@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     scripts: [
       'todo.prepare',
       'later.prepare',
+      'null-data.prepare',
     ],
   },
 })

@@ -62,7 +62,7 @@ Whether the scripts run all at once instead of one after another.
 
 **Default Value**: `false`
 
-Only turn this on when the scripts are genuinely independent. Each result is merged the moment its script resolves, so in parallel the order two scripts write the same key in is the order they happen to finish in, not the order you listed them. See [A Script's Result Wins Over `nuxt.config.ts`](/guide/prepare-scripts#a-script-s-result-wins-over-nuxt-config-ts).
+Turn it on where no script needs an earlier one to finish first. Results still merge in the order you listed the scripts, so [which result wins](/guide/prepare-scripts#a-script-s-result-wins-over-nuxt-config-ts) is the same as in series.
 
 ## `prepare.runOnNuxtPrepare`
 
