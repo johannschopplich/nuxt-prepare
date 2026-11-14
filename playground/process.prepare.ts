@@ -10,7 +10,7 @@ export default defineNuxtPrepareHandler(() => {
   const result = v.safeParse(schema, process.env)
 
   if (!result.success) {
-    console.error(
+    throw new Error(
       `Missing environment variables:\n${result.issues
         .filter(issue => issue.path != null)
         .map(issue => `  - ${issue.path![0].key}: ${issue.message}`)
@@ -18,7 +18,5 @@ export default defineNuxtPrepareHandler(() => {
     )
   }
 
-  return {
-    ok: result.success,
-  }
+  return {}
 })

@@ -40,18 +40,6 @@ export interface ModuleOptions {
   parallel?: boolean
 
   /**
-   * If `true`, the module will not throw an error if a script fails.
-   *
-   * @remarks
-   * Ensure to add `ok: false` to your script's return value to indicate that
-   * the script failed. Otherwise, the module will assume that the script
-   * succeeded.
-   *
-   * @default false
-   */
-  continueOnError?: boolean
-
-  /**
    * Whether the scripts should be run on `nuxt prepare`.
    *
    * @remarks
@@ -82,14 +70,12 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     parallel: false,
-    continueOnError: false,
     runOnNuxtPrepare: true,
   },
   async setup(options, nuxt) {
     const moduleName = name
     const logger = useLogger(moduleName)
-    let successCount = 0
-    let errorCount = 0
+    let ranCount = 0
 
     let data: Record<string, unknown> = {}
     let scriptAppConfig: PartialDeep<AppConfig> = {}
@@ -201,19 +187,7 @@ export default defineNuxtModule<ModuleOptions>({
       }
 
       const result: NuxtPrepareResult = awaitedResult
-      const isOk = result.ok ?? true
-
-      if (!isOk) {
-        logger.error(`Server prepare script \`${name}\` returned an error`)
-        errorCount++
-
-        if (!options.continueOnError)
-          throw new TypeError('Server prepare script failed')
-
-        return
-      }
-
-      successCount++
+      ranCount++
 
       // A script's result comes first, so it overrides `nuxt.config` and the scripts before it.
       // Arrays are the exception: those are concatenated whichever way around they are merged.
@@ -317,15 +291,8 @@ export type ${pascalCase(key)} = typeof ${key}
       },
     })
 
-    if (errorCount > 0) {
-      const errorNoun = errorCount === 1
-        ? 'error'
-        : 'errors'
-      logger.warn(`Server prepare scripts completed with ${errorCount} ${errorNoun}`)
-    }
-    else if (successCount > 0) {
+    if (ranCount > 0)
       logger.success('Server prepare scripts completed')
-    }
   },
 })
 

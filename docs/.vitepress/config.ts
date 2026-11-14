@@ -9,12 +9,10 @@ const guideItems: DefaultTheme.NavItemWithLink[] = [
   { text: 'Prepare Scripts', link: '/guide/prepare-scripts' },
   { text: 'Prepare Data', link: '/guide/prepare-data' },
   { text: 'Runtime & App Config', link: '/guide/runtime-app-config' },
-  { text: 'Error Handling', link: '/guide/error-handling' },
   { text: 'Migration', link: '/guide/migration' },
 ]
 
 const cookbookItems: DefaultTheme.NavItemWithLink[] = [
-  { text: 'Environment Variable Validation', link: '/cookbook/env-validation' },
   { text: 'Multi-Tenant Configuration', link: '/cookbook/multi-tenant-configuration' },
 ]
 

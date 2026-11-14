@@ -18,6 +18,43 @@ A result is merged over `nuxt.config.ts` rather than under it, so a key a script
 
 Scripts from extended layers run before the ones your own project lists, so your project has the last word – its result is merged over theirs. Where several layers list the same script path, it runs once, at the position the highest-priority layer gives it.
 
+## A Thrown Error Stops the Build
+
+A script that throws stops the build with its error, so a failed request or a missing variable never reaches production:
+
+```
+[nuxt-prepare] ℹ Running prepare script features.prepare
+ ERROR  Failed to fetch feature flags
+```
+
+To keep building without the value, catch the error and return a fallback:
+
+::: code-group
+```ts [features.prepare.ts]
+import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
+
+export default defineNuxtPrepareHandler(async () => {
+  let features = {
+    analytics: false,
+    darkMode: true
+  }
+
+  try {
+    features = await fetchFeatureFlags()
+  }
+  catch (error) {
+    console.warn('Failed to fetch feature flags, using defaults:', error)
+  }
+
+  return {
+    data: { features }
+  }
+})
+```
+:::
+
+A script runs during the build, so the environment variables and dependencies it needs must be available at build time.
+
 ## Data, Runtime Config, or App Config?
 
 Prepare scripts can return:

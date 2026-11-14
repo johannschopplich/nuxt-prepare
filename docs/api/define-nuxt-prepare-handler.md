@@ -15,9 +15,6 @@ export default defineNuxtPrepareHandler(async () => {
   // Fetch data from an API, read a file, query a database …
 
   return {
-    // If not set, defaults to `true`
-    ok: true,
-
     // Overwrite the runtime config variable `foo`
     runtimeConfig: {
       public: {
@@ -46,20 +43,6 @@ function defineNuxtPrepareHandler<T extends NuxtPrepareResult>(
 ## Return Value Properties
 
 The `NuxtPrepareResult` object can include the following properties:
-
-### `ok`
-
-Whether the script succeeded. Return `ok: false` to stop the build – see [`continueOnError`](/api/module-configuration#prepare-continueonerror) for the other way that can go.
-
-**Type**: `boolean`
-
-**Default Value**: `true`
-
-```ts
-return {
-  ok: !error
-}
-```
 
 ### `runtimeConfig`
 

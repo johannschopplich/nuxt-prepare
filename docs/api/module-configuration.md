@@ -64,14 +64,6 @@ Whether the scripts run all at once instead of one after another.
 
 Only turn this on when the scripts are genuinely independent. Each result is merged the moment its script resolves, so in parallel the order two scripts write the same key in is the order they happen to finish in, not the order you listed them. See [A Script's Result Wins Over `nuxt.config.ts`](/guide/prepare-scripts#a-script-s-result-wins-over-nuxt-config-ts).
 
-## `prepare.continueOnError`
-
-Whether a failing script lets the build carry on.
-
-**Default Value**: `false`
-
-A script fails by returning `ok: false`. With this off, the first failure stops the build. With it on, the failure is logged, the remaining scripts still run, and a warning summarizes what failed at the end. Use it where a script is genuinely optional – an enrichment that is nice to have rather than a validation the app depends on. See [Error Handling](/guide/error-handling).
-
 ## `prepare.runOnNuxtPrepare`
 
 Whether the scripts run during `nuxt prepare`, which generates TypeScript types without building the app.

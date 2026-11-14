@@ -36,7 +36,7 @@ features:
     linkText: Pass Data to Nuxt
   - title: A Build That Fails on Bad Input
     icon: <span class="i-carbon:checkmark-outline"></span>
-    details: 'A script that returns <code>ok: false</code> stops the build, so bad input never reaches production.'
-    link: /cookbook/env-validation
+    details: A script that throws stops the build, so bad input never reaches production.
+    link: /guide/prepare-scripts#a-thrown-error-stops-the-build
     linkText: See Example
 ---

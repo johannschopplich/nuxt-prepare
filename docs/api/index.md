@@ -4,7 +4,7 @@ The module's surface is small: a handful of options in `nuxt.config.ts`, one fun
 
 ## Configuration
 
-- [Module Configuration](/api/module-configuration) – Which scripts run, when, and what a failure does to the build.
+- [Module Configuration](/api/module-configuration) – Which scripts run, and when.
 
 ## Methods
 
@@ -24,7 +24,7 @@ export default defineNuxtPrepareHandler(async () => ({
 }))
 ```
 
-A result carries `ok`, `runtimeConfig`, `appConfig` and `data`, each optional. [`defineNuxtPrepareHandler`](/api/define-nuxt-prepare-handler#return-value-properties) documents what each one does.
+A result carries `runtimeConfig`, `appConfig` and `data`, each optional. [`defineNuxtPrepareHandler`](/api/define-nuxt-prepare-handler#return-value-properties) documents what each one does.
 
 ## Virtual Module
 

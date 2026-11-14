@@ -12,9 +12,13 @@
 /guide/prepare-state.html /guide/prepare-data 301
 /guides/runtime-app-config /guide/runtime-app-config 301
 /guides/runtime-app-config.html /guide/runtime-app-config 301
-/guides/error-handling /guide/error-handling 301
-/guides/error-handling.html /guide/error-handling 301
-/guides/example-env-validation /cookbook/env-validation 301
-/guides/example-env-validation.html /cookbook/env-validation 301
+/guides/error-handling /guide/prepare-scripts 301
+/guides/error-handling.html /guide/prepare-scripts 301
+/guide/error-handling /guide/prepare-scripts 301
+/guide/error-handling.html /guide/prepare-scripts 301
+/guides/example-env-validation /guide/getting-started 301
+/guides/example-env-validation.html /guide/getting-started 301
+/cookbook/env-validation /guide/getting-started 301
+/cookbook/env-validation.html /guide/getting-started 301
 /advanced/migration /guide/migration 301
 /advanced/migration.html /guide/migration 301

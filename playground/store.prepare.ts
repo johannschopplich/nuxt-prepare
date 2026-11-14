@@ -1,25 +1,13 @@
-import type { FetchError } from 'ofetch'
 import { ofetch } from 'ofetch'
 import { defineNuxtPrepareHandler } from '../src/config'
 
 export default defineNuxtPrepareHandler(async () => {
-  let todos: Record<string, unknown> | undefined
-  let error: FetchError | undefined
-
-  try {
-    todos = await ofetch('todos/1', {
-      baseURL: 'https://jsonplaceholder.typicode.com',
-    })
-  }
-  catch (err) {
-    error = err as FetchError
-    console.error(error)
-  }
+  // A failed fetch throws and stops the build.
+  const todos = await ofetch<Record<string, unknown>>('todos/1', {
+    baseURL: 'https://jsonplaceholder.typicode.com',
+  })
 
   return {
-    // If the fetch failed, we want to halt the build.
-    ok: !error,
-
     // Import `todos` anywhere from `#nuxt-prepare`.
     data: {
       todos,

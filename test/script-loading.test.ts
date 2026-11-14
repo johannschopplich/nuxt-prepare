@@ -26,6 +26,12 @@ describe('script loading', () => {
     })).rejects.toThrow('Server prepare script `function.prepare` must export a result object')
   }, 120_000)
 
+  it('fails the build with the error a script throws', async () => {
+    await expect(loadNuxt({
+      cwd: join(import.meta.dirname, 'fixture-throw'),
+    })).rejects.toThrow('Missing environment variables: NUXT_PUBLIC_FOO')
+  }, 120_000)
+
   it('evaluates a script afresh on a second loadNuxt', async () => {
     for (let run = 0; run < 2; run++) {
       const rerunNuxt = await loadNuxt({
