@@ -27,7 +27,13 @@ describe('script loading', () => {
   it('fails the build for a function as the default export', async () => {
     await expect(loadNuxt({
       cwd: join(import.meta.dirname, 'fixture-invalid-export'),
-    })).rejects.toThrow('Server prepare script `function.prepare` must export a result object')
+    })).rejects.toThrow('Prepare script `function.prepare` must export a result object')
+  }, 120_000)
+
+  it('fails the build for a listed script that does not exist', async () => {
+    await expect(loadNuxt({
+      cwd: join(import.meta.dirname, 'fixture-missing'),
+    })).rejects.toThrow('Prepare script `missing.prepare{.js,.mjs,.ts}` not found')
   }, 120_000)
 
   it('fails the build with the error a script throws', async () => {

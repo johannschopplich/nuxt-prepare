@@ -125,10 +125,7 @@ export default defineNuxtModule<ModuleOptions>({
         if (script.name === 'server.prepare')
           return
 
-        logger.error(
-          `Server prepare script \`${script.name}{${SCRIPT_EXTENSIONS.join(',')}}\` not found. Please create the file or remove it from the \`prepare.scripts\` module option.`,
-        )
-        throw new Error('Server prepare script not found')
+        throw new Error(`Prepare script \`${script.name}{${SCRIPT_EXTENSIONS.join(',')}}\` not found. Create the file or remove it from the \`prepare.scripts\` module option.`)
       }
 
       return {
@@ -177,11 +174,11 @@ export default defineNuxtModule<ModuleOptions>({
           : Array.isArray(awaitedResult)
             ? 'array'
             : typeof awaitedResult
-        throw new TypeError(`Server prepare script \`${name}\` must export a result object as default, got ${exportedType}`)
+        throw new TypeError(`Prepare script \`${name}\` must export a result object as default, got ${exportedType}`)
       }
 
       if (awaitedResult.data != null && !isObject(awaitedResult.data))
-        throw new TypeError('Server prepare script returned invalid data')
+        throw new TypeError(`Prepare script \`${name}\` must return \`data\` as an object`)
 
       return awaitedResult
     }
@@ -295,7 +292,7 @@ export type ${pascalCase(key)} = typeof ${key}
     })
 
     if (hasRunScript)
-      logger.success('Server prepare scripts completed')
+      logger.success('Prepare scripts completed')
   },
 })
 
