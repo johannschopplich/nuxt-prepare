@@ -1,6 +1,6 @@
 # Reference
 
-The module's surface is small: a handful of options in `nuxt.config.ts`, one function your scripts call, and one virtual module their results land in.
+The module's surface is small: a handful of options in `nuxt.config.ts`, one function your scripts call, and one virtual module their data lands in.
 
 ## Configuration
 
@@ -24,7 +24,7 @@ export default defineNuxtPrepareHandler(async () => ({
 }))
 ```
 
-A result carries `runtimeConfig`, `appConfig` and `data`, each optional. [`defineNuxtPrepareHandler`](/api/define-nuxt-prepare-handler#return-value-properties) documents what each one does.
+A result carries `runtimeConfig`, `appConfig` and `data`, each optional. [`defineNuxtPrepareHandler`](/api/define-nuxt-prepare-handler#result-properties) documents what each one does.
 
 ## Virtual Module
 

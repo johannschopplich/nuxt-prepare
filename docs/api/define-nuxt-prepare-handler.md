@@ -1,10 +1,6 @@
 # `defineNuxtPrepareHandler`
 
-This helper method defines a prepare script with full type safety. The `init` parameter can be:
-
-- A synchronous function that returns a `NuxtPrepareResult`
-- An asynchronous function that returns a `Promise<NuxtPrepareResult>`
-- An object of type `NuxtPrepareResult`
+`defineNuxtPrepareHandler` types a prepare script's result. Pass it the result itself, or a function that returns it, sync or async.
 
 ## Example
 
@@ -15,16 +11,16 @@ export default defineNuxtPrepareHandler(async () => {
   // Fetch data from an API, read a file, query a database …
 
   return {
+    // Import `foo` anywhere from `#nuxt-prepare`
+    data: {
+      foo: 'bar'
+    },
+
     // Overwrite the runtime config variable `foo`
     runtimeConfig: {
       public: {
         foo: 'Overwritten by prepare script'
       }
-    },
-
-    // Import `foo` anywhere from `#nuxt-prepare`
-    data: {
-      foo: 'bar'
     }
   }
 })
@@ -42,7 +38,7 @@ function defineNuxtPrepareHandler(
 ): Promise<NuxtPrepareResult>
 ```
 
-## Return Value Properties
+## Result Properties
 
 The `NuxtPrepareResult` object can include the following properties:
 

@@ -61,7 +61,7 @@ Prepare scripts can return:
 
 | Key | Your app reads it with | Reach for it when |
 | --- | --- | --- |
-| `data` | `import { … } from '#nuxt-prepare'` | Values you import as typed constants – prefetched content, initial store data |
+| `data` | `import { … } from '#nuxt-prepare'` | Values you import as typed constants – prefetched content, initial data for a Pinia store |
 | `runtimeConfig` | `useRuntimeConfig()` | Environment settings, API URLs, and credentials – public or server-only |
 | `appConfig` | `useAppConfig()` | App-wide settings – feature flags from a CMS, a tenant's theme |
 

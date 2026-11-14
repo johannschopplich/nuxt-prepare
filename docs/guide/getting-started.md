@@ -24,16 +24,16 @@ export default defineNuxtPrepareHandler(async () => {
   // Fetch data from an API, read a file, query a database …
 
   return {
+    // Import `foo` anywhere from `#nuxt-prepare`
+    data: {
+      foo: 'bar'
+    },
+
     // Overwrite the runtime config variable `foo`
     runtimeConfig: {
       public: {
         foo: 'Overwritten by "server.prepare" script'
       }
-    },
-
-    // Import `foo` anywhere from `#nuxt-prepare`
-    data: {
-      foo: 'bar'
     }
   }
 })

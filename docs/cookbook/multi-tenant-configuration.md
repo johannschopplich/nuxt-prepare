@@ -41,8 +41,6 @@ export default defineNuxtPrepareHandler(async () => {
 ```
 :::
 
-Now you can use each piece of data in the most appropriate way:
-
 ```vue
 <script setup lang="ts">
 import { tenant } from '#nuxt-prepare'
