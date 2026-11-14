@@ -1,6 +1,6 @@
 # Runtime & App Config
 
-A prepare script can set `runtimeConfig` and `appConfig` values it had to fetch or compute first. [State, Runtime Config, or App Config?](/guide/prepare-scripts#state-runtime-config-or-app-config) helps you pick one.
+A prepare script can set `runtimeConfig` and `appConfig` values it had to fetch or compute first. [Data, Runtime Config, or App Config?](/guide/prepare-scripts#data-runtime-config-or-app-config) helps you pick one.
 
 ## Runtime Config
 

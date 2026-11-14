@@ -91,7 +91,7 @@ export default defineNuxtModule<ModuleOptions>({
     let successCount = 0
     let errorCount = 0
 
-    let state: Record<string, unknown> = {}
+    let data: Record<string, unknown> = {}
     let scriptAppConfig: PartialDeep<AppConfig> = {}
 
     // Lowest priority first: a later script overrides an earlier one, and the
@@ -227,10 +227,10 @@ export default defineNuxtModule<ModuleOptions>({
       if (result.appConfig)
         scriptAppConfig = defu(result.appConfig, scriptAppConfig)
 
-      if (result.state) {
-        if (!isObject(result.state))
-          throw new TypeError('Server prepare script returned invalid state')
-        state = defu(result.state, state)
+      if (result.data) {
+        if (!isObject(result.data))
+          throw new TypeError('Server prepare script returned invalid data')
+        data = defu(result.data, data)
       }
     }
 
@@ -276,7 +276,7 @@ export default ${JSON.stringify(scriptAppConfig, undefined, 2)}
       filename: `module/${moduleName}.mjs`,
       write: true,
       getContents() {
-        const results = Object.entries(state)
+        const results = Object.entries(data)
 
         if (!results.length) {
           return `
@@ -298,7 +298,7 @@ export const ${key} = ${JSON.stringify(value, undefined, 2)}
       filename: `module/${moduleName}.d.ts`,
       write: true,
       getContents() {
-        const results = Object.entries(state)
+        const results = Object.entries(data)
 
         if (!results.length) {
           return `

@@ -32,8 +32,8 @@ features:
   - title: Type-Safe Global State
     icon: <span class="i-carbon:ibm-watson-knowledge-studio"></span>
     details: Return state from a script and import it from <code>#nuxt-prepare</code>, fully inferred.
-    link: /guide/prepare-state
-    linkText: Pass State to Nuxt
+    link: /guide/prepare-data
+    linkText: Pass Data to Nuxt
   - title: A Build That Fails on Bad Input
     icon: <span class="i-carbon:checkmark-outline"></span>
     details: 'A script that returns <code>ok: false</code> stops the build, so bad input never reaches production.'

@@ -41,16 +41,15 @@ export default defineNuxtPrepareHandler(async () => {
       }
     },
 
-    // Pass custom state to Nuxt and import it
-    // anywhere from `#nuxt-prepare`
-    state: {
+    // Import `foo` anywhere from `#nuxt-prepare`
+    data: {
       foo: 'bar'
     }
   }
 })
 ```
 
-The [documentation](https://nuxt-prepare.byjohann.dev) covers the handler API, prepare state and every module option.
+The [documentation](https://nuxt-prepare.byjohann.dev) covers the handler API, prepare data and every module option.
 
 ## 💻 Development
 

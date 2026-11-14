@@ -30,9 +30,9 @@ if (import.meta.client) {
     <pre>{{ JSON.stringify(config, undefined, 2) }}</pre>
   </details>
 
-  <h3>Prepared State</h3>
+  <h3>Prepare Data</h3>
   <details>
-    <summary>Prefetched state <code>todos</code> at build-time</summary>
+    <summary><code>todos</code>, fetched while Nuxt built the app</summary>
     <pre>{{ JSON.stringify(todos, undefined, 2) }}</pre>
   </details>
 </template>

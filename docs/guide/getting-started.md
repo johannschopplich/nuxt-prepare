@@ -29,9 +29,8 @@ export default defineNuxtPrepareHandler(async () => {
       }
     },
 
-    // Pass custom state to Nuxt and import it
-    // anywhere from `#nuxt-prepare`
-    state: {
+    // Import `foo` anywhere from `#nuxt-prepare`
+    data: {
       foo: 'bar'
     }
   }
@@ -41,9 +40,9 @@ export default defineNuxtPrepareHandler(async () => {
 
 A script signals failure by returning `ok: false` – see [Error Handling](/guide/error-handling).
 
-## Import Your Prepare State
+## Import Your Prepare Data
 
-Whatever the script returns under `state` is importable as typed exports from `#nuxt-prepare`, in both your Nuxt app and the Nitro server:
+Whatever the script returns under `data` is importable as typed exports from `#nuxt-prepare`, in both your Nuxt app and the Nitro server:
 
 ```vue
 <script setup lang="ts">

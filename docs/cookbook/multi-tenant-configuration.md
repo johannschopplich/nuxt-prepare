@@ -13,7 +13,7 @@ export default defineNuxtPrepareHandler(async () => {
 
   return {
     // Public tenant data as importable constants
-    state: {
+    data: {
       tenant: {
         id: tenant.id,
         name: tenant.name,

@@ -7,7 +7,7 @@ import { github, name, ogImage, ogUrl, releases } from './meta'
 const guideItems: DefaultTheme.NavItemWithLink[] = [
   { text: 'Getting Started', link: '/guide/getting-started' },
   { text: 'Prepare Scripts', link: '/guide/prepare-scripts' },
-  { text: 'Prepare State', link: '/guide/prepare-state' },
+  { text: 'Prepare Data', link: '/guide/prepare-data' },
   { text: 'Runtime & App Config', link: '/guide/runtime-app-config' },
   { text: 'Error Handling', link: '/guide/error-handling' },
   { text: 'Migration', link: '/guide/migration' },

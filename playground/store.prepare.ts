@@ -20,9 +20,8 @@ export default defineNuxtPrepareHandler(async () => {
     // If the fetch failed, we want to halt the build.
     ok: !error,
 
-    // Pass your todos data to Nuxt and import it
-    // anywhere from `#nuxt-prepare`.
-    state: {
+    // Import `todos` anywhere from `#nuxt-prepare`.
+    data: {
       todos,
     },
   }

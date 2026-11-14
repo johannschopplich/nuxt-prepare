@@ -12,11 +12,11 @@ import { defineNuxtPrepareHandler } from 'nuxt-prepare/config'
 
 export default defineNuxtPrepareHandler(async () => {
   try {
-    const data = await fetchCriticalData()
+    const criticalData = await fetchCriticalData()
 
     return {
       ok: true,
-      state: { data }
+      data: { criticalData }
     }
   }
   catch (error) {
@@ -53,7 +53,7 @@ export default defineNuxtPrepareHandler(async () => {
   }
 
   return {
-    state: { features }
+    data: { features }
   }
 })
 ```

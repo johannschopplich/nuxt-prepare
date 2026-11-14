@@ -1,10 +1,10 @@
-# Prepare State
+# Prepare Data
 
-A prepare script's `state` is generated as typed exports and importable from `#nuxt-prepare`.
+A prepare script's `data` is generated as typed exports and importable from `#nuxt-prepare`.
 
-## Return State From a Script
+## Return Data From a Script
 
-This script fetches one todo item and returns it as state:
+This script fetches one todo item and returns it as data:
 
 ::: code-group
 ```ts [server.prepare.ts]
@@ -15,7 +15,7 @@ export default defineNuxtPrepareHandler(async () => {
   const todoItem = await ofetch('https://jsonplaceholder.typicode.com/todos/1')
 
   return {
-    state: {
+    data: {
       todoItem
     }
   }
@@ -25,7 +25,7 @@ export default defineNuxtPrepareHandler(async () => {
 
 ## Import It From `#nuxt-prepare`
 
-State from all prepare scripts is merged – [a later script wins](/guide/prepare-scripts#a-script-s-result-wins-over-nuxt-config-ts) where two set the same key. Each key becomes a named export, typed with its literal values rather than widened ones – `todoItem.id` is `1`, not `number` – plus a type alias named after it:
+Data from all prepare scripts is merged – [a later script wins](/guide/prepare-scripts#a-script-s-result-wins-over-nuxt-config-ts) where two set the same key. Each key becomes a named export, typed with its literal values rather than widened ones – `todoItem.id` is `1`, not `number` – plus a type alias named after it:
 
 <!-- eslint-skip -->
 
@@ -60,9 +60,9 @@ export default defineEventHandler(() => {
 
 ## What Survives Serialization
 
-State values are JSON-serialized:
+Data values are JSON-serialized:
 
 - Objects, arrays, strings, numbers, and booleans survive, and so does `null` inside an array or object.
 - Functions, symbols, and `undefined` are dropped from an object and become `null` in an array.
-- A `state` key set to a function or symbol is exported as `undefined`; one set to `undefined` or `null` gets no export at all.
+- A `data` key set to a function or symbol is exported as `undefined`; one set to `undefined` or `null` gets no export at all.
 - A `Date` arrives as its ISO string, a `Map` or `Set` as `{}`.

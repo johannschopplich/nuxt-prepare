@@ -18,14 +18,14 @@ A result is merged over `nuxt.config.ts` rather than under it, so a key a script
 
 Scripts from extended layers run before the ones your own project lists, so your project has the last word – its result is merged over theirs. Where several layers list the same script path, it runs once, at the position the highest-priority layer gives it.
 
-## State, Runtime Config, or App Config?
+## Data, Runtime Config, or App Config?
 
 Prepare scripts can return:
 
 | Key | Your app reads it with | Reach for it when |
 | --- | --- | --- |
-| `state` | `import { … } from '#nuxt-prepare'` | Data you import as typed constants – prefetched content, initial store data |
+| `data` | `import { … } from '#nuxt-prepare'` | Values you import as typed constants – prefetched content, initial store data |
 | `runtimeConfig` | `useRuntimeConfig()` | Environment settings, API URLs, and credentials – public or server-only |
 | `appConfig` | `useAppConfig()` | App-wide settings – feature flags from a CMS, a tenant's theme |
 
-See [Prepare State](/guide/prepare-state) and [Runtime & App Config](/guide/runtime-app-config) for each one, and [Multi-Tenant Configuration](/cookbook/multi-tenant-configuration) for all three in one script.
+See [Prepare Data](/guide/prepare-data) and [Runtime & App Config](/guide/runtime-app-config) for each one, and [Multi-Tenant Configuration](/cookbook/multi-tenant-configuration) for all three in one script.

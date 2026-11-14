@@ -25,9 +25,8 @@ export default defineNuxtPrepareHandler(async () => {
       }
     },
 
-    // Pass custom state to Nuxt and import it
-    // anywhere from `#nuxt-prepare`
-    state: {
+    // Import `foo` anywhere from `#nuxt-prepare`
+    data: {
       foo: 'bar'
     }
   }
@@ -95,7 +94,7 @@ return {
 }
 ```
 
-### `state`
+### `data`
 
 Build-time data importable from `#nuxt-prepare`. Values are JSON-serialized, and their types are inferred from the values themselves.
 
@@ -103,7 +102,7 @@ Build-time data importable from `#nuxt-prepare`. Values are JSON-serialized, and
 
 ```ts
 return {
-  state: {
+  data: {
     todos: [
       { id: 1, title: 'Learn Nuxt Prepare' }
     ]

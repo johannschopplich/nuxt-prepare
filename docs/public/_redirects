@@ -4,10 +4,12 @@
 /essentials/getting-started.html /guide/getting-started 301
 /essentials/core-concepts /guide/prepare-scripts 301
 /essentials/core-concepts.html /guide/prepare-scripts 301
-/guides/prepare-state /guide/prepare-state 301
-/guides/prepare-state.html /guide/prepare-state 301
-/guides/example-pass-state-to-nuxt /guide/prepare-state 301
-/guides/example-pass-state-to-nuxt.html /guide/prepare-state 301
+/guides/prepare-state /guide/prepare-data 301
+/guides/prepare-state.html /guide/prepare-data 301
+/guides/example-pass-state-to-nuxt /guide/prepare-data 301
+/guides/example-pass-state-to-nuxt.html /guide/prepare-data 301
+/guide/prepare-state /guide/prepare-data 301
+/guide/prepare-state.html /guide/prepare-data 301
 /guides/runtime-app-config /guide/runtime-app-config 301
 /guides/runtime-app-config.html /guide/runtime-app-config 301
 /guides/error-handling /guide/error-handling 301

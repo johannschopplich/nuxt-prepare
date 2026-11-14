@@ -20,23 +20,8 @@ export interface NuxtPrepareResult {
    */
   appConfig?: PartialDeep<AppConfig>
   /**
-   * Custom state to pass to Nuxt and import anywhere from `#nuxt-prepare`.
-   *
-   * @remarks
-   * Use this to prefetch data, i.e. populate the Pinia store with data from
-   * your API.
-   *
-   * @example
-   * // `stores/todo.ts`
-   * import { defineStore } from 'pinia'
-   * import { todos } from '#nuxt-prepare'
-   *
-   * export const useTodos = defineStore('todos', {
-   *   state: () => ({
-   *     todos: todos || [],
-   *   })
-   * })
+   * Build-time data, imported from `#nuxt-prepare` as one typed constant per key.
    */
-  state?: Record<string, unknown>
+  data?: Record<string, unknown>
 }
 // #endregion result

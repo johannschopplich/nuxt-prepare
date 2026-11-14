@@ -20,19 +20,19 @@ export default defineNuxtPrepareHandler(async () => ({
   runtimeConfig: {
     public: { apiUrl: await resolveApiUrl() }
   },
-  state: { buildRegion: 'eu-central-1' }
+  data: { buildRegion: 'eu-central-1' }
 }))
 ```
 
-A result carries `ok`, `runtimeConfig`, `appConfig` and `state`, each optional. [`defineNuxtPrepareHandler`](/api/define-nuxt-prepare-handler#return-value-properties) documents what each one does.
+A result carries `ok`, `runtimeConfig`, `appConfig` and `data`, each optional. [`defineNuxtPrepareHandler`](/api/define-nuxt-prepare-handler#return-value-properties) documents what each one does.
 
 ## Virtual Module
 
-Whatever your scripts returned as `state` is importable by key, typed from the value itself:
+Whatever your scripts returned as `data` is importable by key, typed from the value itself:
 
 ```ts
 import { buildRegion } from '#nuxt-prepare'
 //     ^? "eu-central-1"
 ```
 
-See [Prepare State](/guide/prepare-state).
+See [Prepare Data](/guide/prepare-data).

@@ -78,7 +78,7 @@ Whether the scripts run during `nuxt prepare`, which generates TypeScript types 
 
 **Default Value**: `true`
 
-Turn it off where a script makes an expensive request or has a side effect that type generation has no use for. Note that a script's `state` shapes the types importable from `#nuxt-prepare`, so a skipped script's exports are missing from the types until the next `nuxt dev` or `nuxt build`.
+Turn it off where a script makes an expensive request or has a side effect that type generation has no use for. Note that a script's `data` shapes the types importable from `#nuxt-prepare`, so a skipped script's exports are missing from the types until the next `nuxt dev` or `nuxt build`.
 
 To skip a single script, use the object syntax of [`prepare.scripts`](/api/module-configuration#prepare-scripts). It cannot opt one back in: with `prepare.runOnNuxtPrepare: false`, every script is skipped.
 
