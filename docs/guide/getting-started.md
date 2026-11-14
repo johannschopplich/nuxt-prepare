@@ -1,6 +1,8 @@
 # Getting Started
 
-Nuxt Prepare is a [Nuxt](https://nuxt.com) module that runs your async code once, while Nuxt builds, and folds the result into the configuration and into a state your app can import. It fills a gap: Nuxt's configuration file cannot await anything.
+Nuxt Prepare is a [Nuxt](https://nuxt.com) module that runs your async code once while Nuxt builds and turns the result into typed imports: return `data: { todos }` from a prepare script, and `import { todos } from '#nuxt-prepare'` works in your app and your Nitro server, typed with its literal values. A script can also set `runtimeConfig` and `appConfig`, and its `appConfig` wins over `app.config.ts`.
+
+A value only your config reads does not need this module: `nuxt.config.ts` can `await` at the top level, and Nuxt loads `.env` before it evaluates the file, so a check that throws there stops the build.
 
 ## Install Nuxt Prepare
 

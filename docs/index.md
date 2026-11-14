@@ -2,8 +2,8 @@
 layout: home
 hero:
   name: Nuxt Prepare
-  text: Async Config for Nuxt
-  tagline: Run async code before your Nuxt config is final, and ship only the result.
+  text: Build-Time Data for Nuxt
+  tagline: Fetch once while Nuxt builds, then import the data, typed, in your app and your server.
   image:
     src: /logo-shadow.svg
     alt: Nuxt Prepare Logo
@@ -19,21 +19,21 @@ hero:
       link: https://github.com/johannschopplich/nuxt-prepare
 
 features:
-  - title: Async Operations
-    icon: <span class="i-carbon:function"></span>
-    details: Await anything your config depends on – a remote value, a database, a computed default.
-    link: /guide/runtime-app-config
-    linkText: Runtime & App Config
+  - title: Typed Imports
+    icon: <span class="i-carbon:data-structured"></span>
+    details: Return <code>data</code> from a script and import it from <code>#nuxt-prepare</code> in Vue and Nitro, typed with its literal values.
+    link: /guide/prepare-data
+    linkText: Prepare Data
   - title: Zero Runtime Cost
     icon: <span class="i-carbon:meter"></span>
     details: Expensive work happens once during the build, not on every request.
     link: /guide/prepare-scripts#scripts-run-at-build-time
     linkText: Scripts Run at Build Time
-  - title: Type-Safe Global State
-    icon: <span class="i-carbon:ibm-watson-knowledge-studio"></span>
-    details: Return state from a script and import it from <code>#nuxt-prepare</code>, fully inferred.
-    link: /guide/prepare-data
-    linkText: Pass Data to Nuxt
+  - title: Config Above <code>app.config.ts</code>
+    icon: <span class="i-carbon:settings-adjust"></span>
+    details: A script's <code>appConfig</code> wins over <code>app.config.ts</code>, its <code>runtimeConfig</code> over <code>nuxt.config.ts</code>.
+    link: /guide/runtime-app-config
+    linkText: Runtime & App Config
   - title: A Build That Fails on Bad Input
     icon: <span class="i-carbon:checkmark-outline"></span>
     details: A script that throws stops the build, so bad input never reaches production.

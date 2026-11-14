@@ -2,7 +2,7 @@
 
 # Nuxt Prepare
 
-Run async code at build time, before [Nuxt](https://nuxt.com) finalizes its config.
+Fetch data while [Nuxt](https://nuxt.com) builds and import it, typed, in your app and server.
 
 - [✨ &nbsp;Release Notes](https://github.com/johannschopplich/nuxt-prepare/releases)
 - [📖 &nbsp;Read the documentation](https://nuxt-prepare.byjohann.dev)
@@ -10,7 +10,7 @@ Run async code at build time, before [Nuxt](https://nuxt.com) finalizes its conf
 ## Features
 
 - 🦦 Zero configuration
-- 🦎 Run sync or async operations when Nuxt builds your app
+- 🦎 Import build-time data from `#nuxt-prepare`, typed with its literal values
 - ✂️ Conditionally overwrite runtime config or app config values
 - 🍡 Run scripts in series or parallel
 - 🥢 Ready for [Nitro](https://nitro.build) server routes
