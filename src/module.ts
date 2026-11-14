@@ -242,12 +242,8 @@ export default ${JSON.stringify(scriptAppConfig, undefined, 2)}
       })
     }
 
+    // Nuxt passes its aliases on to Nitro and to every generated tsconfig.
     nuxt.options.alias[`#${moduleName}`] = join(nuxt.options.buildDir, `module/${moduleName}`)
-
-    nuxt.hooks.hook('nitro:config', (config) => {
-      config.alias ||= {}
-      config.alias[`#${moduleName}`] = join(nuxt.options.buildDir, `module/${moduleName}`)
-    })
 
     addTemplate({
       filename: `module/${moduleName}.mjs`,
@@ -273,7 +269,6 @@ export const ${key} = ${JSON.stringify(value, undefined, 2)}
 
     addTemplate({
       filename: `module/${moduleName}.d.ts`,
-      write: true,
       getContents() {
         const results = Object.entries(data)
 
