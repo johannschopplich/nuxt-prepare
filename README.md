@@ -2,7 +2,7 @@
 
 # Nuxt Prepare
 
-Fetch data while [Nuxt](https://nuxt.com) builds and import it, typed, in your app and server.
+Fetch data once when [Nuxt](https://nuxt.com) builds, then import it anywhere, fully typed.
 
 - [✨ &nbsp;Release Notes](https://github.com/johannschopplich/nuxt-prepare/releases)
 - [📖 &nbsp;Read the documentation](https://nuxt-prepare.byjohann.dev)

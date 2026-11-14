@@ -2,8 +2,8 @@
 layout: home
 hero:
   name: Nuxt Prepare
-  text: Build-Time Data for Nuxt
-  tagline: Fetch once while Nuxt builds, then import the data, typed, in your app and your server.
+  text: Fetch Once, Import Anywhere
+  tagline: Fetch data once when Nuxt builds, then import it anywhere, fully typed.
   image:
     src: /logo-shadow.svg
     alt: Nuxt Prepare Logo

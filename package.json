@@ -3,7 +3,7 @@
   "type": "module",
   "version": "4.1.0",
   "packageManager": "pnpm@12.18.0",
-  "description": "Fetch data while Nuxt builds and import it, typed, in your app and server",
+  "description": "Fetch data once when Nuxt builds, then import it anywhere, fully typed",
   "author": "Johann Schopplich <hello@johannschopplich.com>",
   "license": "MIT",
   "homepage": "https://nuxt-prepare.byjohann.dev",
