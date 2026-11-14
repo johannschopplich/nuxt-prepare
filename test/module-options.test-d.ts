@@ -9,3 +9,13 @@ expectTypeOf([
 
 // @ts-expect-error A misspelled result key.
 defineNuxtPrepareHandler({ data: {}, appconfig: {} })
+
+defineNuxtPrepareHandler({
+  runtimeConfig: {
+    secret: 'x',
+    public: { apiUrl: 'https://example.com' },
+  },
+  appConfig: {
+    theme: { primaryColor: '#86CA39' },
+  },
+})

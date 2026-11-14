@@ -1,5 +1,4 @@
-import type { AppConfig, NuxtConfigLayer, NuxtModule, RuntimeConfig } from '@nuxt/schema'
-import type { PartialDeep } from 'type-fest'
+import type { NuxtConfig, NuxtConfigLayer, NuxtModule, RuntimeConfig } from '@nuxt/schema'
 import type { NuxtPrepareResult } from './types'
 import { addTemplate, defineNuxtModule, findPath, useLogger } from '@nuxt/kit'
 import { defu } from 'defu'
@@ -78,7 +77,7 @@ export default defineNuxtModule<ModuleOptions>({
     let ranCount = 0
 
     let data: Record<string, unknown> = {}
-    let scriptAppConfig: PartialDeep<AppConfig> = {}
+    let scriptAppConfig: NonNullable<NuxtConfig['appConfig']> = {}
 
     // Lowest priority first: a later script overrides an earlier one, and the
     // app layer has to have the last word over the layers it extends.

@@ -50,7 +50,7 @@ The `NuxtPrepareResult` object can include the following properties:
 
 Runtime config to merge over the one from `nuxt.config.ts`, taking precedence where both set a key. Read it back with `useRuntimeConfig()`.
 
-**Type**: `PartialDeep<RuntimeConfig>`
+**Type**: `NuxtConfig['runtimeConfig']`
 
 ```ts
 return {
@@ -67,7 +67,7 @@ return {
 
 App config to merge over the one from `app.config.ts`, taking precedence where both set a key. Read it back with `useAppConfig()`.
 
-**Type**: `PartialDeep<AppConfig>`
+**Type**: `NuxtConfig['appConfig']`
 
 ```ts
 return {

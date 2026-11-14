@@ -181,9 +181,6 @@ importers:
       scule:
         specifier: ^1.3.0
         version: 1.3.0
-      type-fest:
-        specifier: ^5.10.0
-        version: 5.10.0
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^10.0.0
